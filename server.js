@@ -15,8 +15,9 @@ var env      = require('./config/environment'),
 // Instantiate a server application.
 var app = express();
 
-console.log(app)
+// console.log(app)
 // using favicon in program
+// DOES NOT WORK
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
 
