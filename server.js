@@ -6,7 +6,6 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 
-app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
 // Load local libraries.
 var env      = require('./config/environment'),
@@ -15,6 +14,11 @@ var env      = require('./config/environment'),
 
 // Instantiate a server application.
 var app = express();
+
+console.log(app)
+// using favicon in program
+// app.use(favicon(__dirname + '/public/images/favicon.ico'))
+
 
 // Configure the application (and set it's title!).
 app.set('title', env.TITLE);
