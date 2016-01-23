@@ -1,9 +1,8 @@
-// getting User schema model from ../models/user file
+np// getting User schema model from ../models/user file
 var User = require('../models/user');
 // Requiring the npms that are in use in this file
 var mongoose = require('mongoose')
 var FacebookStrategy = require('passport-facebook').Strategy
-
 
 // Serializing/Deserializing modules
 module.exports = function(passport){
