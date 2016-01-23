@@ -2,9 +2,9 @@ var express = require('express'),
     router  = new express.Router();
 
 // //Socket below
-// var app = require('express')();
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http);
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 
 // Require controllers.
@@ -19,8 +19,8 @@ router.get('/users',     usersController.index);
 router.get('/users/:id', usersController.show);
 
 // //event listener for connection (socket)
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 module.exports = router;
