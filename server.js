@@ -7,6 +7,9 @@ var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 var passport     = require('passport');
 
+'use strict';
+require('dotenv').load();
+
 // Load local libraries.
 var env      = require('./config/environment'),
     mongoose = require('./config/database'),
