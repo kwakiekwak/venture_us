@@ -4,8 +4,6 @@ var User = require('../models/user');
 var mongoose = require('mongoose')
 var FacebookStrategy = require('passport-facebook').Strategy
 
-var FACEBOOK_API_KEY = "1510669929235638"
-var FACEBOOK_API_SECRET = "9833f7d7d2c4fd6a2e1da62ec76d8766"
 
 // Serializing/Deserializing modules
 module.exports = function(passport){
