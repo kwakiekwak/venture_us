@@ -3,8 +3,8 @@ var User = require('../models/user');
 // Requiring the npms that are in use in this file
 var mongoose = require('mongoose')
 var FacebookStrategy = require('passport-facebook').Strategy
-var FACEBOOK_API_KEY = "1510669929235638"
-var FACEBOOK_API_SECRET = "9833f7d7d2c4fd6a2e1da62ec76d8766"
+
+
 // Serializing/Deserializing modules
 module.exports = function(passport){
     passport.serializeUser(function(user, done) {
@@ -17,8 +17,8 @@ module.exports = function(passport){
       });
     });
       passport.use('facebook', new FacebookStrategy({
-      clientID        : FACEBOOK_API_KEY,
-      clientSecret    : FACEBOOK_API_SECRET,
+      clientID        : process.env.FACEBOOK_API_KEY,
+      clientSecret    : process.env.FACEBOOK_API_SECRET,
       callbackURL     : 'http://localhost:3000/auth/facebook/callback',
       enableProof     : true,
     // describe the fields we want from FB
