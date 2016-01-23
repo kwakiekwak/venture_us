@@ -5,12 +5,14 @@ var logger       = require('morgan');
 var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
-
+var passport     = require('passport');
 
 // Load local libraries.
 var env      = require('./config/environment'),
     mongoose = require('./config/database'),
     routes   = require('./config/routes');
+
+
 
 // Instantiate a server application.
 var app = express();
@@ -20,6 +22,8 @@ var app = express();
 // DOES NOT WORK
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
+app.use(passport.initialize());
+require("./config/passport")(passport)
 
 // Configure the application (and set it's title!).
 app.set('title', env.TITLE);
