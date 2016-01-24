@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 module.exports = mongoose.model('User', {
 // Setting up the facebook user model schema
