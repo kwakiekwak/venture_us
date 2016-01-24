@@ -1,7 +1,5 @@
 // getting User schema model from ../models/user file
 var User = require('../models/user');
-// Requiring the npms that are in use in this file
-var mongoose = require('mongoose')
 var FacebookStrategy = require('passport-facebook').Strategy
 
 // Serializing/Deserializing modules
@@ -18,13 +16,13 @@ module.exports = function(passport){
       });
     });
 
-      passport.use('facebook', new FacebookStrategy({
-      clientID        : process.env.FACEBOOK_API_KEY,
-      clientSecret    : process.env.FACEBOOK_API_SECRET,
-      callbackURL     : 'http://localhost:3000/auth/facebook/callback',
-      enableProof     : true,
+    passport.use('facebook', new FacebookStrategy({
+    clientID        : process.env.FACEBOOK_API_KEY,
+    clientSecret    : process.env.FACEBOOK_API_SECRET,
+    callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+    enableProof     : true,
     // describe the fields we want from FB
-      profileFields   : ['name', 'emails']
+    profileFields   : ['name', 'emails']
     // executed when FB sends back the data to the website
     // using auth/facebook/callback
     }, function(access_token, refresh_token, profile, done) {

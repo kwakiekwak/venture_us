@@ -4,7 +4,7 @@ var User = require("../models/user");
 var index = function(req, res, next){
 
   User.find({}, function(error, users){
-    res.render('users/index', {users: users});
+    res.render('users/index', {users: users, user: req.user});
   });
 };
 
@@ -15,7 +15,12 @@ var show = function(req, res, next){
   });
 };
 
+var profile = function(req, res) {
+  res.render('users/profile', {user: req.user})
+}
+
 module.exports = {
   index: index,
-  show:  show
+  show:  show,
+  profile: profile
 };

@@ -1,26 +1,24 @@
 var passport       = require('passport');
 var mongoose       = require('mongoose');
 var express        = require('express');
-
-// //Socket below
+var router         = new express.Router();
+// Require controllers.
+var welcomeController = require('../controllers/welcome');
+var usersController   = require('../controllers/users');
+// Socket below
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
-var router         = new express.Router();
 
 // Initializing passport
 app.use(passport.initialize());
 require("../config/passport")(passport)
 
-// Require controllers.
-var welcomeController = require('../controllers/welcome');
-var usersController   = require('../controllers/users');
-
-// root path:
+// root path for showing homepage
 router.get('/', welcomeController.index);
 
 // users resource paths:
+router.get('/profile',   usersController.profile);
 router.get('/users',     usersController.index);
 router.get('/users/:id', usersController.show);
 
@@ -38,7 +36,7 @@ router.get('/auth/facebook',
 // 2. A route for the FB callback
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/users/:id',
+    successRedirect: '/users',
     failureRedirect: '/'
   })
 );
