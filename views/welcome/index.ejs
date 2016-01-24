@@ -10,13 +10,13 @@
 
 <!-- form for the welcome layout of Facebook -->
   <div>
-    <% if(user != undefined){ %>
-      <h2>Below is the data sent by facebook</h2>
+    <% if(user != undefined && user != {}){ %>
       <a href="/logout">Logout</a>
     <% } else { %>
       <a href="/auth/facebook">Login with Facebook</a>
     <% } %>
   </div>
+  <script>console.log(user)</script>
 
   <%- include('../partials/scripts') %>
 </body>

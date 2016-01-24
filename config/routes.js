@@ -1,23 +1,21 @@
-var express        = require('express');
-var router         = new express.Router();
 var passport       = require('passport');
-var app            = express();
 var mongoose       = require('mongoose');
-
+var express        = require('express');
 
 // //Socket below
-var app = require('express')();
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var router         = new express.Router();
+
+// Initializing passport
+app.use(passport.initialize());
+require("../config/passport")(passport)
 
 // Require controllers.
 var welcomeController = require('../controllers/welcome');
 var usersController   = require('../controllers/users');
-// Initializing passport
-app.use(passport.initialize());
-
-require("../config/passport")(passport)
 
 // root path:
 router.get('/', welcomeController.index);
@@ -40,17 +38,15 @@ router.get('/auth/facebook',
 // 2. A route for the FB callback
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/',
+    successRedirect: '/users/:id',
     failureRedirect: '/'
   })
 );
 // 3. A route for the logout
 router.get("/logout", function(req, res){
-  console.log(req.user);
+  // console.log(req.user);
   req.logout();
-  // throws error undefined user but
-  // its for testing if it reaches
-  // console.log(user)
+  // console.log(req.user);
   res.redirect("/")
 })
 

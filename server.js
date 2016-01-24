@@ -6,6 +6,7 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 var passport     = require('passport');
+var session      = require('express-session');
 
 'use strict';
 require('dotenv').load();
@@ -14,7 +15,6 @@ require('dotenv').load();
 var env      = require('./config/environment'),
     mongoose = require('./config/database'),
     routes   = require('./config/routes');
-
 
 
 // Instantiate a server application.
@@ -26,6 +26,7 @@ var app = express();
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
 app.use(passport.initialize());
+app.use(passport.session());
 require("./config/passport")(passport)
 
 // Configure the application (and set it's title!).
@@ -46,6 +47,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser('notsosecretnowareyou'));
+
+// Using sessions
+app.use(session({
+  secret: 'mySecretKey',
+  resave: false,
+  saveUninitialized: true
+}));
+
 
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 

@@ -1,4 +1,4 @@
-np// getting User schema model from ../models/user file
+// getting User schema model from ../models/user file
 var User = require('../models/user');
 // Requiring the npms that are in use in this file
 var mongoose = require('mongoose')
@@ -6,15 +6,18 @@ var FacebookStrategy = require('passport-facebook').Strategy
 
 // Serializing/Deserializing modules
 module.exports = function(passport){
+
     passport.serializeUser(function(user, done) {
       done(null, user._id);
     });
+
     passport.deserializeUser(function(id, done) {
       User.findById(id, function(err, user) {
         console.log('deserializing user:',user);
         done(err, user);
       });
     });
+
       passport.use('facebook', new FacebookStrategy({
       clientID        : process.env.FACEBOOK_API_KEY,
       clientSecret    : process.env.FACEBOOK_API_SECRET,
@@ -27,7 +30,7 @@ module.exports = function(passport){
     }, function(access_token, refresh_token, profile, done) {
 
       // // Use this to see the information returned from Facebook
-      console.log(profile)
+      // console.log(profile)
       process.nextTick(function() {
         User.findOne({ 'fb.id' : profile.id }, function(err, user) {
           if (err) return done(err);
