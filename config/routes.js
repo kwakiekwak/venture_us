@@ -18,10 +18,10 @@ require("../config/passport")(passport)
 router.get('/', welcomeController.index);
 
 // users resource paths:
-router.get('/login',   usersController.login);
-router.get('/signup',   usersController.signup);
-router.get('/profile',   usersController.profile);
-router.get('/users',     usersController.index);
+router.get('/login', usersController.login);
+router.get('/signup', usersController.signup);
+router.get('/profile', isLoggedIn, usersController.profile);
+router.get('/users', usersController.index);
 router.get('/users/:id', usersController.show);
 
 // //event listener for connection (socket)
@@ -48,6 +48,18 @@ router.get("/logout", function(req, res){
   // console.log(req.user);
   res.redirect("/")
 })
+
+// route middleware to make sure a user is logged in
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 
 module.exports = router;

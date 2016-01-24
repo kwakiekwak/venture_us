@@ -2,11 +2,15 @@
 var User = require("../models/user");
 
 var login = function(req, res, next) {
-  res.render('users/login');
+  res.render('users/login',  { message: req.flash('loginMessage') });
 }
 
 var signup = function(req, res, next) {
-  res.redner('users/signup');
+  res.redner('users/signup'),  { message: req.flash('signupMessage') };
+}
+
+var profile = function(req, res) {
+  res.render('users/profile', {user: req.user})
 }
 
 var index = function(req, res, next){
@@ -22,10 +26,6 @@ var show = function(req, res, next){
     res.render('users/show', {user: user});
   });
 };
-
-var profile = function(req, res) {
-  res.render('users/profile', {user: req.user})
-}
 
 module.exports = {
   login: login,
