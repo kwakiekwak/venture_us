@@ -1,6 +1,14 @@
 // Require resource's model(s).
 var User = require("../models/user");
 
+var login = function(req, res, next) {
+  res.render('users/login');
+}
+
+var signup = function(req, res, next) {
+  res.redner('users/signup');
+}
+
 var index = function(req, res, next){
 
   User.find({}, function(error, users){
@@ -20,6 +28,8 @@ var profile = function(req, res) {
 }
 
 module.exports = {
+  login: login,
+  signup: signup,
   index: index,
   show:  show,
   profile: profile

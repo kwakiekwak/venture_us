@@ -18,10 +18,11 @@ require("../config/passport")(passport)
 router.get('/', welcomeController.index);
 
 // users resource paths:
+router.get('/login',   usersController.login);
+router.get('/signup',   usersController.signup);
 router.get('/profile',   usersController.profile);
 router.get('/users',     usersController.index);
 router.get('/users/:id', usersController.show);
-
 
 // //event listener for connection (socket)
 io.on('connection', function(socket){
