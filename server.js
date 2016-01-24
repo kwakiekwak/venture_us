@@ -14,6 +14,8 @@ var passport     = require('passport');
 var session      = require('express-session');
 var env          = require('./config/environment');
 var routes       = require('./config/routes');
+var flash        = require('connect-flash');
+
 
 // using favicon in program
 // DOES NOT WORK
@@ -51,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTING LAYER: static assets, dynamic routes, or 404…
 // Defines all of our "dynamic" routes.
 app.use('/', routes);
+app.use(flash());
 
 // Catches all 404 routes.
 app.use(function(req, res, next) {
