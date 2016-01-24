@@ -20,10 +20,15 @@ router.get('/', welcomeController.index);
 // users resource paths:
 router.get('/users', usersController.index);
 router.get('/users/login', usersController.login);
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/users/profile', // redirect to the secure profile section
+  failureRedirect : '/users/login', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
 router.get('/users/signup', usersController.signup);
 router.post('users/signup', passport.authenticate('local-signup', {
   successRedirect: '/users/profile',
-  failureRedirect: 'users/signup',
+  failureRedirect: '/users/signup',
   failureFlash: true
 }));
 router.get('/users/profile', isLoggedIn, usersController.profile);
