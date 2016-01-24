@@ -18,10 +18,15 @@ require("../config/passport")(passport)
 router.get('/', welcomeController.index);
 
 // users resource paths:
-router.get('/login', usersController.login);
-router.get('/signup', usersController.signup);
-router.get('/profile', isLoggedIn, usersController.profile);
 router.get('/users', usersController.index);
+router.get('/users/login', usersController.login);
+router.get('/users/signup', usersController.signup);
+router.post('users/signup', passport.authenticate('local-signup', {
+  successRedirect: '/users/profile',
+  failureRedirect: 'users/signup',
+  failureFlash: true
+}));
+router.get('/users/profile', isLoggedIn, usersController.profile);
 router.get('/users/:id', usersController.show);
 
 // //event listener for connection (socket)
