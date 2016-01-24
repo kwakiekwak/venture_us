@@ -10,6 +10,8 @@
 
     <div>
       <% if(user) { %>
+        <% user.local.email %>
+        <% user._id %>
         <a href="/logout">Log Out</a>
         <a href="/">Back to home.</a>
       <% } %>
