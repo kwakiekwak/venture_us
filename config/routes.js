@@ -1,8 +1,17 @@
+var dotenv = require('dotenv');
+dotenv.load();
+
 var express        = require('express');
 var router         = new express.Router();
 var passport       = require('passport');
 var app            = express();
 var mongoose       = require('mongoose');
+var request = require("request");
+
+//body-parser
+bodyParser   = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // //Socket below
@@ -69,13 +78,14 @@ var yelp = new Yelp({
 });
 
 // See http://www.yelp.com/developers/documentation/v2/search_api
-yelp.search({ term: 'food', location: 'Montreal' })
-.then(function (data) {
-  console.log(data);
-})
-.catch(function (err) {
-  console.error(err);
-});
+
+//  yelp.search({ term: term, location: location})
+// .then(function (data) {
+//   console.log(data);
+// })
+// .catch(function (err) {
+//   console.error(err);
+// }),
 
 // See http://www.yelp.com/developers/documentation/v2/business
 yelp.business('yelp-san-francisco')
@@ -90,6 +100,38 @@ yelp.phoneSearch({ phone: '+15555555555' })
 yelp.business('yelp-san-francisco', function(err, data) {
   if (err) return console.log(error);
   console.log(data);
+});
+
+//Tying in POST form for Yelp on index.
+
+/* POST to search */
+router.post('/search', function(req, res, next) {
+  // Printing out the content of the request!
+
+  yelp.search({ term: req.body, location: req.location},
+ function(error, response, body) {
+    if(!error) {
+    //   // //EJS venues re-rerouting here.
+    //   res.render('venues', {place: req.body.place.name, query:req.body.query, venues: JSON.parse(body).response});
+    //   //above, you parse the body, and then take its response
+    //   console.log(res.venues);
+    // // }
+
+// //raw JSON rendering below.
+    res.send(JSON.parse(response.body));
+    console.log(req.body.categories); //the categories
+    console.log(req.body.location); //the location
+    console.log(response.venues); //the response (i.e. all locations)
+    console.log(JSON.parse(response.body));
+    }
+    else {
+      res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+      console.log(req.body.place.name);
+      console.log(req.body.query);
+      console.log(JSON.parse(response.body));
+    }
+
+});
 });
 
 
