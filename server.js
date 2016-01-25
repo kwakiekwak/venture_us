@@ -2,14 +2,14 @@
 require('dotenv').load();
 
 var express      = require('express');
+var app          = express();
+var mongoose     = require('./config/database');
 var path         = require('path');
 var favicon      = require('serve-favicon');
 var logger       = require('morgan');
 var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
-var app          = express();
-var mongoose     = require('./config/database');
 var passport     = require('passport');
 var session      = require('express-session');
 var env          = require('./config/environment');
@@ -22,13 +22,14 @@ var flash        = require('connect-flash');
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
 // MIDDLEWARE //
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({
   secret: 'mySecretKey',
   resave: false,
   saveUninitialized: true
 }))
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 // Setting EJS
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -53,7 +54,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTING LAYER: static assets, dynamic routes, or 404…
 // Defines all of our "dynamic" routes.
 app.use('/', routes);
-app.use(flash());
 
 // Catches all 404 routes.
 app.use(function(req, res, next) {

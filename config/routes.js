@@ -2,6 +2,7 @@ var passport       = require('passport');
 var mongoose       = require('mongoose');
 var express        = require('express');
 var router         = new express.Router();
+var flash          = require('connect-flash')
 // Require controllers.
 var welcomeController = require('../controllers/welcome');
 var usersController   = require('../controllers/users');
@@ -12,7 +13,9 @@ var io = require('socket.io')(http);
 
 // Initializing passport
 app.use(passport.initialize());
-require("../config/passport")(passport)
+require("../config/passport")(passport);
+
+app.use(flash());
 
 // root path for showing homepage
 router.get('/', welcomeController.index);
@@ -20,13 +23,13 @@ router.get('/', welcomeController.index);
 // users resource paths:
 router.get('/users', usersController.index);
 router.get('/users/login', usersController.login);
-router.post('/login', passport.authenticate('local-login', {
+router.post('/users/login', passport.authenticate('local-login', {
   successRedirect : '/users/profile', // redirect to the secure profile section
   failureRedirect : '/users/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
 router.get('/users/signup', usersController.signup);
-router.post('users/signup', passport.authenticate('local-signup', {
+router.post('/users/signup', passport.authenticate('local-signup', {
   successRedirect: '/users/profile',
   failureRedirect: '/users/signup',
   failureFlash: true

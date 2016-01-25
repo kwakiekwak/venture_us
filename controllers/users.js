@@ -2,11 +2,11 @@
 var User = require("../models/user");
 
 var login = function(req, res, next) {
-  res.render('users/login',  { message: req.flash('loginMessage') });
+  res.render('users/login', { message: req.flash('loginMessage') });
 }
 
 var signup = function(req, res, next) {
-  res.redner('users/signup'),  { message: req.flash('signupMessage') };
+  res.render('users/signup', { message: req.flash('signupMessage') });
 }
 
 var profile = function(req, res) {
