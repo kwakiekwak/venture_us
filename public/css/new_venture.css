@@ -1,0 +1,11 @@
+div {
+  border: 1px solid black;
+}
+
+#dropbox > div {  /*this needs to change to img*/
+  float: left;
+  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+}
