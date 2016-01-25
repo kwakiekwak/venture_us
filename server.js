@@ -15,7 +15,7 @@ var session      = require('express-session');
 var env          = require('./config/environment');
 var routes       = require('./config/routes');
 var flash        = require('connect-flash');
-
+var sass         = require('node-sass');
 // DOES NOT WORK
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
@@ -23,6 +23,12 @@ var flash        = require('connect-flash');
 require("./config/passport")(passport)
 
 // MIDDLEWARE //
+//Including sass
+// sass.render({
+//   file: scss_filename,
+//   }, function (err, result){
+// });
+
 app.use(session({
   secret: 'mySecretKey',
   resave: false,

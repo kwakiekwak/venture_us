@@ -37,6 +37,9 @@ router.post('/users/signup', passport.authenticate('local-signup', {
 router.get('/users/profile', isLoggedIn, usersController.profile);
 router.get('/users/:id', usersController.show);
 
+// routes for venture paths:
+router.get('/ventures/new', ventureController.new)
+
 // //event listener for connection (socket)
 io.on('connection', function(socket){
   console.log('a user connected');

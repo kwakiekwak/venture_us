@@ -1,0 +1,15 @@
+div {
+  border: 1px solid black;
+}
+
+#drop-box > img {  /*this needs to change to img*/
+  float: left;
+  border-radius: 100px;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+#create-venture, #friend-list {
+  min-height: 1200px;
+  border: 1px solid red;
+}

@@ -1,1 +1,56 @@
-<!-- This page is for creating a new page -->
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" type="text/css" href="/css/new_venture.css">
+</head>
+<body>
+  <%- include('../partials/header', {subHeading: 'User List'}) %>
+
+  <main>
+<!-- create new venture half -->
+  <div id="new-venture">
+  <div class="container">
+
+    <div class="row">
+      <div id="create-venture" class="col-md-3 col-xs-5">
+        <div id="drop-box" class="row">
+            <!-- example circles -->
+          <img src="http://www.online-image-editor.com//styles/2014/images/example_image.png">
+          <img src="http://www.online-image-editor.com//styles/2014/images/example_image.png">
+        </div>
+        <input class="row" name="input-zip" placeholder="Input Zip">
+        <div class="row">
+          <button class="btn btn-success" type="submit">Go Venture!</button>
+        </div>
+      </div>
+
+      <div id="friend-list" class="col-md-9 col-xs-13">
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+  </div>
+
+<!-- second half showing all categories of ventures -->
+
+  <div id="category-venture">
+
+
+
+
+
+  </div>
+
+
+
+
+  </main>
+
+  <%- include('../partials/scripts') %>
+</body>
+</html>
