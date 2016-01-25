@@ -13,3 +13,11 @@ div {
   min-height: 1200px;
   border: 1px solid red;
 }
+
+/*Carousel below*/
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
