@@ -16,10 +16,11 @@ var env          = require('./config/environment');
 var routes       = require('./config/routes');
 var flash        = require('connect-flash');
 
-
-// using favicon in program
 // DOES NOT WORK
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
+
+// Pass passport to configuration
+require("./config/passport")(passport)
 
 // MIDDLEWARE //
 app.use(session({
@@ -35,8 +36,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // Logging layer.
 app.use(logger('dev'));
-// Set up passport strategies
-require("./config/passport")(passport)
 // Configure the application (and set it's title!).
 app.set('title', env.TITLE);
 app.set('safe-title', env.SAFE_TITLE);

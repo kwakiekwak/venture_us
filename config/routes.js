@@ -14,7 +14,6 @@ var io = require('socket.io')(http);
 // Initializing passport
 app.use(passport.initialize());
 require("../config/passport")(passport);
-
 app.use(flash());
 
 // root path for showing homepage
