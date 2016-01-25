@@ -37,6 +37,7 @@ module.exports = {
           res.send("Venture updated!")
     })
   },
+
   delete: function(req, res, next) {
     Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
       venture.remove()
