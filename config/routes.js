@@ -6,6 +6,7 @@ var flash          = require('connect-flash')
 // Require controllers.
 var welcomeController = require('../controllers/welcome');
 var usersController   = require('../controllers/users');
+var ventureController = require('../controllers/venture')
 // Socket below
 var app = express();
 var http = require('http').Server(app);
@@ -72,6 +73,30 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
+
+//Venture routes below
+//route for /ventures/new (new, post)
+router.route('/ventures/new')
+  //create a venture - function in controller
+  .post(VentureController.create)
+
+  //form for creating a new venture
+  .get(VentureController.new)
+
+
+//routing for /venturess/show (all, show, update, delete)
+router.route('/ventures/show')
+
+  .get(VentureController.all)
+
+  .get(VentureController.show)
+
+  //update a flight.
+  .put(VentureController.update)
+
+  .delete(VentureController.delete)
+
+//delete a flight.
 
 
 module.exports = router;

@@ -3,39 +3,42 @@ var Venture = require('../models/venture')
 module.exports = {
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
-      res.render('ventures/all', {allFlights: flights})
+      //when you visit
+      res.render('ventures/show', {ventures: ventures})
     })
   },
   create: function(req, res, next) {
-    var newFlight = new Flight()
+    var newVenture = new Venture()
     var keys = Object.keys(req.body)
     keys.forEach(function(key) {
-      newFlight[key] = req.body[key]
+      newVenture[key] = req.body[key]
     })
-    newFlight.save(function(err, data) {
+    newVenture.save(function(err, data) {
       if(err) console.log(err)
-        res.send("Flight created")
+        res.send("Venture created")
     })
   },
   new: function(req, res, next) {
-    res.render('flights/new')
+    res.render('ventures/new')
   },
   show: function(req, res, next) {
-    Flight.findOne({number: Number(req.params.number)}, function(err, flight) {
-      res.render('flights/show', {oneFlight: flight})
+    Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
+      //Above, this will set the user_id equal to the user_id of the first
+      //user in the venture array, i.e. you.
+      res.render('ventures/show', {venture: venture})
     })
   },
   update: function(req, res, next) {
-    Flight.findOneAndUpdate({number: Number(req.params.number)},
-      req.body, function(err, flight){
+    Venture.findOneAndUpdate({user_id: Venture.users[0]},
+      req.body, function(err, venture){
         if(err) console.log(err)
-          res.send("Flight Update")
+          res.send("Venture updated!")
     })
   },
   delete: function(req, res, next) {
-    Flight.findOne({number: Number(req.params.number)}, function(err, flight) {
-      flight.remove()
-      res.send('Flight removed')
+    Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
+      venture.remove()
+      res.send('Venture removed')
     })
   }
 }
