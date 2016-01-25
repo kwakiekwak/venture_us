@@ -33,9 +33,9 @@ var update = function(req, res, next) {
       //user in the venture array, i.e. you.
       res.render('ventures/show', {venture: venture})
     })
-  })
+  }
 
-var delete = function(req, res, next) {
+var destroy = function(req, res, next) {
     User.findOne({user_id: User.users[0]}, function(err, user) {
       user.remove()
       res.send('Venture removed')
@@ -49,5 +49,5 @@ module.exports = {
   index: index,
   show:  show,
   update: update,
-  delete: delete
+  destroy: destroy
 };

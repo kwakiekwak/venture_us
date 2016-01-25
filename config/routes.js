@@ -35,7 +35,11 @@ router.post('/users/signup', passport.authenticate('local-signup', {
   failureFlash: true
 }));
 router.get('/users/profile', isLoggedIn, usersController.profile);
-router.get('/users/:id', usersController.show);
+
+router.route('/users/:id')
+ .get(usersController.show)
+ .put(usersController.update)
+ .delete(usersController.destroy)
 
 // //event listener for connection (socket)
 io.on('connection', function(socket){
