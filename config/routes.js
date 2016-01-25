@@ -124,28 +124,26 @@ router.route('/ventures/show/:id')
   //delete a venture.
   .delete(ventureController.delete)
 
-// //Foursquare searching below = POST
+// //Foursquare searching below
 router.get('/search', function(req, res, next) {
   var location = req.query.location
   var query = req.query.keyword
   // Printing out the content of the request!
 
-  // request("https://api.foursquare.com/v2/venues/search?near="+JSON.stringify(req.body.place.name)+"&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&query="+JSON.stringify(req.body.query), function(error, response, body) {
-
     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
     if(!error) {
     //   // //EJS venues re-rerouting here.
-    //   res.render('venues', {place: req.body.place.name, query:req.body.query, venues: JSON.parse(body).response});
-    //   //above, you parse the body, and then take its response
-    //   console.log(res.venues);
-    // // }
+      res.render('ventures/venues', {location: location, query: query, venues: JSON.parse(body).response});
+      //above, you parse the body, and then take its response
+      console.log(res.venues);
+     }
 // //raw JSON rendering below.
-    res.send(JSON.parse(response.body));
-    console.log(location); //the location
-    console.log(req.body.query); //the query (i.e. vegan)
-    console.log(response.venues); //the response (i.e. all locations)
-    console.log(JSON.parse(response.body));
-    }
+    // res.send(JSON.parse(response.body));
+    // console.log(location); //the location
+    // console.log(req.body.query); //the query (i.e. vegan)
+    // console.log(response.venues); //the response (i.e. all locations)
+    // console.log(JSON.parse(response.body));
+    // }
     else {
       res.send({venuesSearch: 'Not implemented!'}); // return some JSON
       console.log(req.body.place.name);

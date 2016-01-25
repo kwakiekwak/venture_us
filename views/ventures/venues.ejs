@@ -1,0 +1,14 @@
+<!-- Temporary view page for listing top 20 results
+of a categorical search -->
+<h1>Venues matching your search criteria <%=query %> for <%=location%>: </h1>
+
+<!-- Here, loop through the venues -->
+<!-- NOTE: for loop up to i = 20, incorporate carousel -->
+<% venues.venues.forEach(function(venue) { %>
+<ul>
+  <li><%= venue.name %></li>
+  -<%= venue.location.address %>
+  <!-- <li><%= venue.location.phone %></li> -->
+</ul>
+
+<% }) %>
