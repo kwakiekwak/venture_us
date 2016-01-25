@@ -18,7 +18,7 @@ module.exports = {
     })
   },
   new: function(req, res, next) {
-    res.render('flights/new')
+    res.render('ventures/new')
   },
   show: function(req, res, next) {
     Flight.findOne({number: Number(req.params.number)}, function(err, flight) {

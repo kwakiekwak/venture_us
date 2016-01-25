@@ -6,6 +6,7 @@ var flash          = require('connect-flash')
 // Require controllers.
 var welcomeController = require('../controllers/welcome');
 var usersController   = require('../controllers/users');
+var ventureController = require('../controllers/venture')
 // Socket below
 var app = express();
 var http = require('http').Server(app);
@@ -36,7 +37,8 @@ router.post('/users/signup', passport.authenticate('local-signup', {
 router.get('/users/profile', isLoggedIn, usersController.profile);
 router.get('/users/:id', usersController.show);
 
-
+// routes for venture paths:
+router.get('/ventures/new', ventureController.new)
 
 // //event listener for connection (socket)
 io.on('connection', function(socket){

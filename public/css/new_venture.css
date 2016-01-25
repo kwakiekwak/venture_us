@@ -2,10 +2,14 @@ div {
   border: 1px solid black;
 }
 
-#dropbox > div {  /*this needs to change to img*/
+#drop-box > img {  /*this needs to change to img*/
   float: left;
   border-radius: 100px;
-  height: 100px;
-  width: 100px;
-  background-color: blue;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+#create-venture, #friend-list {
+  min-height: 1200px;
+  border: 1px solid red;
 }
