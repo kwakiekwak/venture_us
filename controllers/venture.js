@@ -22,14 +22,14 @@ module.exports = {
     res.render('ventures/new')
   },
   show: function(req, res, next) {
-    Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
+    Venture.findOne({_id: Number(req.params.id)} , function(err, venture) {
       //Above, this will set the user_id equal to the user_id of the first
       //user in the venture array, i.e. you.
       res.render('ventures/show', {venture: venture})
     })
   },
   update: function(req, res, next) {
-    Venture.findOneAndUpdate({user_id: Venture.users[0]},
+    Venture.findOneAndUpdate({_id: Number(req.params.id)},
       req.body, function(err, venture){
         if(err) console.log(err)
           res.send("Venture updated!")

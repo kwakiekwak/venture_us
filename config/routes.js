@@ -78,23 +78,22 @@ function isLoggedIn(req, res, next) {
 //route for /ventures/new (new, post)
 router.route('/ventures/new')
   //create a venture - function in controller
-  .post(VentureController.create)
+  .post(ventureController.create)
 
   //form for creating a new venture
-  .get(VentureController.new)
+  .get(ventureController.new)
 
+router.route('/ventures/show').get(ventureController.all)
 
 //routing for /venturess/show (all, show, update, delete)
-router.route('/ventures/show')
+router.route('/ventures/show/:id')
 
-  .get(VentureController.all)
-
-  .get(VentureController.show)
+  .get(ventureController.show)
 
   //update a flight.
-  .put(VentureController.update)
+  .put(ventureController.update)
 
-  .delete(VentureController.delete)
+  .delete(ventureController.delete)
 
 //delete a flight.
 
