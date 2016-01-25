@@ -6,17 +6,18 @@
 <body>
   <%- include('../partials/header', {subHeading: 'Welcome'}) %>
 
-  <h1>FACEBOOK/GITHUB LOGIN USING PASSPORT</h1>
-
-<!-- form for the welcome layout of Facebook -->
-  <div>
-    <% if(user != undefined){ %>
-      <h2>Below is the data sent by facebook</h2>
-      <a href="/logout">Logout</a>
-    <% } else { %>
+  <main>
+  <div id="welcome-page">
+    <div>
+      <a href="/users/login">Login Locally</a>
       <a href="/auth/facebook">Login with Facebook</a>
-    <% } %>
+    </div>
+    <div>
+      <a href="/users/signup">or.. Sign Up</a>
+    </div>
+
   </div>
+  </main>
 
   <%- include('../partials/scripts') %>
 </body>

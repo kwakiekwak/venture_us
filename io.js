@@ -6,9 +6,9 @@ io.on('connection', function (socket) {
   console.log('Client connected to socket.io!');
 
 
-  socket.on('chat message', function(msg){
+  socket.on('chat-message', function(msg){
     console.log('message: ' + msg);
-    io.emit('chat message', msg);
+    io.emit('chat-message', msg);
   });
 
   socket.on('disconnect', function(){

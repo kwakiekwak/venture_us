@@ -1,31 +1,40 @@
+var passport       = require('passport');
+var mongoose       = require('mongoose');
 var express        = require('express');
 var router         = new express.Router();
-var passport       = require('passport');
-var app            = express();
-var mongoose       = require('mongoose');
-
-
-// //Socket below
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-
+var flash          = require('connect-flash')
 // Require controllers.
 var welcomeController = require('../controllers/welcome');
 var usersController   = require('../controllers/users');
+// Socket below
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 // Initializing passport
 app.use(passport.initialize());
+require("../config/passport")(passport);
+app.use(flash());
 
-require("../config/passport")(passport)
-
-// root path:
+// root path for showing homepage
 router.get('/', welcomeController.index);
 
 // users resource paths:
-router.get('/users',     usersController.index);
+router.get('/users', usersController.index);
+router.get('/users/login', usersController.login);
+router.post('/users/login', passport.authenticate('local-login', {
+  successRedirect : '/users/profile', // redirect to the secure profile section
+  failureRedirect : '/users/login', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
+router.get('/users/signup', usersController.signup);
+router.post('/users/signup', passport.authenticate('local-signup', {
+  successRedirect: '/users/profile',
+  failureRedirect: '/users/signup',
+  failureFlash: true
+}));
+router.get('/users/profile', isLoggedIn, usersController.profile);
 router.get('/users/:id', usersController.show);
-
 
 // //event listener for connection (socket)
 io.on('connection', function(socket){
@@ -40,19 +49,29 @@ router.get('/auth/facebook',
 // 2. A route for the FB callback
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/',
+    successRedirect: '/users/profile',
     failureRedirect: '/'
   })
 );
 // 3. A route for the logout
 router.get("/logout", function(req, res){
-  console.log(req.user);
+  // console.log(req.user);
   req.logout();
-  // throws error undefined user but
-  // its for testing if it reaches
-  // console.log(user)
+  // console.log(req.user);
   res.redirect("/")
 })
+
+// route middleware to make sure a user is logged in
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 
 module.exports = router;
