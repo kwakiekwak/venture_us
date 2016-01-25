@@ -4,11 +4,18 @@ of a categorical search -->
 
 <!-- Here, loop through the venues -->
 <!-- NOTE: for loop up to i = 20, incorporate carousel -->
+<% var max20 = [] %>
 <% venues.venues.forEach(function(venue) { %>
-<ul>
-  <li><%= venue.name %></li>
-  -<%= venue.location.address %>
-  <!-- <li><%= venue.location.phone %></li> -->
-</ul>
-
+  <!-- Now, loop through that array 20 times and render. -->
+  <% max20.push(venue) %>
 <% }) %>
+  <% var limit = max20.slice(0,20) %>
+  <% limit.forEach(function(venue) { %>
+    <ul>
+      <li><%= venue.name %></li>
+      <li><%= venue.location.address %></li>
+    </ul>
+  <% }) %>
+
+
+
