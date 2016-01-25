@@ -7,6 +7,7 @@ var flash          = require('connect-flash')
 var welcomeController = require('../controllers/welcome');
 var usersController   = require('../controllers/users');
 var ventureController = require('../controllers/venture')
+var businessController = require('../controllers/business')
 // Socket below
 var app = express();
 var http = require('http').Server(app);
@@ -21,7 +22,9 @@ app.use(flash());
 router.get('/', welcomeController.index);
 
 // users resource paths:
-router.get('/users', usersController.index);
+router.route('/users')
+  .get(usersController.index);
+
 router.get('/users/login', usersController.login);
 router.post('/users/login', passport.authenticate('local-login', {
   successRedirect : '/users/profile', // redirect to the secure profile section
@@ -93,13 +96,16 @@ router.route('/ventures/show').get(ventureController.all)
 router.route('/ventures/show/:id')
 
   .get(ventureController.show)
+  // show business show page
+  .get(businessController.show)
 
-  //update a flight.
+  //update a venture.
   .put(ventureController.update)
-
+  // update a business
+  .put(businessController.update)
+  //delete a venture.
   .delete(ventureController.delete)
 
-//delete a flight.
 
 
 module.exports = router;
