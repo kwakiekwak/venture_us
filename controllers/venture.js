@@ -1,4 +1,5 @@
-var Venture = require('../models/venture')
+var Venture = require('../models/venture');
+var User = require('../models/user');
 //venture is fully CRUD-able
 module.exports = {
   all: function(req, res, next) {
@@ -19,7 +20,8 @@ module.exports = {
     })
   },
   new: function(req, res, next) {
-    res.render('ventures/new')
+    console.log(req.user);
+    res.render('ventures/new', {user: req.user})
   },
   show: function(req, res, next) {
     Venture.findOne({_id: Number(req.params.id)} , function(err, venture) {

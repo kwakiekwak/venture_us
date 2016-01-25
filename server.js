@@ -15,7 +15,7 @@ var session      = require('express-session');
 var env          = require('./config/environment');
 var routes       = require('./config/routes');
 var flash        = require('connect-flash');
-var sass         = require('node-sass');
+// var sass         = require('node-sass');
 // DOES NOT WORK
 // app.use(favicon(__dirname + '/public/images/favicon.ico'))
 

@@ -13,3 +13,11 @@ div {
   min-height: 1200px;
   border: 1px solid red;
 }
+
+#show-friends {
+  display: none;
+  width: 300px;
+  height: 800px;
+  background-color: black;
+  color: white;
+}

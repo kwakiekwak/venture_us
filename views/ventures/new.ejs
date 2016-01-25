@@ -27,6 +27,9 @@
 
       <div id="friend-list" class="col-md-9 col-xs-13">
 
+        <button class='btn btn-default' id="add-friend">+ Add</button>
+        <%= user %>
+        <%- include('../partials/friends') %>
       </div>
     </div>
 
@@ -50,7 +53,7 @@
 
 
   </main>
-
   <%- include('../partials/scripts') %>
+  <script src='/js/venture.js'></script>
 </body>
 </html>
