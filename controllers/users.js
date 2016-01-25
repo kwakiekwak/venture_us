@@ -27,10 +27,27 @@ var show = function(req, res, next){
   });
 };
 
+var update = function(req, res, next) {
+  User.findOneAndUpdate({_id: Number(req.params.id)} , function(err, venture) {
+      //Above, this will set the user_id equal to the user_id of the first
+      //user in the venture array, i.e. you.
+      res.render('ventures/show', {venture: venture})
+    })
+  })
+
+var delete = function(req, res, next) {
+    User.findOne({user_id: User.users[0]}, function(err, user) {
+      user.remove()
+      res.send('Venture removed')
+    })
+  }
+
 module.exports = {
   login: login,
   signup: signup,
+  profile: profile,
   index: index,
   show:  show,
-  profile: profile
+  update: update,
+  delete: delete
 };
