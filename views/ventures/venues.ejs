@@ -2,6 +2,9 @@
 of a categorical search -->
 <h1>Venues matching your search criteria <%=query %> for <%=location%>: </h1>
 
+ <iframe src='https://www.google.com/maps/embed/v1/place?q='+<%location%>+'%20Rd,%20UK&zoom=17&key=AIzaSyCfWNPOPK8qDWvOmPr0q8ldYgRkDU6qGIk'>
+ </iframe>
+
 <!-- Here, loop through the venues -->
 <!-- NOTE: for loop up to i = 20, incorporate carousel -->
 <% var max20 = [] %>
@@ -9,11 +12,11 @@ of a categorical search -->
   <!-- Now, loop through that array 20 times and render. -->
   <% max20.push(venue) %>
 <% }) %>
+<!-- Edit the slice, based on # of users (40 divided by number of users) -->
   <% var limit = max20.slice(0,20) %>
   <% limit.forEach(function(venue) { %>
     <ul>
-      <li><%= venue.name %></li>
-      <li><%= venue.location.address %></li>
+      <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
     </ul>
   <% }) %>
 
