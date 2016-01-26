@@ -15,6 +15,18 @@ div {
 #create-venture, #friend-list {
   min-height: 1200px;
   border: 1px solid red;
+  border-radius: 10px;
+}
+#create-venture {
+  background-color: #ff7b00;
+  padding-left: 30px;
+}
+#friend-list {
+  background-color: #0a9ed8;
+}
+.title-venture {
+  text-align: center;
+  color: white;
 }
 
 #show-friends {
@@ -23,7 +35,13 @@ div {
   height: 800px;
   background-color: black;
   color: white;
-
+}
+#zip {
+  width: 200px;
+}
+#submit-btn {
+  width: 200px;
+}
 /*Carousel below*/
 
 /*.carousel-inner > .item > img,

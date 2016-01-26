@@ -18,11 +18,13 @@ $('#chat').submit(function(){
 
 socket.on('chat-message', function(msg){
   $('#messages').append($('<li>').text(msg));
+  console.log(msg)
 });
 
+// comment this out. the hover quotations were causing messages to break.
 //Carousel timer
-$('.carousel').carousel({
-  interval: 2000,
-  pause: “hover”,
-    wrap: true
-})
+// $('.carousel').carousel({
+//   interval: 2000,
+//   pause: "hover",
+//   wrap: true
+// })
