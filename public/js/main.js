@@ -21,11 +21,10 @@ socket.on('chat-message', function(msg){
   console.log(msg)
 });
 
-<<<<<<< HEAD
 
 // pause: "hover" breaks the messaging system
 //Carousel timer
-=======
+
 // comment this out. the hover quotations were causing messages to break.
 //Carousel timer
 // <<<<<<< HEAD
@@ -34,14 +33,4 @@ socket.on('chat-message', function(msg){
 // //   pause: "hover",
 // //   wrap: true
 // // })
-// =======
->>>>>>> adding-friends
-// $('.carousel').carousel({
-//   interval: 2000,
-//   pause: “hover”,
-//   wrap: true
-// })
-<<<<<<< HEAD
-=======
-// >>>>>>> 0561adff993cc6ee0d2bbcd6c510b31ca9dac358
->>>>>>> adding-friends
+
