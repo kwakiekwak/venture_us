@@ -1,5 +1,26 @@
+//adding dotenv up at the top
+var dotenv = require('dotenv');
+dotenv.load();
+
 var Venture = require('../models/venture');
 var User = require('../models/user');
+
+client_id = process.env.CLIENT_ID,
+client_secret = process.env.CLIENT_SECRET
+
+
+var express        = require('express');
+var router         = new express.Router();
+// Socket below
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var request = require("request");
+
+//body-parser
+bodyParser   = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 //venture is fully CRUD-able
 module.exports = {
   all: function(req, res, next) {
@@ -33,15 +54,40 @@ module.exports = {
     })
   },
   show: function(req, res, next) {
-    Venture.findOne({_id: Number(req.params.id)} , function(err, venture) {
+    Venture.findOne({_id: Number(req.params.id)} , function(err, request) {
       //Above, this will set the user_id equal to the user_id of the first
       //user in the venture array, i.e. you.
 
-      //Nest both API calls here!
-      //(1.) request for search API - get venue id, name, address
-      // (2.) callback - .then, query for image, using the venue id from above.
-
-      res.render('ventures/show', {venture: venture})
+      var location = req.query.location
+      var query = req.query.keyword
+//(1.) request for search API - get venue id, name, address
+    request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
+      if(!error) {
+        var venues = JSON.parse(body).response;
+        //above, you parse the body, and then take its response
+        // (2.) callback - .then, query for image, using the venue id from above.
+          router.get('/search', function (req, res, next) {
+            //venue Id hard-coded in below for now.
+            request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,body){
+              if(!error) {
+                //res.send(JSON.parse(response.body).response.photos.items[0]);
+                firstPhoto = JSON.parse(response.body).response.photos.items[0];
+                //res.render('ventures/photo', {firstPhoto:firstPhoto});
+              }
+              else {
+                res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+              }
+            })
+          })
+      }
+      else {
+        res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+        console.log(req.body.place.name);
+        console.log(req.body.query);
+        console.log(JSON.parse(response.body));
+      }
+    });
+      res.render('ventures/show', {venture: venture, location: location, query: query, venues: venues, firstPhoto:firstPhoto})
     })
   },
   update: function(req, res, next) {

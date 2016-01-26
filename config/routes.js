@@ -164,19 +164,21 @@ router.route('/search').get(ventureController.show)
 //This is the photos query for a venue id. Do this after the first API call
 
 // API calls should go in controller.
-router.get('/search', function (req, res, next) {
-  request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126', function(error,response,body){
-    if(!error) {
-      //res.send(JSON.parse(response.body).response.photos.items[0]);
-      firstPhoto = JSON.parse(response.body).response.photos.items[0];
-      res.render('ventures/photo', {firstPhoto:firstPhoto});
 
-    }
-    else {
-      res.send({venuesSearch: 'Not implemented!'}); // return some JSON
-    }
-  })
-})
+//This is the 2nd call
+// router.get('/search', function (req, res, next) {
+//   request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126', function(error,response,body){
+//     if(!error) {
+//       //res.send(JSON.parse(response.body).response.photos.items[0]);
+//       firstPhoto = JSON.parse(response.body).response.photos.items[0];
+//       res.render('ventures/photo', {firstPhoto:firstPhoto});
+
+//     }
+//     else {
+//       res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+//     }
+//   })
+// })
 
 
 
