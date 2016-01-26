@@ -62,7 +62,6 @@ router.route('/users/:id')
 
 router.route('/ventures/users/friends/add/:id')
   .post(usersController.addFriend)
-  .get(usersController.showFriend)
 
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
