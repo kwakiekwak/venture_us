@@ -20,9 +20,4 @@ socket.on('chat-message', function(msg){
   $('#messages').append($('<li>').text(msg));
 });
 
-//Carousel timer
-$('.carousel').carousel({
-  interval: 2000,
-  pause: “hover”,
-    wrap: true
-})
+
