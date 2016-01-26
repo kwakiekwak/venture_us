@@ -161,11 +161,11 @@ router.route('/search').get(ventureController.show)
 
 // });
 
-//This is the photos query for a venue id. Do this after the first API call
+// This is the photos query for a venue id. Do this after the first API call
 
 // API calls should go in controller.
 
-//This is the 2nd call
+// This is the 2nd call
 // router.get('/search', function (req, res, next) {
 //   request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126', function(error,response,body){
 //     if(!error) {

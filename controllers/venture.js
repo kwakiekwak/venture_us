@@ -67,7 +67,6 @@ module.exports = {
         console.log(venues);
         //above, you parse the body, and then take its response
         // (2.) callback - .then, query for image, using the venue id from above.
-          //router.get('/search', function (req, res, next) {
             //venue Id hard-coded in below for now.
             request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
               if(!error) {
@@ -92,8 +91,7 @@ module.exports = {
         console.log(JSON.parse(response.body));
       }
     });
-
-    })
+  })
   },
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},
