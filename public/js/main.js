@@ -23,8 +23,16 @@ socket.on('chat-message', function(msg){
 
 // comment this out. the hover quotations were causing messages to break.
 //Carousel timer
+<<<<<<< HEAD
 // $('.carousel').carousel({
 //   interval: 2000,
 //   pause: "hover",
 //   wrap: true
 // })
+=======
+$('.carousel').carousel({
+  interval: 2000,
+  pause: “hover”,
+  wrap: true
+})
+>>>>>>> 0561adff993cc6ee0d2bbcd6c510b31ca9dac358

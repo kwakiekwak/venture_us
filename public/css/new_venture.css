@@ -1,17 +1,17 @@
-// @import 'bootstrap-sprockets';
-// @import 'bootstrap';
 
-div {
-  border: 1px solid black;
+#create-venture, #friend-list {
+  height: 750px;
+  border: 1px solid red;
 }
 
-#drop-box > img {  /*this needs to change to img*/
+#drop-box > img {
   float: left;
   border-radius: 100px;
   max-height: 100px;
   max-width: 100px;
 }
 
+<<<<<<< HEAD
 #create-venture, #friend-list {
   min-height: 1200px;
   border: 1px solid red;
@@ -29,9 +29,13 @@ div {
   color: white;
 }
 
+=======
+>>>>>>> 0561adff993cc6ee0d2bbcd6c510b31ca9dac358
 #show-friends {
   display: none;
+  float: right;
   width: 300px;
+<<<<<<< HEAD
   height: 800px;
   background-color: black;
   color: white;
@@ -42,6 +46,17 @@ div {
 #submit-btn {
   width: 200px;
 }
+=======
+  height: 500px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+#show-friends-btn {
+  float: right;
+}
+
+>>>>>>> 0561adff993cc6ee0d2bbcd6c510b31ca9dac358
 /*Carousel below*/
 
 /*.carousel-inner > .item > img,
