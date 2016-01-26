@@ -1,0 +1,21 @@
+<!-- Temporary view page for listing top 20 results
+of a categorical search -->
+<h1>Venues matching your search criteria <%=query %> for <%=location%>: </h1>
+
+<!-- Here, loop through the venues -->
+<!-- NOTE: for loop up to i = 20, incorporate carousel -->
+<% var max20 = [] %>
+<% venues.venues.forEach(function(venue) { %>
+  <!-- Now, loop through that array 20 times and render. -->
+  <% max20.push(venue) %>
+<% }) %>
+  <% var limit = max20.slice(0,20) %>
+  <% limit.forEach(function(venue) { %>
+    <ul>
+      <li><%= venue.name %></li>
+      <li><%= venue.location.address %></li>
+    </ul>
+  <% }) %>
+
+
+

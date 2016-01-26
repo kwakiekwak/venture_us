@@ -1,3 +1,10 @@
+//adding dotenv up at the top
+var dotenv = require('dotenv');
+dotenv.load();
+
+client_id = process.env.CLIENT_ID,
+client_secret = process.env.CLIENT_SECRET
+
 var passport       = require('passport');
 var mongoose       = require('mongoose');
 var express        = require('express');
@@ -12,6 +19,15 @@ var businessController = require('../controllers/business')
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+//body-parser
+bodyParser   = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//here, call .env on process when you connect to the database
+//request module
+var request = require("request");
 
 // Initializing passport
 app.use(passport.initialize());
@@ -102,12 +118,41 @@ router.route('/ventures/show/:id')
   // show business show page
   .get(businessController.show)
 
-  //update a venture.
   .put(ventureController.update)
   // update a business
   .put(businessController.update)
   //delete a venture.
   .delete(ventureController.delete)
+
+// //Foursquare searching below
+router.get('/search', function(req, res, next) {
+  var location = req.query.location
+  var query = req.query.keyword
+  // Printing out the content of the request!
+
+    request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
+    if(!error) {
+    //   // //EJS venues re-rerouting here.
+      res.render('ventures/venues', {location: location, query: query, venues: JSON.parse(body).response});
+      //above, you parse the body, and then take its response
+      console.log(res.venues);
+     }
+// //raw JSON rendering below.
+    // res.send(JSON.parse(response.body));
+    // console.log(location); //the location
+    // console.log(req.body.query); //the query (i.e. vegan)
+    // console.log(response.venues); //the response (i.e. all locations)
+    // console.log(JSON.parse(response.body));
+    // }
+    else {
+      res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+      console.log(req.body.place.name);
+      console.log(req.body.query);
+      console.log(JSON.parse(response.body));
+    }
+  });
+
+});
 
 
 
