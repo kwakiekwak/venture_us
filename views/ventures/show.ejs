@@ -68,9 +68,19 @@
         <ul>
           <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
           <li><%=venue.id%></li>
+          <!-- Make API call for each venue here. -->
+          <% request('https://api.foursquare.com/v2/venues/venue.id/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){ %>
+            <% if(!error) { %>
+              <% photos = JSON.parse(response.body).response.photos.items %>
+              <% for(var i = 0; i< 20; i++) { %>
+                <img src= "<%=photos[i].prefix%>original<%=photos[i].suffix%>">
+              <% } %>
+
+            <% } %>
+          <% }) %>
         </ul>
       <% }) %>
-      <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
+      <img src= "<%=photos[0].prefix%>original<%=photos[0].suffix%>">
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
   for this aPI call. -->

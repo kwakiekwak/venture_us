@@ -73,9 +73,9 @@ module.exports = {
               if(!error) {
                 //console.log(JSON.parse(response.data));
                 //res.send(JSON.parse(response.body).response.photos.items[0]);
-                firstPhoto = JSON.parse(response.body).response.photos.items[0];
+                photos = JSON.parse(response.body).response.photos.items;
                 //res.render('ventures/photo', {firstPhoto:firstPhoto});
-                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto:firstPhoto})
+                res.render('ventures/show', {location: location, query: query, venues: venues, photos:photos})
               }
               else {
                 res.send({venuesSearch: 'Not implemented!'});
