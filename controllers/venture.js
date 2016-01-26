@@ -48,5 +48,9 @@ module.exports = {
       venture.remove()
       res.send('Venture removed')
     })
+  },
+
+  map: function(req, res, next) {
+    res.render('ventures/map')
   }
 }

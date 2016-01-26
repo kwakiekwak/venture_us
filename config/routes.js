@@ -109,6 +109,9 @@ router.route('/ventures/new')
   //form for creating a new venture
   .get(ventureController.new)
 
+// testing google map api
+router.route('/ventures/map').get(ventureController.map)
+
 router.route('/ventures/show').get(ventureController.all)
 
 //routing for /venturess/show (all, show, update, delete)
