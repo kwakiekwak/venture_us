@@ -15,7 +15,7 @@ var router         = new express.Router();
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var request = require("request");
+var request = require('request');
 
 //body-parser
 bodyParser   = require('body-parser');
@@ -54,7 +54,11 @@ module.exports = {
     })
   },
   show: function(req, res, next) {
+<<<<<<< HEAD
     Venture.findOne({_id: Number(req.params.id)} , function(err, request2) {
+=======
+    Venture.findOne({_id: Number(req.params.id)} , function(err, requ) {
+>>>>>>> 0b8db64fa6c9c97226fc9ac37d9589b8335c3607
       //Above, this will set the user_id equal to the user_id of the first
       //user in the venture array, i.e. you.
 
@@ -63,23 +67,35 @@ module.exports = {
 //(1.) request for search API - get venue id, name, address
     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
       if(!error) {
-        var venues = JSON.parse(body).response;
+        venues = JSON.parse(body).response;
+        console.log(venues);
         //above, you parse the body, and then take its response
         // (2.) callback - .then, query for image, using the venue id from above.
+<<<<<<< HEAD
           all: function(req, res, next) {
+=======
+          //router.get('/search', function (req, res, next) {
+>>>>>>> 0b8db64fa6c9c97226fc9ac37d9589b8335c3607
             //venue Id hard-coded in below for now.
-            request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,body){
+            request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
               if(!error) {
+                //console.log(JSON.parse(response.data));
                 //res.send(JSON.parse(response.body).response.photos.items[0]);
                 firstPhoto = JSON.parse(response.body).response.photos.items[0];
                 //res.render('ventures/photo', {firstPhoto:firstPhoto});
+<<<<<<< HEAD
               res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto:firstPhoto})
+=======
+                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto:firstPhoto})
+>>>>>>> 0b8db64fa6c9c97226fc9ac37d9589b8335c3607
               }
               else {
-                res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+                res.send({venuesSearch: 'Not implemented!'});
+                return;// return some JSON
               }
             })
-          })
+          //})
+      //use promises
       }
       else {
         res.send({venuesSearch: 'Not implemented!'}); // return some JSON
@@ -88,6 +104,10 @@ module.exports = {
         console.log(JSON.parse(response.body));
       }
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b8db64fa6c9c97226fc9ac37d9589b8335c3607
     })
   },
   update: function(req, res, next) {
