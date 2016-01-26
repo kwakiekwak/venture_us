@@ -42,19 +42,21 @@ $('#go-venture-btn').click(function(){
 
 // Draggable JQuery for friend-circle
 $('.friend-circle').draggable({
-    // distance: 10
-  // cursor: "move",
-  // containment: "#new-venture",
-  // snap: "#drop-box",
-  // stop: function(event, ui) {
-  //   console.log($(this).position())
+  cursor: "move",
+  containment: "#new-venture",
+  snap: "#drop-box"
 });
 
 //Droppable JQuery for drop-box
 $("#drop-box").droppable({
   drop: function(event, ui) {
     var friend = ui.draggable;
-    $('#drop-box').innerHTML(friend);
+    var venturists = [];
+    venturists.push(friend.attr("value"))
+    $('#drop-box').append(friend);
+    $('#drop-box').data("friends", venturists)
+    console.log(venturists);
+    friend.remove();
   }
 })
 
