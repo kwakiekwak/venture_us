@@ -4,6 +4,8 @@ $('#show-friends-btn').click(function() {
   $('#show-friends').fadeToggle(300);
 })
 
+
+// adding friend to user with AJAX call
 $('.add-friend-btn').click(function(event){
   var friend_id = $(event.currentTarget).attr("value");
   // alert(friend_id);
@@ -19,6 +21,7 @@ $('.add-friend-btn').click(function(event){
   })
 })
 
+//creating new venture with AJAX call
 $('#go-venture-btn').click(function(){
   var location = $('#venture-location').val();
   $.ajax({
@@ -35,3 +38,23 @@ $('#go-venture-btn').click(function(){
     }
   })
 })
+
+
+// Draggable JQuery for friend-circle
+$('.friend-circle').draggable({
+    // distance: 10
+  // cursor: "move",
+  // containment: "#new-venture",
+  // snap: "#drop-box",
+  // stop: function(event, ui) {
+  //   console.log($(this).position())
+});
+
+//Droppable JQuery for drop-box
+$("#drop-box").droppable({
+  drop: function(event, ui) {
+    var friend = ui.draggable;
+    $('#drop-box').innerHTML(friend);
+  }
+})
+
