@@ -20,9 +20,10 @@ socket.on('chat-message', function(msg){
   $('#messages').append($('<li>').text(msg));
 });
 
+// pause: "hover" breaks the messaging system
 //Carousel timer
-$('.carousel').carousel({
-  interval: 2000,
-  pause: “hover”,
-  wrap: true
-})
+// $('.carousel').carousel({
+//   interval: 2000,
+//   pause: “hover”,
+//   wrap: true
+// })
