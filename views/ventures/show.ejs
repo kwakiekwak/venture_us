@@ -28,7 +28,7 @@
     <div class="carousel-inner" role="listbox">
       <br><br>
       <div class="item active">
-        <img src="http://www.comohotels.com/metropolitanbangkok/sites/default/files/styles/background_image/public/images/background/metbkk_bkg_nahm_restaurant.jpg?itok=GSmnYYaU" alt="Chania" width="460" height="345">
+        <img src="https://irs3.4sqi.net/img/general/original/8744718_2hmEpnGsGt2F_4qg70uH20lfaJYPp9lmRf0RQs6p-BQ.jpg" alt="Chania" width="460" height="345">
         <div class="carousel-caption">Yum!</div>
       </div>
       <div class="item">
@@ -68,10 +68,9 @@
         <ul>
           <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
           <li><%=venue.id%></li>
-          <!-- For a given venue.id, run another query for photo urls. -->
-
         </ul>
       <% }) %>
+      <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
   for this aPI call. -->
