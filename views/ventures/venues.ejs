@@ -2,9 +2,6 @@
 of a categorical search -->
 <h1>Venues matching your search criteria <%=query %> for <%=location%>: </h1>
 
- <iframe src='https://www.google.com/maps/embed/v1/place?q='+<%location%>+'%20Rd,%20UK&zoom=17&key=AIzaSyCfWNPOPK8qDWvOmPr0q8ldYgRkDU6qGIk'>
- </iframe>
-
 <!-- Here, loop through the venues -->
 <!-- NOTE: for loop up to i = 20, incorporate carousel -->
 <% var max20 = [] %>
@@ -17,8 +14,12 @@ of a categorical search -->
   <% limit.forEach(function(venue) { %>
     <ul>
       <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
+      <li><%=venue.id%></li>
     </ul>
   <% }) %>
+
+<iframe src='https://www.google.com/maps/embed/v1/place?q=<%=location%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
+ </iframe>
 
 
 
