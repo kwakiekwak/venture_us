@@ -1,4 +1,4 @@
-#create-venture, #friend-list {
+#create-venture, #friend-list, #show-categories {
   height: 750px;
   border: 1px solid red;
   border-radius: 10px;
@@ -23,7 +23,7 @@
 
 #create-venture {
   background-color: #ff7b00;
-  padding-left: 30px;
+  padding: 0 30px;
 }
 
 #friend-list {
@@ -52,6 +52,20 @@
 
 #show-friends-btn {
   float: right;
+}
+
+#show-categories {
+  margin: 0 auto;
+}
+
+/*Styling for category boxes*/
+#show-categories > div {
+  margin-top: 10%;
+}
+
+.cat {
+  height: 200px;
+  border: 1px black solid;
 }
 
 /*#outerCarousel {

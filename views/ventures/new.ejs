@@ -7,7 +7,9 @@
 <body>
   <%- include('../partials/header', {subHeading: 'New Venture'}) %>
   <main>
-<!-- create new venture half -->
+
+<!-- first half create new venture -->
+
   <div id="new-venture">
   <div class="container">
 
@@ -24,12 +26,9 @@
       </div>
 
       <div id="friend-list" class="col-md-9 col-xs-13">
-<<<<<<< HEAD
-      <h2 class="title-venture">Choose your Venturists!</h2>
-=======
-        <h2 class="title-venture">Choose your Venturists!</h2>
 
->>>>>>> 9eab3c0ca4a73f763e50f9a8d8e076cdba1fbeb7
+      <h2 class="title-venture">Choose your Venturists!</h2>
+
         <% if(friends) { %>
         <% friends.forEach(function(friend){ %>
           <div class="friend-circle" value="<%=friend.local.id%>"><%=friend.local.email%></div>
@@ -47,21 +46,39 @@
   </div>
   </div>
 
-<!-- second half showing all categories of ventures -->
+<!-- second half updating category to venture -->
 
   <div id="category-venture">
-  <!-- Sample Foursquare API call form/search below -->
-<form method="GET" action="/search">
-    <!-- <form method="GET" action="/venues"> -->
-      <label for="place">Place Name</label>
-      <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
-      <br>
-      <label for="query">Search For</label>
-      <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
-      <input type="submit" value="Search" />
-</form>
-
+  <div class="container">
+    <h3 class="title-venture">Choose Your Venture Category</h3>
+    <div id="show-categories">
+      <div class="row">
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Category</div></div>
+      </div>
+    </div>
   </div>
+  <form method="GET" action="/search">
+        <!-- <form method="GET" action="/venues"> -->
+          <label for="place">Place Name</label>
+          <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
+          <br>
+          <label for="query">Search For</label>
+          <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
+          <input type="submit" value="Search" />
+  </form>
+  </div>
+
+
+  <!-- Sample Foursquare API call form/search below -->
 
   </main>
   <%- include('../partials/footer') %>
