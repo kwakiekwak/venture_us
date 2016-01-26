@@ -20,3 +20,5 @@ socket.on('chat-message', function(msg){
   $('#messages').append($('<li>').text(msg));
   console.log(msg)
 });
+
+
