@@ -10,7 +10,11 @@
   max-width: 100px;
 }
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> adding-friends
 #create-venture, #friend-list {
   min-height: 1200px;
   border: 1px solid red;
@@ -41,11 +45,9 @@
 #submit-btn {
   width: 200px;
 }
-
 #show-friends-btn {
   float: right;
 }
-
 
 /*Carousel below*/
 
