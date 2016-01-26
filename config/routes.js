@@ -139,10 +139,15 @@ router.get('/search', function(req, res, next) {
     console.log(queryString)
     request(queryString, function(error,response,body){
     if(!error) {
+<<<<<<< HEAD
     // EJS venues re-rerouting here
 
       console.log("ventures")
       console.log(JSON.parse(body).response)
+=======
+    //   // //EJS venues re-rerouting here.
+      // addToVenture();
+>>>>>>> 5154e4f7c1dcdd96aa718420fc6a6224917c2cf2
       res.render('ventures/show', {location: location, query: query, venues: JSON.parse(body).response});
       //above, you parse the body, and then take its response
      }

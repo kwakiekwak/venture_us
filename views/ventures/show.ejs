@@ -65,7 +65,16 @@
     <!-- Edit the slice, based on # of users (40 divided by number of users) -->
       <% var limit = max20.slice(0,20) %>
       <% limit.forEach(function(venue) { %>
+<<<<<<< HEAD
 
+=======
+        <ul>
+          <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
+          <li><%=venue.id%></li>
+          <!-- For a given venue.id, run another query for photo urls. -->
+
+        </ul>
+>>>>>>> 5154e4f7c1dcdd96aa718420fc6a6224917c2cf2
       <% }) %>
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
