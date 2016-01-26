@@ -1,6 +1,6 @@
 
 // toggles the div containing friends list and search friends
-$('#show-friend-btn').click(function() {
+$('#show-friends-btn').click(function() {
   $('#show-friends').fadeToggle(300);
 })
 
