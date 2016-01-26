@@ -20,6 +20,7 @@ socket.on('chat-message', function(msg){
   $('#messages').append($('<li>').text(msg));
   console.log(msg)
 });
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
@@ -50,3 +51,5 @@ socket.on('chat-message', function(msg){
 // >>>>>>> 0561adff993cc6ee0d2bbcd6c510b31ca9dac358
 >>>>>>> adding-friends
 >>>>>>> eba1474785e86dfa002be506a710f009a61de5b6
+=======
+>>>>>>> 1ed875293af5ed5de92db7b0da26b161058c86ae
