@@ -37,7 +37,10 @@ module.exports = {
       //Above, this will set the user_id equal to the user_id of the first
       //user in the venture array, i.e. you.
 
-      //Nest both API calls here
+      //Nest both API calls here!
+      //(1.) request for search API - get venue id, name, address
+      // (2.) callback - .then, query for image, using the venue id from above.
+
       res.render('ventures/show', {venture: venture})
     })
   },

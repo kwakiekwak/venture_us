@@ -130,6 +130,8 @@ router.route('/ventures/show/:id')
   //delete a venture.
   .delete(ventureController.delete)
 
+router.route('/search').get(ventureController.show)
+
 // // //Foursquare searching below
 // router.get('/search', function(req, res, next) {
 //   var location = req.query.location
@@ -159,7 +161,7 @@ router.route('/ventures/show/:id')
 
 // });
 
-//This is the photos query for a venue id.
+//This is the photos query for a venue id. Do this after the first API call
 
 // API calls should go in controller.
 router.get('/search', function (req, res, next) {
