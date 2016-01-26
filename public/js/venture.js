@@ -18,3 +18,20 @@ $('.add-friend-btn').click(function(event){
     }
   })
 })
+
+$('#go-venture-btn').click(function(){
+  var location = $('#venture-location').val();
+  $.ajax({
+    type: "post",
+    url: 'new',
+    data: {location: location},
+    success: function(msg) {
+      console.log(location);
+      $('#category-venture').css("background-color","black");
+    },
+    error: function(msg) {
+      console.log(location);
+      $('#category-venture').css("background-color","red");
+    }
+  })
+})

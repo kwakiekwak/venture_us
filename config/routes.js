@@ -64,7 +64,9 @@ router.route('/ventures/users/friends/add/:id')
   .post(usersController.addFriend)
 
 // routes for venture paths:
-router.get('/ventures/new', ventureController.new)
+router.route('/ventures/new')
+  .get(ventureController.new)
+  .post(ventureController.create);
 
 // //event listener for connection (socket)
 io.on('connection', function(socket){

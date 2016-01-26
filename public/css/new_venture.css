@@ -10,11 +10,6 @@
   max-width: 100px;
 }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
->>>>>>> adding-friends
 #create-venture, #friend-list {
   min-height: 1200px;
   border: 1px solid red;
@@ -27,7 +22,7 @@
 #friend-list {
   background-color: #0a9ed8;
 }
-.title-venture {
+#title-venture {
   text-align: center;
   color: white;
 }
@@ -35,7 +30,7 @@
   display: none;
   float: right;
   width: 300px;
-  height: 800px;
+  height: 600px;
   background-color: black;
   color: white;
 }
@@ -48,14 +43,6 @@
 #show-friends-btn {
   float: right;
 }
-
-/*Carousel below*/
-
-/*.carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
-  }*/
 
 #outerCarousel {
   width: 500px;

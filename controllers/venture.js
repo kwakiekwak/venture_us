@@ -9,6 +9,7 @@ module.exports = {
     })
   },
   create: function(req, res, next) {
+    console.log("I'm in create with")
     var newVenture = new Venture()
     var keys = Object.keys(req.body)
     keys.forEach(function(key) {
@@ -16,6 +17,7 @@ module.exports = {
     })
     newVenture.save(function(err, data) {
       if(err) console.log(err)
+        console.log(newVenture);
         res.send("Venture created")
     })
   },
