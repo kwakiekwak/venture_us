@@ -5,8 +5,7 @@
   <link rel="stylesheet" type="text/css" href="/css/new_venture.css">
 </head>
 <body>
-  <%- include('../partials/header', {subHeading: 'User List'}) %>
-
+  <%- include('../partials/header', {subHeading: 'New Venture'}) %>
   <main>
 <!-- create new venture half -->
   <div id="new-venture">
@@ -30,7 +29,7 @@
           <div><%=friend.local.email%></div>
         <%  }) %>
 
-        <button class='btn btn-default' id="add-friend">
+        <button class='btn btn-default' id="show-friends-btn">
           <i class="fa fa-plus-square-o"></i>
         </button>
         <%- include('../partials/friends') %>
@@ -57,7 +56,7 @@
 
 
   </main>
-
+  <%- include('../partials/footer') %>
   <%- include('../partials/scripts') %>
   <script src='/js/venture.js'></script>
 </body>

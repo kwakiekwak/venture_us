@@ -8,7 +8,7 @@
 
 </head>
 <body>
-  <%- include('../partials/header', {subHeading: 'Go Venture!'}) %>
+<%- include('../partials/header', {subHeading: 'Ventures Below'}) %>
 <main>
 <!-- Sample Foursquare API call form/search below -->
 <form method="GET" action="/search">
@@ -59,12 +59,14 @@
     </div>
 
   </div>
-<!-- Google places api is not working -->
-  <iframe src="https://www.google.com/maps/embed/v1/place?q=Harrods,Brompton%20Rd,%20UK
+  <!-- NOTE: set a variable for location (search params above) to be the query
+  for this aPI call. -->
+  <iframe src="https://www.google.com/maps/embed/v1/place?q=LosAngeles,CA%20Rd,%20UK
      &zoom=17
      &key=AIzaSyCfWNPOPK8qDWvOmPr0q8ldYgRkDU6qGIk">
  </iframe>
 
+  <%- include('../partials/footer') %>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
  </main>
