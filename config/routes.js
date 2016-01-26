@@ -60,6 +60,8 @@ router.route('/users/:id')
  .put(usersController.update)
  .delete(usersController.destroy)
 
+ router.get('/users/friends/add/:id', usersController.addFriend);
+
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
 
