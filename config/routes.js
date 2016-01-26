@@ -130,43 +130,51 @@ router.route('/ventures/show/:id')
   //delete a venture.
   .delete(ventureController.delete)
 
-// //Foursquare searching below
-router.get('/search', function(req, res, next) {
-  var location = req.query.location
-  var query = req.query.keyword
-  // Printing out the content of the request!
+// // //Foursquare searching below
+// router.get('/search', function(req, res, next) {
+//   var location = req.query.location
+//   var query = req.query.keyword
+//   // Printing out the content of the request!
 
-    //Try 'explore' for photos
+//     //Try 'explore' for photos
 
-    request('https://api.foursquare.com/v2/venues/explore/?&limit=20&venuePhotos=1&near=austin&venue&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126&query=sushi', function(error,response,body){
+//   //   request('https://api.foursquare.com/v2/venues/explore/?&limit=20&venuePhotos=1&near=austin&venue&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126&query=sushi', function(error,response,body){
 
-      https://api.foursquare.com/v2/venues/explore/?near=austin&venue&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126
+//   //     //https://api.foursquare.com/v2/venues/explore/?near=austin&venue&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126
 
-    if(!error) {
-    //   // //EJS venues re-rerouting here.
-      // addToVenture();
-      // res.render('ventures/show', {location: location, query: query, venues: JSON.parse(body).response});
-      res.send(JSON.parse(response.body).response.groups);
-      //above, you parse the body, and then take its response
-     }
-    else {
-      res.send({venuesSearch: 'Not implemented!'}); // return some JSON
-      console.log(req.body.place.name);
-      console.log(req.body.query);
-      console.log(JSON.parse(response.body));
-    }
-  });
+//   //   if(!error) {
+//   //   //   // //EJS venues re-rerouting here.
+//   //     // addToVenture();
+//   //     // res.render('ventures/show', {location: location, query: query, venues: JSON.parse(body).response});
+//   //     res.send(JSON.parse(response.body).response.groups);
+//   //     //above, you parse the body, and then take its response
+//   //    }
+//   //   else {
+//   //     res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+//   //     console.log(req.body.place.name);
+//   //     console.log(req.body.query);
+//   //     console.log(JSON.parse(response.body));
+//   //   }
+//   // });
 
-});
+// });
+
+//This is the photos query for a venue id.
 
 // API calls should go in controller.
-// router.get('/search', function (req, res, next) {
-//   request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126', function(error,response,body){
-//     if(!error) {
-//       firstPhoto = JSON.parse(body).response.photos[0];
+router.get('/search', function (req, res, next) {
+  request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126', function(error,response,body){
+    if(!error) {
+      //res.send(JSON.parse(response.body).response.photos.items[0]);
+      firstPhoto = JSON.parse(response.body).response.photos.items[0];
+      res.render('ventures/photo', {firstPhoto:firstPhoto});
 
-//   })
-// })
+    }
+    else {
+      res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+    }
+  })
+})
 
 
 
