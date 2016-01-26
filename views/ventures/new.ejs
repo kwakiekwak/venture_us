@@ -25,9 +25,11 @@
       </div>
 
       <div id="friend-list" class="col-md-9 col-xs-13">
+        <% if(friends) { %>
         <% friends.forEach(function(friend){ %>
           <div><%=friend.local.email%></div>
         <%  }) %>
+        <% } %>
 
         <button class='btn btn-default' id="show-friends-btn">
           <i class="fa fa-plus-square-o"></i>
@@ -37,15 +39,22 @@
     </div>
 
 
-
-
   </div>
   </div>
 
 <!-- second half showing all categories of ventures -->
 
   <div id="category-venture">
-
+  <!-- Sample Foursquare API call form/search below -->
+<form method="GET" action="/search">
+    <!-- <form method="GET" action="/venues"> -->
+      <label for="place">Place Name</label>
+      <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
+      <br>
+      <label for="query">Search For</label>
+      <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
+      <input type="submit" value="Search" />
+</form>
 
 
 
