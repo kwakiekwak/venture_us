@@ -54,7 +54,7 @@ module.exports = {
     })
   },
   show: function(req, res, next) {
-    Venture.findOne({_id: Number(req.params.id)} , function(err, request) {
+    Venture.findOne({_id: Number(req.params.id)} , function(err, request2) {
       //Above, this will set the user_id equal to the user_id of the first
       //user in the venture array, i.e. you.
 
@@ -66,13 +66,14 @@ module.exports = {
         var venues = JSON.parse(body).response;
         //above, you parse the body, and then take its response
         // (2.) callback - .then, query for image, using the venue id from above.
-          router.get('/search', function (req, res, next) {
+          all: function(req, res, next) {
             //venue Id hard-coded in below for now.
             request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,body){
               if(!error) {
                 //res.send(JSON.parse(response.body).response.photos.items[0]);
                 firstPhoto = JSON.parse(response.body).response.photos.items[0];
                 //res.render('ventures/photo', {firstPhoto:firstPhoto});
+              res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto:firstPhoto})
               }
               else {
                 res.send({venuesSearch: 'Not implemented!'}); // return some JSON
@@ -87,7 +88,6 @@ module.exports = {
         console.log(JSON.parse(response.body));
       }
     });
-      res.render('ventures/show', {venture: venture, location: location, query: query, venues: venues, firstPhoto:firstPhoto})
     })
   },
   update: function(req, res, next) {
