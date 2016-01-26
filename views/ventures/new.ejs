@@ -13,7 +13,7 @@
 
     <div class="row">
       <div id="create-venture" class="col-md-3 col-xs-5">
-        <h3 id="title-venture">Venture Buddies!</h3>
+        <h3 class="title-venture">Venture Buddies!</h3>
           <div id="drop-box" class="row">
             <!-- Add Friend DATA HERE -->
           </div>
@@ -24,10 +24,11 @@
       </div>
 
       <div id="friend-list" class="col-md-9 col-xs-13">
+        <h2 class="title-venture">Choose your Venturists!</h2>
+
         <% if(friends) { %>
-      <h2 class="title-venture">Choose your Venturists!</h2>
         <% friends.forEach(function(friend){ %>
-          <div><%=friend.local.email%></div>
+          <div class="friend-circle" value="<%=friend.local.id%>"><%=friend.local.email%></div>
         <%  }) %>
         <% } %>
 
