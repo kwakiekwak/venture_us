@@ -2,8 +2,8 @@
 var dotenv = require('dotenv');
 dotenv.load();
 
-client_id = process.env.CLIENT_ID,
-client_secret = process.env.CLIENT_SECRET
+client_id = "CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3",
+client_secret = "GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE"
 
 var passport       = require('passport');
 var mongoose       = require('mongoose');
@@ -64,9 +64,7 @@ router.route('/ventures/users/friends/add/:id')
   .post(usersController.addFriend)
 
 // routes for venture paths:
-router.route('/ventures/new')
-  .get(ventureController.new)
-  .post(ventureController.create);
+router.get('/ventures/new', ventureController.new)
 
 // //event listener for connection (socket)
 io.on('connection', function(socket){
@@ -137,10 +135,18 @@ router.get('/search', function(req, res, next) {
   var location = req.query.location
   var query = req.query.keyword
   // Printing out the content of the request!
-
-    request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
+    var queryString = 'https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query;
+    console.log(queryString)
+    request(queryString, function(error,response,body){
     if(!error) {
+    // EJS venues re-rerouting here
+
+      console.log("ventures")
+      console.log(JSON.parse(body).response)
+
     //   // //EJS venues re-rerouting here.
+      // addToVenture();
+
       res.render('ventures/show', {location: location, query: query, venues: JSON.parse(body).response});
       //above, you parse the body, and then take its response
      }
