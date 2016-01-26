@@ -24,5 +24,5 @@ socket.on('chat-message', function(msg){
 $('.carousel').carousel({
   interval: 2000,
   pause: “hover”,
-    wrap: true
+  wrap: true
 })

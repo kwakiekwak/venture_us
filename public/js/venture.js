@@ -6,5 +6,15 @@ $('#add-friend').click(function() {
 
 $('.add-friend-btn').click(function(event){
   var friend_id = $(event.currentTarget).attr("value");
-  $.ajax('/users/friends/add/' + friend_id);
+  // alert(friend_id);
+  $.ajax({
+    type: "post",
+    url: 'users/friends/add/' + friend_id,
+    success: function(msg) {
+      console.log("success")
+    },
+    error: function (msg) {
+      console.log("error")
+    }
+  })
 })

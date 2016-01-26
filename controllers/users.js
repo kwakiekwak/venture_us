@@ -44,9 +44,16 @@ var destroy = function(req, res, next) {
 
 var addFriend = function(req, res, next) {
   User.findOneAndUpdate({_id: req.user.id}, { $inc: {"friends": {user: req.params.id}}}, function(err, data) {
+    console.log("friend appended")
     res.send('friend appended');
   }
 )}
+
+var showFriend = function(req, res, next) {
+  User.find({_id: req.params.id}, function(err, data){
+    res.send(data);
+  })
+}
 
 module.exports = {
   login: login,
@@ -56,5 +63,6 @@ module.exports = {
   show:  show,
   update: update,
   destroy: destroy,
-  addFriend: addFriend
+  addFriend: addFriend,
+  showFriend: showFriend
 };

@@ -58,9 +58,11 @@ router.get('/users/profile', isLoggedIn, usersController.profile);
 router.route('/users/:id')
  .get(usersController.show)
  .put(usersController.update)
- .delete(usersController.destroy)
+ .delete(usersController.destroy);
 
- router.get('/users/friends/add/:id', usersController.addFriend);
+router.route('/ventures/users/friends/add/:id')
+  .post(usersController.addFriend)
+  .get(usersController.showFriend)
 
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
