@@ -20,13 +20,5 @@ socket.on('chat-message', function(msg){
   $('#messages').append($('<li>').text(msg));
 });
 
-<<<<<<< HEAD
 
-=======
-//Carousel timer
-$('.carousel').carousel({
-  interval: 2000,
-  pause: “hover”,
-  wrap: true
-})
->>>>>>> 15c6bf0039892e70dc0dcced1520e9a9b1f4a132
+
