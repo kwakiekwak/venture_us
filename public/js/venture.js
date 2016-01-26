@@ -18,3 +18,13 @@ $('.add-friend-btn').click(function(event){
     }
   })
 })
+
+// Add event listener for clicking 'submit' button for Foursquare query
+//When you click venue-search button, we want to push the top 20 options
+//for that location + query into the venture.choice array.
+//We are then going to render that array on the show page, using its
+//venue.id and venue.photos, venue.name, venue.location.address
+
+// function addToVenture() {
+//   venue.choice.push()
+// }
