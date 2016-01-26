@@ -20,8 +20,13 @@ module.exports = {
     })
   },
   new: function(req, res, next) {
-    console.log(req.user);
-    res.render('ventures/new', {user: req.user})
+    var friends = []
+    req.user.friends.forEach(function (friend) {
+      friends.push(friend.user)
+    })
+    User.find({ _id: { $in : friends}}, function (err, data) {
+      res.render('ventures/new', {friends: data})
+    })
   },
   show: function(req, res, next) {
     Venture.findOne({_id: Number(req.params.id)} , function(err, venture) {

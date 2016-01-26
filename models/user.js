@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
   local: {
@@ -15,7 +16,7 @@ var userSchema = mongoose.Schema({
     email: String
   },
   friends: [{
-    user: {},
+    user: {}, //type: Schema.ObjectId, ref: 'User'}
     category: String //
   }]
 })
@@ -31,5 +32,7 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+var User = mongoose.model('User', userSchema);
+
 // create the model for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
+module.exports = User;

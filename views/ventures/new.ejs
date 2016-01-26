@@ -26,9 +26,13 @@
       </div>
 
       <div id="friend-list" class="col-md-9 col-xs-13">
+        <% friends.forEach(function(friend){ %>
+          <div><%=friend.local.email%></div>
+        <%  }) %>
 
-        <button class='btn btn-default' id="add-friend">+ Add</button>
-        <%= user %>
+        <button class='btn btn-default' id="add-friend">
+          <i class="fa fa-plus-square-o"></i>
+        </button>
         <%- include('../partials/friends') %>
       </div>
     </div>
@@ -53,6 +57,7 @@
 
 
   </main>
+
   <%- include('../partials/scripts') %>
   <script src='/js/venture.js'></script>
 </body>
