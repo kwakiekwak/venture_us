@@ -139,17 +139,10 @@ router.get('/search', function(req, res, next) {
     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
     if(!error) {
     //   // //EJS venues re-rerouting here.
-      res.render('ventures/venues', {location: location, query: query, venues: JSON.parse(body).response});
+      res.render('ventures/new', {location: location, query: query, venues: JSON.parse(body).response});
       //above, you parse the body, and then take its response
       console.log(res.venues);
      }
-// //raw JSON rendering below.
-    // res.send(JSON.parse(response.body));
-    // console.log(location); //the location
-    // console.log(req.body.query); //the query (i.e. vegan)
-    // console.log(response.venues); //the response (i.e. all locations)
-    // console.log(JSON.parse(response.body));
-    // }
     else {
       res.send({venuesSearch: 'Not implemented!'}); // return some JSON
       console.log(req.body.place.name);
