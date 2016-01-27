@@ -77,11 +77,15 @@ module.exports = {
 //(1.) request for search API - get venue id, name, address
     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
       if(!error) {
-        venues = JSON.parse(body).response.venues;
-        console.log(venues);
+        // console.log(res.body)
+        var venues = JSON.parse(body).response.venues;
+        // console.log(venues);
         var count = 0;
         venues.forEach(function(venue) {
           venue_id = venue.id;
+          // JSON.stringify(venue)
+          // console.log(venue)
+          // console.log(venue.name)
            //above, you parse the body, and then take its response
         // (2.) callback - .then, query for image, using the venue id from above.
             //venue Id hard-coded in below for now.

@@ -66,6 +66,7 @@
     <!-- Consider: counter, i increments with each click, shows a different venue. -->
       <% var limit = max20.slice(0,20) %>
         <ul>
+
           <li><strong><%= limit[count].name %></strong> -located at <%= limit[count].location.address %></li>
           <li><%=limit[count].id%></li>
 
@@ -75,6 +76,8 @@
           <li><%=venue.id%></li>
           <!-- For a given venue.id, run another query for photo urls. -->
 
+          <%= limit[0].name %>
+          <%= limit[0].id %>
 
         </ul>
 
