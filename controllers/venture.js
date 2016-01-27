@@ -15,10 +15,11 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var request = require('request');
+var rp = require('request-promise')
 var locus = require('locus')
 
 //body-parser
-bodyParser   = require('body-parser');
+var bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -67,49 +68,65 @@ module.exports = {
     })
   },
   show: function(req, res, next) {
-    Venture.findOne({_id: Number(req.params.id)} , function(err, requ) {
-      //Above, this will set the user_id equal to the user_id of the first
-      //user in the venture array, i.e. you.
+    console.log(req.params)
+    var venturePromise = Venture.findOne({_id: "56a81651ceb9a9c2d1b76f3a"}).exec()
+    var venuesPromise = venturePromise.then(function(venture) {
+      var location = venture.location
+      var query = venture.keyword
+      return rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query)
+    })
+    var allVenuesPromise = venuesPromise.then(function (venues) {
+      var venuePromises = []
+      // fill in code here
+      return Promise.all(venuePromises)
+    })
+    console.log(venuesPromise)
+    venuesPromise.then(function (venues) {
+      res.send(venues)
+    }, function (err) {
+      res.send(err)
+    })
+// //(1.) request for search API - get venue id, name, address
+//     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query,
+// function(error, response,body){
+//       if(!error) {
+//         var venues = JSON.parse(body).response.venues;
+//         console.log("this is " +venues);
+//         var venuePromises = [];
+//         venues.forEach(function(venue) {
+//           var venue_id = venue.id;
+//           var promise = Promise('https://api.foursquare.com/v2/venues/'+venue_id+'/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126')
+//           venuePromises.push(venue);
+//         })
+//            //above, you parse the body, and then take its response
+//         // (2.) callback - .then, query for image, using the venue id from above.
+//             //venue Id hard-coded in below for now.
+//           request('https://api.foursquare.com/v2/venues/4a99ace9f964a520c22f20e3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
+//               if(!error) {
+//                 //console.log(JSON.parse(response.data));
+//                 //res.send(JSON.parse(response.body).response.photos.items[0]);
+//                 firstPhoto = JSON.parse(response.body).response.photos.items[0];
 
-      var location = req.query.location
-      var query = req.query.keyword
-//(1.) request for search API - get venue id, name, address
-    request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
-      if(!error) {
-        venues = JSON.parse(body).response.venues;
-        console.log(venues);
-        var count = 0;
-        venues.forEach(function(venue) {
-          venue_id = venue.id;
-           //above, you parse the body, and then take its response
-        // (2.) callback - .then, query for image, using the venue id from above.
-            //venue Id hard-coded in below for now.
-          request('https://api.foursquare.com/v2/venues/4a99ace9f964a520c22f20e3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
-              if(!error) {
-                //console.log(JSON.parse(response.data));
-                //res.send(JSON.parse(response.body).response.photos.items[0]);
-                firstPhoto = JSON.parse(response.body).response.photos.items[0];
-
-                //res.render('ventures/photo', {firstPhoto:firstPhoto});
-                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, count:count})
-              }
-              else {
-                res.send({venuesSearch: 'Not implemented!'});
-                return;// return some JSON
-              }
-              //res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, photoArray:photoArray})
-            })
-        })
-      //use promises
-      }
-      else {
-        res.send({venuesSearch: 'Not implemented!'}); // return some JSON
-        console.log(req.body.place.name);
-        console.log(req.body.query);
-        console.log(JSON.parse(response.body));
-      }
-    });
-  })
+//                 //res.render('ventures/photo', {firstPhoto:firstPhoto});
+//                 res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, count:count})
+//               }
+//               else {
+//                 res.send({venuesSearch: 'Not implemented!'});
+//                 return;// return some JSON
+//               }
+//               //res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, photoArray:photoArray})
+//             })
+//         // })
+//       //use promises
+//       }
+//       else {
+//         res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+//         console.log(req.body.place.name);
+//         console.log(req.body.query);
+//         console.log(JSON.parse(response.body));
+//       }
+//     })
+//     });
   },
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},
