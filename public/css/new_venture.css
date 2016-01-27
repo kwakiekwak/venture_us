@@ -71,6 +71,13 @@
   height: 200px;
   border: 1px black solid;
 }
+.cat:hover {
+  background: purple;
+}
+
+.selected {
+  background-color: purple;
+}
 
 /*#outerCarousel {
   width: 500px;

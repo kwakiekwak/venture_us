@@ -37,7 +37,13 @@ module.exports = {
     // var keys = Object.keys(req.body)
     // var newVenture = new Venture()
     newVenture.location = req.body.location;
-    console.log(newVenture.location)
+
+    console.log(newVenture)
+
+    newVenture.category.push(document.getElementByClass('selected'))
+
+    console.log(newVenture.category)
+
     console.log(req.body['venturists'])
     req.body['venturists'].forEach(function(id) {
       newVenture.venturists.push(id)

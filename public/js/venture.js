@@ -57,6 +57,7 @@ $('#go-venture-btn').click(function(){
     traditional: true,
     data: {location: location, venturists: venturists},
     success: function(msg) {
+      // console.log(data)
       // $('#category-venture').css("display","block");
     },
     error: function(msg) {
@@ -66,27 +67,40 @@ $('#go-venture-btn').click(function(){
 })
 
 var categories = [];
-var inArray = false;
+
 // Updating venture category with AJAX call
-$('.cat').click(function(event) {
-  // var current = $(event.currentTarget);
+// $('.cat').click(function() {
+//   $(this).click(function(){
+//     $(this).css('background-color', 'purple')
+//   })
+// })
+var x = document.getElementsByClassName('cat')
+for(var i=0; i<x.length; i++) {
+  x[i].addEventListener('click', function() {
+    var selectedEl = document.querySelector('.selected')
+    if(selectedEl) {
+      selectedEl.classList.remove("selected")
+    }
+    this.classList.add("selected")
+  }, false)
+}
+
   // current.toggle(function(){
   // current.toggle("slow", function() {
-  //   if(inArray === false) {
-  //     categories.push(current.text().toLowerCase())
-  //     current.css('background-color', 'purple')
-  //     inArray = true;
-  //   }else{
-  //     var indexNum = categories.indexOf(current)
-  //     categories.splice(indexNum, 1)
-  //     current.css('background-color', none)
-  //     inArray = false;
-  //   }
+    // if(inArray === false) {
+    //   categories.push(current.text().toLowerCase())
+    //   current.css('background-color', 'purple')
+    //   inArray = true;
+    // }else{
+    //   var indexNum = categories.indexOf(current)
+    //   categories.splice(indexNum, 1)
+    //   current.css('background-color', none)
+    //   inArray = false;
+    // }
 
   // $(event.currentTarget).text().toLowerCase()
   // categories.push(category)
   // $(event.currentTarget).css('background-color','purple')
-})
 
 
 // Draggable JQuery for friend-circle
@@ -113,3 +127,12 @@ $("#drop-box").droppable({
 })
 
 
+  // <form method="GET" action="/search">
+  //       <!-- <form method="GET" action="/venues"> -->
+  //         <label for="place">Place Name</label>
+  //         <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
+  //         <br>
+  //         <label for="query">Search For</label>
+  //         <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
+  //         <input id="go-venture-btn" type="submit" value="GO Venture" />
+  // </form>

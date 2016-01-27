@@ -67,9 +67,9 @@ router.route('/ventures/users/friends/add/:id')
 router.get('/ventures/new', ventureController.new)
 
 // //event listener for connection (socket)
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
+// io.on('connection', function(socket){
+//   console.log('a user connected');
+// });
 
 // The 3 routes in order to authenticate via OAuth with FB
 // 1. A route to request(create) facebook
