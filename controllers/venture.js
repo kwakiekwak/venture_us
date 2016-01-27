@@ -1,5 +1,6 @@
 var Venture = require('../models/venture');
 var User = require('../models/user');
+var locus = require('locus')
 //venture is fully CRUD-able
 module.exports = {
   all: function(req, res, next) {
@@ -9,16 +10,28 @@ module.exports = {
     })
   },
   create: function(req, res, next) {
-    console.log("I'm in create with")
     var newVenture = new Venture()
-    var keys = Object.keys(req.body)
-    keys.forEach(function(key) {
-      newVenture[key] = req.body[key]
-    })
+    console.log('adding location')
+    // eval(locus);
+    newVenture.location = req.body.location;
+    console.log('location added')
+    // newVenture[user_ids] = req.body[user_ids];
+    var array = req.body.venturists.split('"')
+    console.log(array);
+    for (var i = 1; i < array.length; i+=2) {
+      newVenture.venturists.push(array[i])
+      console.log(newVenture.venturists)
+    }
+    // var keys = Object.keys(req.body)
+    // keys.forEach(function(key) {
+    //   newVenture[key] = req.body[key]
+    //   console.log(newVenture[key])
+    //   console.log(req.body[key])
+    // })
     newVenture.save(function(err, data) {
-      if(err) console.log(err)
-        console.log(newVenture);
-        res.send("Venture created")
+      if(err){console.log(err)}
+      console.log(newVenture);
+      res.send("Venture created")
     })
   },
   new: function(req, res, next) {

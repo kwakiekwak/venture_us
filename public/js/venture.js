@@ -27,13 +27,12 @@ $('#go-venture-btn').click(function(){
   $.ajax({
     type: "post",
     url: 'new',
-    data: {location: location},
+    data: {location: location, venturists: JSON.stringify(venturists)},
     success: function(msg) {
-      console.log(location);
+      console.log("BELOW is AJAX success" + venturists);
       $('#category-venture').css("background-color","black");
     },
     error: function(msg) {
-      console.log(location);
       $('#category-venture').css("background-color","red");
     }
   })
@@ -48,15 +47,14 @@ $('.friend-circle').draggable({
 });
 
 //Droppable JQuery for drop-box
+var venturists = [];
 $("#drop-box").droppable({
   drop: function(event, ui) {
     var friend = ui.draggable;
-    var venturists = [];
     venturists.push(friend.attr("value"))
     $('#drop-box').append(friend);
-    $('#drop-box').data("friends", venturists)
-    console.log(venturists);
     friend.remove();
+    console.log(venturists);
   }
 })
 
