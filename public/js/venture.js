@@ -38,8 +38,27 @@ $('#go-venture-btn').click(function(){
   })
 })
 
+var categories = [];
+var inArray = false;
 // Updating venture category with AJAX call
-$('.cat').click(function())
+$('.cat').click(function(event) {
+  // var current = $(event.currentTarget)
+  // current.toggle("slow", function() {
+  //   if(inArray === false) {
+  //     categories.push(current.text().toLowerCase())
+  //     current.css('background-color', 'purple')
+  //     inArray = true;
+  //   }else{
+  //     var indexNum = categories.indexOf(current)
+  //     categories.splice(indexNum, 1)
+  //     current.css('background-color', none)
+  //     inArray = false;
+  //   }
+  })
+  // $(event.currentTarget).text().toLowerCase()
+  // categories.push(category)
+  // $(event.currentTarget).css('background-color','purple')
+})
 
 
 // Draggable JQuery for friend-circle
