@@ -65,19 +65,9 @@
     <!-- Edit the slice, based on # of users (40 divided by number of users) -->
     <!-- Consider: counter, i increments with each click, shows a different venue. -->
       <% var limit = max20.slice(0,20) %>
-<<<<<<< HEAD
         <ul>
-          <li><strong><%= limit[count].name %></strong> -located at <%= limit[count].location.address %></li>
-          <li><%=limit[count].id%></li>
-=======
-      <% limit.forEach(function(venue) { %>
-
-        <ul>
-          <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
-          <li><%=venue.id%></li>
-          <!-- For a given venue.id, run another query for photo urls. -->
-
->>>>>>> create-venture
+          <%= limit[0].name %>
+          <%= limit[0].id %>
         </ul>
         <button id="yes" class="card" onClick="window.location.reload()">Yes, I want to go here!</button>
         <button id = "no" class="card" onClick="window.location.reload()">No, I'd rather keep looking.</button>
