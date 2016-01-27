@@ -65,13 +65,14 @@
     <!-- Edit the slice, based on # of users (40 divided by number of users) -->
     <!-- Consider: counter, i increments with each click, shows a different venue. -->
       <% var limit = max20.slice(0,20) %>
-      <% limit.forEach(function(venue) { %>
         <ul>
-          <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
-          <li><%=venue.id%></li>
-          </ul>
-      <% }) %>
+          <li><strong><%= limit[0].name %></strong> -located at <%= limit[0].location.address %></li>
+          <li><%=limit[0].id%></li>
+        </ul>
+        <button id="yes" class="card">Yes, I want to go here!</button>
+        <button id = "no" class="card">No, I'd rather keep looking.</button>
       <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
+
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
   for this aPI call. -->
