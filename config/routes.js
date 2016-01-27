@@ -121,7 +121,7 @@ router.route('/ventures/map').get(ventureController.map)
 // router.route('/ventures/show').get(ventureController.all)
 
 //routing for /venturess/show (all, show, update, delete)
-router.route('/ventures/show')
+router.route('/ventures/show/:id')
 
   .get(ventureController.show)
   // show business show page

@@ -66,7 +66,7 @@ module.exports = {
         array.push(venue.id)
       });
       Venture.findOneAndUpdate({_id: "56a81651ceb9a9c2d1b76f3a"},{$set:{venue_ids:array}}, function(err, data){
-        res.send('success');
+        res.send({venture_id: "56a81651ceb9a9c2d1b76f3a"});
       })
     }, function(reason){
       console.log('failing because' +reason);
@@ -86,7 +86,7 @@ module.exports = {
     })
   },
   show: function(req, res, next) {
-    var venturePromise = Venture.findOne({_id: "56a81651ceb9a9c2d1b76f3a"}).exec()
+    var venturePromise = Venture.findOne({_id: req.params.id}).exec()
     var venuePromises = [];
     var venusPromise = venturePromise.then(function(venture) {
       var venue_ids = venture.venue_ids
