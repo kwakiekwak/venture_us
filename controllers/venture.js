@@ -34,10 +34,12 @@ module.exports = {
   create: function(req, res, next) {
     // console.log("I'm in create with")
     var newVenture = new Venture()
-    var keys = Object.keys(req.body)
-    var newVenture = new Venture()
+    // var keys = Object.keys(req.body)
+    // var newVenture = new Venture()
     newVenture.location = req.body.location;
-    req.body['venturists'].forEach(function (id) {
+    console.log(newVenture.location)
+    console.log(req.body['venturists'])
+    req.body['venturists'].forEach(function(id) {
       newVenture.venturists.push(id)
 
     })
@@ -49,6 +51,7 @@ module.exports = {
 
       if(err){console.log(err)}
       console.log(newVenture);
+    // trying to resolve problem/ wanting to create one venture create at the bottom`
       res.send("Venture created")
     })
   },
