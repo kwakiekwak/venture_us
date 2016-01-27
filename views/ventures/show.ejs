@@ -58,7 +58,7 @@
     <!-- Here, loop through the venues -->
     <!-- NOTE: for loop up to i = 20, incorporate carousel -->
     <% var max20 = [] %>
-    <% venues.venues.forEach(function(venue) { %>
+    <% venues.forEach(function(venue) { %>
       <!-- Now, loop through that array 20 times and render. -->
       <% max20.push(venue) %>
     <% }) %>
@@ -68,19 +68,10 @@
         <ul>
           <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
           <li><%=venue.id%></li>
-          <!-- Make API call for each venue here. -->
-          <% request('https://api.foursquare.com/v2/venues/venue.id/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){ %>
-            <% if(!error) { %>
-              <% photos = JSON.parse(response.body).response.photos.items %>
-              <% for(var i = 0; i< 20; i++) { %>
-                <img src= "<%=photos[i].prefix%>original<%=photos[i].suffix%>">
-              <% } %>
-
-            <% } %>
-          <% }) %>
-        </ul>
+          </ul>
       <% }) %>
-      <img src= "<%=photos[0].prefix%>original<%=photos[0].suffix%>">
+
+      <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
   for this aPI call. -->

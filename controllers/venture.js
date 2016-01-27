@@ -63,25 +63,28 @@ module.exports = {
 //(1.) request for search API - get venue id, name, address
     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
       if(!error) {
-        venues = JSON.parse(body).response;
+        venues = JSON.parse(body).response.venues;
         console.log(venues);
-        //above, you parse the body, and then take its response
+        venues.forEach(function(venue) {
+          venue_id = venue.id;
+           //above, you parse the body, and then take its response
         // (2.) callback - .then, query for image, using the venue id from above.
             //venue Id hard-coded in below for now.
-            request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
+          request('https://api.foursquare.com/v2/venues/4a99ace9f964a520c22f20e3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
               if(!error) {
                 //console.log(JSON.parse(response.data));
                 //res.send(JSON.parse(response.body).response.photos.items[0]);
-                photos = JSON.parse(response.body).response.photos.items;
+                firstPhoto = JSON.parse(response.body).response.photos.items[0];
                 //res.render('ventures/photo', {firstPhoto:firstPhoto});
-                res.render('ventures/show', {location: location, query: query, venues: venues, photos:photos})
+                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto})
               }
               else {
                 res.send({venuesSearch: 'Not implemented!'});
                 return;// return some JSON
               }
             })
-          //})
+        })
+
       //use promises
       }
       else {
