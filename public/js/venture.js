@@ -65,10 +65,39 @@ $('#go-venture-btn').click(function(){
   })
 })
 
-var categories = [];
-var inArray = false;
+// var inArray = false;
 // Updating venture category with AJAX call
 $('.cat').click(function(event) {
+  var category = $(event.currentTarget).text().toLowerCase()
+  $.ajax({
+    type: "patch",
+    url: 'new',
+    traditional: true,
+    data: {keyword: category},
+    success: function(msg) {
+      console.log('cataagory AJAX success');
+    },
+    error: function(msg) {
+      console.log('catagory AJAX fail' + msg);
+    }
+  })
+})
+
+// Adding venue ids to venture with AJAX call
+$('#get-venture-btn').click(function(){
+  $.ajax({
+    type: "put",
+    url: 'new',
+    traditional: true,
+    success: function(msg) {
+      console.log('venue id AJAX successs');
+    },
+    error: function(msg) {
+      console.log('venue id AJAX fail');
+    }
+  })
+})
+
   // var current = $(event.currentTarget);
   // current.toggle(function(){
   // current.toggle("slow", function() {
@@ -86,7 +115,7 @@ $('.cat').click(function(event) {
   // $(event.currentTarget).text().toLowerCase()
   // categories.push(category)
   // $(event.currentTarget).css('background-color','purple')
-})
+
 
 
 // Draggable JQuery for friend-circle

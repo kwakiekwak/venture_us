@@ -106,11 +106,14 @@ function isLoggedIn(req, res, next) {
 //Venture routes below
 //route for /ventures/new (new, post)
 router.route('/ventures/new')
+  //rendering new venture page
+  .get(ventureController.new)
   //create a venture - function in controller
   .post(ventureController.create)
-
-  //form for creating a new venture
-  .get(ventureController.new)
+  // updating a venture with category
+  .patch(ventureController.addCategory)
+  // updating a venture with venue_ids
+  .put(ventureController.addVenues);
 
 // testing google map api
 router.route('/ventures/map').get(ventureController.map)
