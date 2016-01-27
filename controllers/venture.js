@@ -1,10 +1,10 @@
 //adding dotenv up at the top
 var dotenv = require('dotenv');
 dotenv.load();
-var Venture = require('../models/venture');
-var User = require('../models/user');
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
+var Venture = require('../models/venture');
+var User = require('../models/user');
 var express        = require('express');
 var router         = new express.Router();
 // Socket below
@@ -66,7 +66,7 @@ module.exports = {
         array.push(venue.id)
       });
       Venture.findOneAndUpdate({_id: "56a81651ceb9a9c2d1b76f3a"},{$set:{venue_ids:array}}, function(err, data){
-        res.redirect('show/56a81651ceb9a9c2d1b76f3a');
+        res.send('success');
       })
     }, function(reason){
       console.log('failing because' +reason);
@@ -82,12 +82,11 @@ module.exports = {
     users = data;
     })
     User.find({ _id: { $in : friends}}, function (err, data) {
-      // console.log(data[1].id)
       res.render('ventures/new', {friends: data, users: users})
     })
   },
   show: function(req, res, next) {
-    var venturePromise = Venture.findOne({_id: req.params.id}).exec()
+    var venturePromise = Venture.findOne({_id: "56a81651ceb9a9c2d1b76f3a"}).exec()
     var venuePromises = [];
     var venusPromise = venturePromise.then(function(venture) {
       var venue_ids = venture.venue_ids
@@ -95,10 +94,8 @@ module.exports = {
       venuePromises.push(rp('https://api.foursquare.com/v2/venues/'+venue_id+'?client_id='+client_id+'&client_secret='+client_secret+'&v=20160126'))
       // var photoGroup = data.response.venue.photos.groups
       //. response.photos.items[0]//the entire photo object for that index
-      // console.log(photo[0].suffix);
       })
       return Promise.all(venuePromises)
-      // console.log(venuePromises);
     })
 
     venusPromise.then(function(data){
@@ -106,16 +103,10 @@ module.exports = {
       data.forEach(function(venue){
         venueArray.push(JSON.parse(venue).response.venue);
       })
-      console.log(venueArray);
+      console.log('Im in show');
+      res.render('ventures/show', {venues: venueArray})
+      // res.render('ventures/show', {venues: venueArray});
     })
-      // res.send(venueArray
-    // console.log(thePromiseIWant)
-    // Promise.all(venuePromises).then(function(data){
-    //  console.log('this is promiseALL' + data);
-    //  // res.render({})
-    //  }, function(reason){
-    //   console.log('failing because' +reason);
-    // });
   },
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},

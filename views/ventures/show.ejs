@@ -53,40 +53,14 @@
 
   <!-- Adding top 20 search queries below, for testing. -->
   <div class="searchcontainer">
-      <h1>Venues matching your search criteria <%=query %> for <%=location%>: </h1>
 
-    <!-- Here, loop through the venues -->
-    <!-- NOTE: for loop up to i = 20, incorporate carousel -->
-    <% var max20 = [] %>
-    <% venues.forEach(function(venue) { %>
-      <!-- Now, loop through that array 20 times and render. -->
-      <% max20.push(venue) %>
-    <% }) %>
-    <!-- Edit the slice, based on # of users (40 divided by number of users) -->
-    <!-- Consider: counter, i increments with each click, shows a different venue. -->
-      <% var limit = max20.slice(0,20) %>
-<<<<<<< HEAD
-        <ul>
-          <li><strong><%= limit[count].name %></strong> -located at <%= limit[count].location.address %></li>
-          <li><%=limit[count].id%></li>
-=======
-      <% limit.forEach(function(venue) { %>
-
-        <ul>
-          <li><strong><%= venue.name %></strong> -located at <%= venue.location.address %></li>
-          <li><%=venue.id%></li>
-          <!-- For a given venue.id, run another query for photo urls. -->
-
->>>>>>> create-venture
-        </ul>
         <button id="yes" class="card" onClick="window.location.reload()">Yes, I want to go here!</button>
         <button id = "no" class="card" onClick="window.location.reload()">No, I'd rather keep looking.</button>
-      <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
 
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
   for this aPI call. -->
-  <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=location%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
+  <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[0].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
  </iframe>
 
   <%- include('../partials/footer') %>

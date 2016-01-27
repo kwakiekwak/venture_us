@@ -90,7 +90,8 @@ $('#get-venture-btn').click(function(){
     url: 'new',
     traditional: true,
     success: function(msg) {
-      console.log('venue id AJAX successs');
+      console.log('add venture success');
+      window.location.href = 'http://localhost:3000/ventures/show'
     },
     error: function(msg) {
       console.log('venue id AJAX fail');
