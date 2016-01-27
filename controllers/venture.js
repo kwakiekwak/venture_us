@@ -5,8 +5,8 @@ dotenv.load();
 var Venture = require('../models/venture');
 var User = require('../models/user');
 
-client_id = process.env.CLIENT_ID,
-client_secret = process.env.CLIENT_SECRET
+client_id = "CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3",
+client_secret = "GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE"
 
 var express        = require('express');
 var router         = new express.Router();
@@ -39,26 +39,23 @@ module.exports = {
     newVenture.location = req.body.location;
 
     // Category shows
-    console.log(req.body['categories'])
-    console.log(newVenture.category)
+    // console.log(req.body['categories'])
+
     newVenture.category.push(req.body['categories'])
-    console.log("next")
-    console.log(newVenture)
 
-
-    console.log(req.body['venturists'])
+    // console.log(req.body['venturists'])
     req.body['venturists'].forEach(function(id) {
       newVenture.venturists.push(id)
 
     })
     newVenture.save(function(err, data) {
 
-      if(err) console.log(err)
-        // console.log(newVenture);
-        res.send("Venture created")
+     if(err) console.log(err)
+      // console.log(newVenture);
+       return res.send("Venture created")
 
       if(err){console.log(err)}
-      console.log(newVenture);
+        console.log(newVenture);
     // trying to resolve problem/ wanting to create one venture create at the bottom`
       res.send("Venture created")
     })

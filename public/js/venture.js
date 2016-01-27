@@ -58,6 +58,7 @@ $('#go-venture-btn').click(function(){
     data: {location: location, venturists: venturists, categories: categories},
     success: function(msg) {
       // console.log(data)
+      console.log("Bitch we did it")
       // $('#category-venture').css("display","block");
     },
     error: function(msg) {
@@ -126,18 +127,10 @@ $("#drop-box").droppable({
     venturists.push(friend.attr("value"))
     // appending the circle div to drop-box
     $('#drop-box').append(friend);
-    friend.remove();
+    // friend.remove();
     console.log(venturists);
   }
 })
 
 
-  // <form method="GET" action="/search">
-  //       <!-- <form method="GET" action="/venues"> -->
-  //         <label for="place">Place Name</label>
-  //         <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
-  //         <br>
-  //         <label for="query">Search For</label>
-  //         <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
-  //         <input id="go-venture-btn" type="submit" value="GO Venture" />
-  // </form>
+
