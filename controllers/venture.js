@@ -1,5 +1,6 @@
 var Venture = require('../models/venture');
 var User = require('../models/user');
+var locus = require('locus')
 //venture is fully CRUD-able
 module.exports = {
   all: function(req, res, next) {
@@ -12,30 +13,21 @@ module.exports = {
     // console.log("I'm in create with")
     var newVenture = new Venture()
     var keys = Object.keys(req.body)
-    console.log(req.body.user_id)
-    // console.log(array.toString())
-    // console.log(req.body.user_id)
-    // console.log(newVenture.user_id.push(user))'
-    // console.log(req.body.user_id)
-    for(var i=0; i<req.body.user_id.length;i++) {
+    var newVenture = new Venture()
+    newVenture.location = req.body.location;
+    req.body['venturists'].forEach(function (id) {
+      newVenture.venturists.push(id)
 
-      newVenture.user_id.push(req.body.user_id[i])
-
-    }
-    console.log(newVenture.user_id)
-
-    keys.forEach(function(key) {
-      newVenture[key] = req.body[key]
     })
-    // console.log(newVenture)
-    // newVenture[user_id].push(user_id)
-    // console.log(newVenture[user_id])
-    // console.log(newVenture[user_id][0])
-    // newVenture[user_id] = user_id
     newVenture.save(function(err, data) {
+
       if(err) console.log(err)
         // console.log(newVenture);
         res.send("Venture created")
+
+      if(err){console.log(err)}
+      console.log(newVenture);
+      res.send("Venture created")
     })
   },
   new: function(req, res, next) {

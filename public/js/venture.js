@@ -21,6 +21,24 @@ $('.add-friend-btn').click(function(event){
   })
 })
 
+//creating new venture with AJAX call
+$('#go-venture-btn').click(function(){
+  var location = $('#venture-location').val();
+  $.ajax({
+    type: "post",
+    url: 'new',
+    traditional: true,
+    data: {location: location, venturists: venturists},
+    success: function(msg) {
+      console.log("BELOW is AJAX success" + venturists);
+      $('#category-venture').css("display","block");
+    },
+    error: function(msg) {
+      $('#new-venture').css("background-color","red");
+    }
+  })
+})
+
 // Draggable JQuery for friend-circle
 $('.friend-circle').draggable({
   cursor: "move",
@@ -30,12 +48,12 @@ $('.friend-circle').draggable({
 
 var venturists = [];
 //Droppable JQuery for drop-box
+var venturists = [];
 $("#drop-box").droppable({
   drop: function(event, ui) {
     // console.log(event)
     // console.log(ui)
     var friend = ui.draggable;
-    // pushing into the array
     venturists.push(friend.attr("value"))
     // appending the circle div to drop-box
     $('#drop-box').append(friend);
@@ -44,21 +62,5 @@ $("#drop-box").droppable({
   }
 })
 
-//creating new venture with AJAX call
-$('#go-venture-btn').click(function(){
-  var location = $('#venture-location').val();
-  $.ajax({
-    type: "post",
-    // dataType: "json",
-    url: 'new',
-    data: {location: location, user_id: JSON.stringify(venturists)},
-    success: function(msg) {
-      $('#category-venture').css("background-color","black");
-    },
-    error: function(msg) {
-      if(msg) console.log(msg)
-      $('#category-venture').css("background-color","red");
-    }
-  })
-})
+
 
