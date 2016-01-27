@@ -38,10 +38,11 @@ module.exports = {
     // var newVenture = new Venture()
     newVenture.location = req.body.location;
 
+    // Category shows
     console.log(req.body['categories'])
-
-    newVenture.category.push(category)
-
+    console.log(newVenture.category)
+    newVenture.category.push(req.body['categories'])
+    console.log("next")
     console.log(newVenture)
 
 
