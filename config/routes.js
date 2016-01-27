@@ -110,8 +110,10 @@ router.route('/ventures/new')
   .get(ventureController.new)
   //create a venture - function in controller
   .post(ventureController.create)
-  // updating a venture
-  .patch(ventureController.addCategoryChoice);
+  // updating a venture with category
+  .patch(ventureController.addCategory)
+  // updating a venture with venue_ids
+  .put(ventureController.addVenues);
 
 // testing google map api
 router.route('/ventures/map').get(ventureController.map)

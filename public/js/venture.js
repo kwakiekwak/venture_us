@@ -52,7 +52,7 @@ $('.card').click(function(event) {
 $('#go-venture-btn').click(function(){
   var location = $('#venture-location').val();
   $.ajax({
-    type: "POST",
+    type: "post",
     url: 'new',
     traditional: true,
     data: {location: location, venturists: venturists},
@@ -70,17 +70,33 @@ $('#go-venture-btn').click(function(){
 $('.cat').click(function(event) {
   var category = $(event.currentTarget).text().toLowerCase()
   $.ajax({
-    type: "PATCH",
+    type: "patch",
     url: 'new',
     traditional: true,
     data: {keyword: category},
     success: function(msg) {
-      console.log('AJAX success');
+      console.log('cataagory AJAX success');
     },
     error: function(msg) {
-      console.log('AJAX fail' + msg);
+      console.log('catagory AJAX fail' + msg);
     }
   })
+})
+
+// Adding venue ids to venture with AJAX call
+$('#get-venture-btn').click(function(){
+  $.ajax({
+    type: "put",
+    url: 'new',
+    traditional: true,
+    success: function(msg) {
+      console.log('venue id AJAX successs');
+    },
+    error: function(msg) {
+      console.log('venue id AJAX fail');
+    }
+  })
+})
 
   // var current = $(event.currentTarget);
   // current.toggle(function(){
@@ -99,7 +115,7 @@ $('.cat').click(function(event) {
   // $(event.currentTarget).text().toLowerCase()
   // categories.push(category)
   // $(event.currentTarget).css('background-color','purple')
-})
+
 
 
 // Draggable JQuery for friend-circle
