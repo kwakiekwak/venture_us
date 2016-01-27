@@ -8,7 +8,6 @@ var User = require('../models/user');
 client_id = process.env.CLIENT_ID,
 client_secret = process.env.CLIENT_SECRET
 
-
 var express        = require('express');
 var router         = new express.Router();
 // Socket below
@@ -16,11 +15,14 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var request = require('request');
+var locus = require('locus')
 
 //body-parser
 bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 //venture is fully CRUD-able
 module.exports = {
   all: function(req, res, next) {
@@ -30,14 +32,24 @@ module.exports = {
     })
   },
   create: function(req, res, next) {
+    // console.log("I'm in create with")
     var newVenture = new Venture()
     var keys = Object.keys(req.body)
-    keys.forEach(function(key) {
-      newVenture[key] = req.body[key]
+    var newVenture = new Venture()
+    newVenture.location = req.body.location;
+    req.body['venturists'].forEach(function (id) {
+      newVenture.venturists.push(id)
+
     })
     newVenture.save(function(err, data) {
+
       if(err) console.log(err)
+        // console.log(newVenture);
         res.send("Venture created")
+
+      if(err){console.log(err)}
+      console.log(newVenture);
+      res.send("Venture created")
     })
   },
   new: function(req, res, next) {
@@ -50,6 +62,7 @@ module.exports = {
     users = data;
     })
     User.find({ _id: { $in : friends}}, function (err, data) {
+      // console.log(data[1].id)
       res.render('ventures/new', {friends: data, users: users})
     })
   },
