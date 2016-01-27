@@ -1,8 +1,8 @@
 var mongoose= require('mongoose')
 
 var ventureSchema = new mongoose.Schema({
-  _id: Number,
-  users: [{}], //array of user_id objects
+  venturists: [String], //array of user_id objects
+  location: String,
   choice: [{
     business: {},
     vote: {} //key - user_id, value - boolean

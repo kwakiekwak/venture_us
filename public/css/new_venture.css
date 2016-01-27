@@ -1,6 +1,12 @@
-#create-venture, #friend-list {
+#create-venture, #friend-list, #show-categories {
   height: 750px;
   border: 1px solid red;
+  border-radius: 10px;
+}
+
+#drop-box {
+  border: 1px black solid;
+  height: 80%;
 }
 
 #drop-box > img {
@@ -10,53 +16,62 @@
   max-width: 100px;
 }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
->>>>>>> adding-friends
-#create-venture, #friend-list {
-  min-height: 1200px;
-  border: 1px solid red;
-  border-radius: 10px;
-}
-#create-venture {
-  background-color: #ff7b00;
-  padding-left: 30px;
-}
-#friend-list {
-  background-color: #0a9ed8;
-}
 .title-venture {
   text-align: center;
   color: white;
 }
+
+#create-venture {
+  background-color: #ff7b00;
+  padding: 0 30px;
+}
+
+#friend-list {
+  background-color: #0a9ed8;
+}
+
+/*Will delete later for popular-friend sizes*/
+
+.friend-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
 #show-friends {
   display: none;
   float: right;
   width: 300px;
-  height: 800px;
+  height: 600px;
   background-color: black;
   color: white;
 }
-#zip {
-  width: 200px;
-}
-#submit-btn {
-  width: 200px;
-}
+
 #show-friends-btn {
   float: right;
 }
 
-/*Carousel below*/
-
-/*.carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
-  }*/
-
-#outerCarousel {
-  width: 500px;
+#category-venture {
+  /*display: none;*/
 }
+
+#show-categories {
+  margin: 0 auto;
+}
+
+/*Styling for category boxes*/
+#show-categories > div {
+  margin-top: 10%;
+}
+
+.cat {
+  height: 200px;
+  border: 1px black solid;
+}
+
+/*#outerCarousel {
+  width: 500px;
+}*/

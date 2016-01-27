@@ -130,6 +130,57 @@ router.route('/ventures/show/:id')
   //delete a venture.
   .delete(ventureController.delete)
 
+
+router.route('/search').get(ventureController.show)
+
+// // //Foursquare searching below
+// router.get('/search', function(req, res, next) {
+//   var location = req.query.location
+//   var query = req.query.keyword
+//   // Printing out the content of the request!
+
+//     //Try 'explore' for photos
+
+//   //   request('https://api.foursquare.com/v2/venues/explore/?&limit=20&venuePhotos=1&near=austin&venue&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126&query=sushi', function(error,response,body){
+
+//   //     //https://api.foursquare.com/v2/venues/explore/?near=austin&venue&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126
+
+//   //   if(!error) {
+//   //   //   // //EJS venues re-rerouting here.
+//   //     // addToVenture();
+//   //     // res.render('ventures/show', {location: location, query: query, venues: JSON.parse(body).response});
+//   //     res.send(JSON.parse(response.body).response.groups);
+//   //     //above, you parse the body, and then take its response
+//   //    }
+//   //   else {
+//   //     res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+//   //     console.log(req.body.place.name);
+//   //     console.log(req.body.query);
+//   //     console.log(JSON.parse(response.body));
+//   //   }
+//   // });
+
+// });
+
+// This is the photos query for a venue id. Do this after the first API call
+
+// API calls should go in controller.
+
+// This is the 2nd call
+// router.get('/search', function (req, res, next) {
+//   request('https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?&client_id=CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3&client_secret=GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE&v=20160126', function(error,response,body){
+//     if(!error) {
+//       //res.send(JSON.parse(response.body).response.photos.items[0]);
+//       firstPhoto = JSON.parse(response.body).response.photos.items[0];
+//       res.render('ventures/photo', {firstPhoto:firstPhoto});
+
+//     }
+//     else {
+//       res.send({venuesSearch: 'Not implemented!'}); // return some JSON
+//     }
+//   })
+// })
+
 // //Foursquare searching below
 router.get('/search', function(req, res, next) {
   var location = req.query.location
@@ -139,15 +190,17 @@ router.get('/search', function(req, res, next) {
     console.log(queryString)
     request(queryString, function(error,response,body){
     if(!error) {
-<<<<<<< HEAD
     // EJS venues re-rerouting here
 
       console.log("ventures")
       console.log(JSON.parse(body).response)
-=======
+
     //   // //EJS venues re-rerouting here.
       // addToVenture();
->>>>>>> 5154e4f7c1dcdd96aa718420fc6a6224917c2cf2
+
+    //   // //EJS venues re-rerouting here.
+      // addToVenture();
+
       res.render('ventures/show', {location: location, query: query, venues: JSON.parse(body).response});
       //above, you parse the body, and then take its response
      }
@@ -158,7 +211,6 @@ router.get('/search', function(req, res, next) {
       console.log(JSON.parse(response.body));
     }
   });
-
 });
 
 

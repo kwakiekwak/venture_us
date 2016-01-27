@@ -7,35 +7,31 @@
 <body>
   <%- include('../partials/header', {subHeading: 'New Venture'}) %>
   <main>
-<!-- create new venture half -->
+
+<!-- first half create new venture -->
+
   <div id="new-venture">
   <div class="container">
 
     <div class="row">
       <div id="create-venture" class="col-md-3 col-xs-5">
-      <h3 class="title-venture">Venture Buddies!</h3>
-        <div id="drop-box" class="row">
-            <!-- example circles -->
-          <img src="http://www.online-image-editor.com//styles/2014/images/example_image.png">
-          <img src="http://www.online-image-editor.com//styles/2014/images/example_image.png">
-
-        </div>
-        <input class="row" name="input-zip" placeholder="Input Zip">
-        <div class="row"><br>
-          <button class="btn btn-success" type="submit">Go Venture!</button>
-
-        </div><br>
-        <input class="row" id="zip" name="input-zip" placeholder="Input Zip">
-        <div class="row"><br>
-          <button class="btn btn-success" id="submit-btn" type="submit">Go Venture!</button>
-        </div>
+        <h3 class="title-venture">Venture Buddies!</h3>
+          <div id="drop-box" class="row">
+            <!-- Add Friend DATA HERE -->
+          </div>
+          <input id="venture-location" class="row" name="location" placeholder="Input Location">
+          <div class="row">
+            <button id="go-venture-btn" class="btn btn-default">Go Venture!</button>
+          </div>
       </div>
 
       <div id="friend-list" class="col-md-9 col-xs-13">
-        <% if(friends) { %>
+
       <h2 class="title-venture">Choose your Venturists!</h2>
+
+        <% if(friends) { %>
         <% friends.forEach(function(friend){ %>
-          <div><%=friend.local.email%></div>
+          <div class="friend-circle" value="<%=friend.id%>"><%=friend.local.email%></div>
         <%  }) %>
         <% } %>
 
@@ -50,21 +46,40 @@
   </div>
   </div>
 
-<!-- second half showing all categories of ventures -->
+<!-- second half updating category to venture -->
 
   <div id="category-venture">
-  <!-- Sample Foursquare API call form/search below -->
-<form method="GET" action="/search">
-    <!-- <form method="GET" action="/venues"> -->
-      <label for="place">Place Name</label>
-      <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
-      <br>
-      <label for="query">Search For</label>
-      <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
-      <input id = "venue-search" type="submit" value="Search" />
-</form>
-
+  <div class="container">
+    <h3 class="title-venture">Choose Your Venture Category</h3>
+    <div id="show-categories">
+      <div class="row">
+        <div class="col-md-3 col-xs-4"><div class="cat">Food</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Drinks</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Outdoor</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Adventure</div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-xs-4"><div class="cat">Coffee</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Nightlife</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Tourist</div></div>
+        <div class="col-md-3 col-xs-4"><div class="cat">Date</div></div>
+      </div>
+    </div>
+    <button id="add-category-btn" class="btn btn-default">Get Ventures</button>
   </div>
+  <form method="GET" action="/search">
+        <!-- <form method="GET" action="/venues"> -->
+          <label for="place">Place Name</label>
+          <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
+          <br>
+          <label for="query">Search For</label>
+          <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
+          <input type="submit" value="Search" />
+  </form>
+  </div>
+
+
+  <!-- Sample Foursquare API call form/search below -->
 
   </main>
   <%- include('../partials/footer') %>
