@@ -1,13 +1,12 @@
 //adding dotenv up at the top
-var dotenv = require('dotenv');
-dotenv.load();
+// var dotenv = require('dotenv');
+// dotenv.load();
 var count = 0;
 
 // toggles the div containing friends list and search friends
 $('#show-friends-btn').click(function() {
   $('#show-friends').fadeToggle(300);
 })
-
 
 // adding friend to user with AJAX call
 $('.add-friend-btn').click(function(event){
@@ -44,7 +43,6 @@ $('.card').click(function(event) {
       }
       else {
          res.send({venuesSearch: 'Not implemented!'});
-
       }
   })
   count+=1;
@@ -73,8 +71,6 @@ var inArray = false;
 $('.cat').click(function(event) {
   // var current = $(event.currentTarget);
   // current.toggle(function(){
-
-  })
   // current.toggle("slow", function() {
   //   if(inArray === false) {
   //     categories.push(current.text().toLowerCase())
@@ -86,7 +82,7 @@ $('.cat').click(function(event) {
   //     current.css('background-color', none)
   //     inArray = false;
   //   }
-  })
+
   // $(event.currentTarget).text().toLowerCase()
   // categories.push(category)
   // $(event.currentTarget).css('background-color','purple')

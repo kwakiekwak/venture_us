@@ -208,8 +208,7 @@ router.get('/search', function(req, res, next) {
       console.log(JSON.parse(response.body));
     }
   });
->>>>>>> create-venture
-
+});
 
 
 
