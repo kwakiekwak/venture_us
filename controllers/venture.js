@@ -101,7 +101,10 @@ module.exports = {
 
         var data = JSON.parse(response);
         // console.log(data);
-        var photo = data.response //. response.photos.items[0]//the entire photo object for that index
+        var name = data.response.venue.name
+        var address = data.response.venue.location.address
+
+        var photo = data.response.venue.photos.groups//. response.photos.items[0]//the entire photo object for that index
          //push the prefix and suffix for that photo into array
          //var suffix = data.response.photos.items.last
          //console.log('THIS IS THE START of PHOTO SUFFIXES' + suffix);
@@ -109,7 +112,9 @@ module.exports = {
          // prefixes.push(photo.prefix);
          // console.log('this is a prefix');
          // console.log(photo[0].prefix);
-         console.log('restaurant');
+         //console.log('restaurant');
+         console.log(name);
+         console.log(address);
          console.log(photo);
          // console.log('here is a suffix');
          // console.log(photo[0].suffix);
