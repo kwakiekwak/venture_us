@@ -30,9 +30,9 @@ $('.add-friend-btn').click(function(event){
 
 $('.card').click(function(event) {
   var count = 1;
-  venue_id = limit[count].venue_id
+  venue_id = limit[count].id;
   //now that you have the venue_id, make a call for its picture.
-  request('https://api.foursquare.com/v2/venues/'+ venue_id + '/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
+  $.get('https://api.foursquare.com/v2/venues/'+ venue_id + '/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
       if(!error) {
         //console.log(JSON.parse(response.data));
         //res.send(JSON.parse(response.body).response.photos.items[0]);

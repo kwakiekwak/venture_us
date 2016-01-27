@@ -65,6 +65,7 @@ module.exports = {
       if(!error) {
         venues = JSON.parse(body).response.venues;
         console.log(venues);
+        var count = 0;
         venues.forEach(function(venue) {
           venue_id = venue.id;
            //above, you parse the body, and then take its response
@@ -77,7 +78,7 @@ module.exports = {
                 firstPhoto = JSON.parse(response.body).response.photos.items[0];
 
                 //res.render('ventures/photo', {firstPhoto:firstPhoto});
-                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto})
+                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, count:count})
               }
               else {
                 res.send({venuesSearch: 'Not implemented!'});

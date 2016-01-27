@@ -66,11 +66,11 @@
     <!-- Consider: counter, i increments with each click, shows a different venue. -->
       <% var limit = max20.slice(0,20) %>
         <ul>
-          <li><strong><%= limit[0].name %></strong> -located at <%= limit[0].location.address %></li>
-          <li><%=limit[0].id%></li>
+          <li><strong><%= limit[count].name %></strong> -located at <%= limit[count].location.address %></li>
+          <li><%=limit[count].id%></li>
         </ul>
-        <button id="yes" class="card">Yes, I want to go here!</button>
-        <button id = "no" class="card">No, I'd rather keep looking.</button>
+        <button id="yes" class="card" onClick="window.location.reload()">Yes, I want to go here!</button>
+        <button id = "no" class="card" onClick="window.location.reload()">No, I'd rather keep looking.</button>
       <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
 
   </div>
