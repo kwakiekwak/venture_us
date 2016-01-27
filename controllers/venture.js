@@ -5,8 +5,8 @@ dotenv.load();
 var Venture = require('../models/venture');
 var User = require('../models/user');
 
-client_id = process.env.CLIENT_ID,
-client_secret = process.env.CLIENT_SECRET
+var client_id = process.env.CLIENT_ID;
+var client_secret = process.env.CLIENT_SECRET;
 
 var express        = require('express');
 var router         = new express.Router();
@@ -68,24 +68,55 @@ module.exports = {
     })
   },
   show: function(req, res, next) {
-    console.log(req.params)
     var venturePromise = Venture.findOne({_id: "56a81651ceb9a9c2d1b76f3a"}).exec()
     var venuesPromise = venturePromise.then(function(venture) {
       var location = venture.location
-      var query = venture.keyword
-      return rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query)
+      var query = "tacos" //'venture.keyword'
+      return rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query + '%20&limit=20')
     })
-    var allVenuesPromise = venuesPromise.then(function (venues) {
-      var venuePromises = []
-      // fill in code here
-      return Promise.all(venuePromises)
-    })
-    console.log(venuesPromise)
-    venuesPromise.then(function (venues) {
-      res.send(venues)
-    }, function (err) {
-      res.send(err)
-    })
+    // var allVenuesPromise = venuesPromise.then(function(venues){
+    //   var venueArray = [];
+    //   var parsedVenues = JSON.parse(venues[1])
+    //   parsedVenues.response.venues.forEach(function(venue){
+    //     venueArray.push(rp('https://api.foursquare.com/v2/venues/'+venue.id+'/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126'))
+    //   })
+    //   return venueArray;
+    // })
+    // Promise.all([venturePromise,venuesPromise,allVenuesPromise]).then(function(data){
+    //   res.send(data);
+    // }, function(reason){
+    //   res.send('failing because ' +reason);
+    // });
+    Promise.all([venturePromise,venuesPromise]).then(function(venues){
+      var array = [];
+      var venueData = JSON.parse(venues[1]).response.venues;
+      venueData.forEach(function(venue) {
+        array.push(venue.id)
+      });
+      res.send(array);
+    }, function(reason){
+      console.log('failing because' +reason);
+    });
+
+    // var allVenuesPromise = venuesPromise.then(function(venues) {
+      // console.log(venues);
+      // var venuePromises = []
+      //   venues.forEach(function(venue){
+      //     venuePromises.push(venue)// fill in code here
+      //   })
+      // return venuePromises
+    // })
+    // Promise.all(allVenuesPromise).then(function(value){
+    //   console.log(value);
+    // })
+  },
+    // venuesPromise.then(function (venues) {
+    //   res.send(venues)
+    // }, function (err) {
+    //   res.send(err)
+    // })
+
+
 // //(1.) request for search API - get venue id, name, address
 //     request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query,
 // function(error, response,body){
@@ -126,8 +157,8 @@ module.exports = {
 //         console.log(JSON.parse(response.body));
 //       }
 //     })
-//     });
-  },
+// //     });
+//   },
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},
       req.body, function(err, venture){
