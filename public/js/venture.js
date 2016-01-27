@@ -41,6 +41,7 @@ $('#go-venture-btn').click(function(){
 // Updating venture category with AJAX call
 $('.cat').click(function())
 
+
 // Draggable JQuery for friend-circle
 $('.friend-circle').draggable({
   cursor: "move",
@@ -48,15 +49,21 @@ $('.friend-circle').draggable({
   snap: "#drop-box"
 });
 
+var venturists = [];
 //Droppable JQuery for drop-box
 var venturists = [];
 $("#drop-box").droppable({
   drop: function(event, ui) {
+    // console.log(event)
+    // console.log(ui)
     var friend = ui.draggable;
     venturists.push(friend.attr("value"))
+    // appending the circle div to drop-box
     $('#drop-box').append(friend);
     friend.remove();
     console.log(venturists);
   }
 })
+
+
 

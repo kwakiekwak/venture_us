@@ -10,12 +10,21 @@ module.exports = {
     })
   },
   create: function(req, res, next) {
+    // console.log("I'm in create with")
+    var newVenture = new Venture()
+    var keys = Object.keys(req.body)
     var newVenture = new Venture()
     newVenture.location = req.body.location;
     req.body['venturists'].forEach(function (id) {
       newVenture.venturists.push(id)
+
     })
     newVenture.save(function(err, data) {
+
+      if(err) console.log(err)
+        // console.log(newVenture);
+        res.send("Venture created")
+
       if(err){console.log(err)}
       console.log(newVenture);
       res.send("Venture created")
@@ -31,6 +40,7 @@ module.exports = {
     users = data;
     })
     User.find({ _id: { $in : friends}}, function (err, data) {
+      // console.log(data[1].id)
       res.render('ventures/new', {friends: data, users: users})
     })
   },
