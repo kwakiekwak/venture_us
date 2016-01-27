@@ -30,8 +30,7 @@ $('#go-venture-btn').click(function(){
     traditional: true,
     data: {location: location, venturists: venturists},
     success: function(msg) {
-      console.log("BELOW is AJAX success" + venturists);
-      $('#category-venture').css("display","block");
+      // $('#category-venture').css("display","block");
     },
     error: function(msg) {
       $('#new-venture').css("background-color","red");
@@ -39,6 +38,8 @@ $('#go-venture-btn').click(function(){
   })
 })
 
+// Updating venture category with AJAX call
+$('.cat').click(function())
 
 // Draggable JQuery for friend-circle
 $('.friend-circle').draggable({
