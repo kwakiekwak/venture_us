@@ -55,7 +55,7 @@ $('#go-venture-btn').click(function(){
     type: "post",
     url: 'new',
     traditional: true,
-    data: {location: location, venturists: venturists},
+    data: {location: location, venturists: venturists, categories: categories},
     success: function(msg) {
       // console.log(data)
       // $('#category-venture').css("display","block");
@@ -75,6 +75,7 @@ var categories = [];
 //   })
 // })
 var x = document.getElementsByClassName('cat')
+console.log(x.innerHTML)
 for(var i=0; i<x.length; i++) {
   x[i].addEventListener('click', function() {
     var selectedEl = document.querySelector('.selected')
@@ -82,6 +83,10 @@ for(var i=0; i<x.length; i++) {
       selectedEl.classList.remove("selected")
     }
     this.classList.add("selected")
+    console.log(this)
+    console.log(this.innerHTML)
+    categories.push(this.innerHTML)
+    console.log(categories)
   }, false)
 }
 

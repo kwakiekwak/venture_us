@@ -38,11 +38,12 @@ module.exports = {
     // var newVenture = new Venture()
     newVenture.location = req.body.location;
 
+    console.log(req.body['categories'])
+
+    newVenture.category.push(category)
+
     console.log(newVenture)
 
-    newVenture.category.push(document.getElementByClass('selected'))
-
-    console.log(newVenture.category)
 
     console.log(req.body['venturists'])
     req.body['venturists'].forEach(function(id) {
