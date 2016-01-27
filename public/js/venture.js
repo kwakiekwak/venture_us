@@ -52,7 +52,7 @@ $('.card').click(function(event) {
 $('#go-venture-btn').click(function(){
   var location = $('#venture-location').val();
   $.ajax({
-    type: "post",
+    type: "POST",
     url: 'new',
     traditional: true,
     data: {location: location, venturists: venturists},
@@ -65,10 +65,23 @@ $('#go-venture-btn').click(function(){
   })
 })
 
-var categories = [];
-var inArray = false;
+// var inArray = false;
 // Updating venture category with AJAX call
 $('.cat').click(function(event) {
+  var category = $(event.currentTarget).text().toLowerCase()
+  $.ajax({
+    type: "PATCH",
+    url: 'new',
+    traditional: true,
+    data: {keyword: category},
+    success: function(msg) {
+      console.log('AJAX success');
+    },
+    error: function(msg) {
+      console.log('AJAX fail' + msg);
+    }
+  })
+
   // var current = $(event.currentTarget);
   // current.toggle(function(){
   // current.toggle("slow", function() {

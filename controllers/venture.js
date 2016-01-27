@@ -1,13 +1,10 @@
 //adding dotenv up at the top
 var dotenv = require('dotenv');
 dotenv.load();
-
 var Venture = require('../models/venture');
 var User = require('../models/user');
-
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
-
 var express        = require('express');
 var router         = new express.Router();
 // Socket below
@@ -15,14 +12,13 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var request = require('request');
-var rp = require('request-promise')
-var locus = require('locus')
+var rp = require('request-promise');
+var locus = require('locus');
 
 //body-parser
 var bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 //venture is fully CRUD-able
 module.exports = {
@@ -40,10 +36,8 @@ module.exports = {
     newVenture.location = req.body.location;
     req.body['venturists'].forEach(function (id) {
       newVenture.venturists.push(id)
-
     })
     newVenture.save(function(err, data) {
-
       if(err) console.log(err)
         // console.log(newVenture);
         res.send("Venture created")
@@ -52,6 +46,26 @@ module.exports = {
       console.log(newVenture);
       res.send("Venture created")
     })
+  },
+  addCategoryChoice: function(req,res,next) {
+    var venturePromise = Venture.findOne({_id: "56a81651ceb9a9c2d1b76f3a"}).exec()
+    var venuesPromise = venturePromise.then(function(venture) {
+      var location = venture.location
+      var query = "tacos" //'venture.keyword'
+      return rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query + '%20&limit=20')
+    })
+    Promise.all([venturePromise,venuesPromise]).then(function(venues){
+      var array = [];
+      var venueData = JSON.parse(venues[1]).response.venues;
+      venueData.forEach(function(venue) {
+        array.push(venue.id)
+      });
+      Venture.findOneAndUpdate({_id: "56a81651ceb9a9c2d1b76f3a"},{keyword: req.body.keyword, venue_ids: array }, function(data, err){
+        res.send('success!!');
+      })
+    }, function(reason){
+      console.log('failing because' +reason);
+    });
   },
   new: function(req, res, next) {
     var friends = [];
@@ -177,4 +191,5 @@ module.exports = {
   map: function(req, res, next) {
     res.render('ventures/map')
   }
+
 }
