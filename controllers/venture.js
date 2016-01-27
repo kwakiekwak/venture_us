@@ -88,52 +88,34 @@ module.exports = {
   },
   show: function(req, res, next) {
     var venturePromise = Venture.findOne({_id: req.params.id}).exec()
-    var venuesPromise = venturePromise.then(function(venture) {
-      // var response = []; store response to return for later Promise.all use
-      var suffixes = [];
-      var prefixes = [];
+    var venuePromises = [];
+    var venusPromise = venturePromise.then(function(venture) {
       var venue_ids = venture.venue_ids
-      //error occuring inside loop below
-
-        venue_ids.forEach(function(venue) {
-
-        rp('https://api.foursquare.com/v2/venues/'+venue+'?client_id='+client_id+'&client_secret='+client_secret+'&v=20160126').then(function(response) {
-
-        var data = JSON.parse(response);
-        // console.log(data);
-        var name = data.response.venue.name
-        var address = data.response.venue.location.address
-
-        var photo = data.response.venue.photos.groups//. response.photos.items[0]//the entire photo object for that index
-         //push the prefix and suffix for that photo into array
-         //var suffix = data.response.photos.items.last
-         //console.log('THIS IS THE START of PHOTO SUFFIXES' + suffix);
-         // suffixes.push(photo.suffix);
-         // prefixes.push(photo.prefix);
-         // console.log('this is a prefix');
-         // console.log(photo[0].prefix);
-         //console.log('restaurant');
-         console.log(name);
-         console.log(address);
-         console.log(photo);
-         // console.log('here is a suffix');
-         // console.log(photo[0].suffix);
-        })
+      venue_ids.forEach(function(venue_id) {
+      venuePromises.push(rp('https://api.foursquare.com/v2/venues/'+venue_id+'?client_id='+client_id+'&client_secret='+client_secret+'&v=20160126'))
+      // var photoGroup = data.response.venue.photos.groups
+      //. response.photos.items[0]//the entire photo object for that index
+      // console.log(photo[0].suffix);
       })
-        // console.log('Below is an array of suffixes');
-      // console.log(suffixes);
-
-      return suffixes;
+      return Promise.all(venuePromises)
+      // console.log(venuePromises);
     })
-    //}
 
-    // Promise.all([venturePromise,venuesPromise]).then(function(data){
-    //   console.log('this is promiseALL' +data);
-    // }, function(reason){
+    venusPromise.then(function(data){
+      var venueArray = [];
+      data.forEach(function(venue){
+        venueArray.push(JSON.parse(venue).response.venue);
+      })
+      console.log(venueArray);
+    })
+      // res.send(venueArray
+    // console.log(thePromiseIWant)
+    // Promise.all(venuePromises).then(function(data){
+    //  console.log('this is promiseALL' + data);
+    //  // res.render({})
+    //  }, function(reason){
     //   console.log('failing because' +reason);
     // });
-    //
-    //})
   },
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},
