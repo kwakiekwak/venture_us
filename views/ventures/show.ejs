@@ -63,6 +63,7 @@
       <% max20.push(venue) %>
     <% }) %>
     <!-- Edit the slice, based on # of users (40 divided by number of users) -->
+    <!-- Consider: counter, i increments with each click, shows a different venue. -->
       <% var limit = max20.slice(0,20) %>
       <% limit.forEach(function(venue) { %>
         <ul>
@@ -70,7 +71,6 @@
           <li><%=venue.id%></li>
           </ul>
       <% }) %>
-
       <img src= "<%=firstPhoto.prefix%>original<%=firstPhoto.suffix%>">
   </div>
   <!-- NOTE: set a variable for location (search params above) to be the query
