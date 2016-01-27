@@ -42,7 +42,10 @@ var categories = [];
 var inArray = false;
 // Updating venture category with AJAX call
 $('.cat').click(function(event) {
-  // var current = $(event.currentTarget)
+  // var current = $(event.currentTarget);
+  // current.toggle(function(){
+
+  })
   // current.toggle("slow", function() {
   //   if(inArray === false) {
   //     categories.push(current.text().toLowerCase())
