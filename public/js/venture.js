@@ -27,13 +27,14 @@ $('#go-venture-btn').click(function(){
   $.ajax({
     type: "post",
     url: 'new',
-    data: {location: location, venturists: JSON.stringify(venturists)},
+    traditional: true,
+    data: {location: location, venturists: venturists},
     success: function(msg) {
       console.log("BELOW is AJAX success" + venturists);
-      $('#category-venture').css("background-color","black");
+      $('#category-venture').css("display","block");
     },
     error: function(msg) {
-      $('#category-venture').css("background-color","red");
+      $('#new-venture').css("background-color","red");
     }
   })
 })

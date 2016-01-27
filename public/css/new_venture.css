@@ -54,6 +54,10 @@
   float: right;
 }
 
+#category-venture {
+  display: none;
+}
+
 #show-categories {
   margin: 0 auto;
 }

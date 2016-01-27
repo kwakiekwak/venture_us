@@ -11,23 +11,10 @@ module.exports = {
   },
   create: function(req, res, next) {
     var newVenture = new Venture()
-    console.log('adding location')
-    // eval(locus);
     newVenture.location = req.body.location;
-    console.log('location added')
-    // newVenture[user_ids] = req.body[user_ids];
-    var array = req.body.venturists.split('"')
-    console.log(array);
-    for (var i = 1; i < array.length; i+=2) {
-      newVenture.venturists.push(array[i])
-      console.log(newVenture.venturists)
-    }
-    // var keys = Object.keys(req.body)
-    // keys.forEach(function(key) {
-    //   newVenture[key] = req.body[key]
-    //   console.log(newVenture[key])
-    //   console.log(req.body[key])
-    // })
+    req.body['venturists'].forEach(function (id) {
+      newVenture.venturists.push(id)
+    })
     newVenture.save(function(err, data) {
       if(err){console.log(err)}
       console.log(newVenture);
