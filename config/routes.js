@@ -125,13 +125,13 @@ router.route('/ventures/show/:id')
 
   .get(ventureController.show)
   // show business show page
-  .get(businessController.show)
+  //.get(businessController.show)
 
-  .put(ventureController.update)
+  .put(ventureController.show)
   // update a business
-  .put(businessController.update)
+  //.put(businessController.update)
   //delete a venture.
-  .delete(ventureController.delete)
+  // .delete(ventureController.delete)
 
 
 router.route('/search').get(ventureController.show)
