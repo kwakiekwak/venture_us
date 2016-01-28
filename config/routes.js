@@ -75,7 +75,7 @@ router.route('/api/ventures')
 
 router.route('/api/ventures/:id')
   .get(ventureController.oneVentureApi)
-  .patch(ventureController.updateVentureApi)
+  .put(ventureController.updateVentureApi)
   .delete(ventureController.deleteVentureApi)
 //////////////////////////
 
