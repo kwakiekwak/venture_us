@@ -25,6 +25,7 @@ var apiVenturists = [];
 
 //venture is fully CRUD-able
 module.exports = {
+
   new: function(req, res, next) {
     var friends = [];
     var users;
@@ -38,6 +39,7 @@ module.exports = {
       res.render('ventures/new', {friends: data, users: users})
     })
   },
+
   create: function(req, res, next) {
     var newVenture = new Venture()
     // setting venture location in the DB
@@ -63,6 +65,7 @@ module.exports = {
       res.send('failing because' + reason);
     });
   },
+
   show: function(req, res, next) {
     var venturePromise = Venture.findOne({_id: req.params.id}).exec()
     var venuePromises = [];
@@ -83,6 +86,7 @@ module.exports = {
       res.render('ventures/show', {venues: venueArray, venture: req.params.id})
     })
   },
+
   findInvited: function(req, res, next) {
     Venture.findOne({venturists: req.user.id}, function(err, venture) {
       if(venture == null) {
@@ -110,6 +114,14 @@ module.exports = {
     })
   },
 
+  countVote: function(req, res, next) {
+    console.log("IM in coutnvs")
+    var venturePromise = Venture.findOne({_id: req.body.venture_id}).exec();
+    venturePromise.then(function(venture){
+      console.log(venture);
+    })
+  },
+
 
   // countVote: function(req, res, next) {
 
@@ -122,6 +134,7 @@ module.exports = {
       res.render('ventures/show', {ventures: ventures})
     })
   },
+
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},
       req.body, function(err, venture){
@@ -129,6 +142,7 @@ module.exports = {
           res.send("Venture updated!")
     })
   },
+
   delete: function(req, res, next) {
     Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
       venture.remove()

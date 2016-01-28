@@ -138,25 +138,31 @@ router.get('/', welcomeController.index);
 // USERS PATHS
 router.route('/users')
   .get(usersController.index);
+
 router.get('/users/login', usersController.login);
 router.post('/users/login', passport.authenticate('local-login', {
   successRedirect : '/users/profile', // redirect to the secure profile section
   failureRedirect : '/users/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
+
 router.get('/users/signup', usersController.signup);
 router.post('/users/signup', passport.authenticate('local-signup', {
   successRedirect: '/users/profile',
   failureRedirect: '/users/signup',
   failureFlash: true
 }));
+
 router.get('/users/profile', isLoggedIn, usersController.profile);
+
 router.route('/users/:id')
  .get(usersController.profile)
  .put(usersController.update)
  .delete(usersController.destroy);
+
 router.route('/users/add_friend/:id')
   .post(usersController.addFriend)
+
 // VENTURE PATHS
 router.route('/ventures/new')
   //Render view page for creating a new venture
@@ -164,17 +170,21 @@ router.route('/ventures/new')
   //Create a venture - function in controller
   .post(ventureController.create)
 
+//adding a ranking
+
 router.route('/ventures/find')
   .get(ventureController.findInvited)
+
 router.route('/ventures/add_vote')
   .put(ventureController.addVote)
 
+router.route('/ventures/get_ranking')
+  .get(ventureController.countVote)
 
-// //adding a ranking
-// router.route('/ventures/get_ranking')
-//   .get(ventureController.countVote)
 
 //routing for /venturess/show (all, show, update, delete)
 router.route('/ventures/show/:id')
   .get(ventureController.show)
+
+
 module.exports = router;
