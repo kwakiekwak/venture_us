@@ -59,7 +59,7 @@ function isLoggedIn(req, res, next) {
 // SHOW HOMEPAGE
 router.get('/', welcomeController.index);
 
-// USERS PATH
+// USERS PATHS
 router.route('/users')
   .get(usersController.index);
 
@@ -87,25 +87,20 @@ router.route('/users/:id')
 router.route('/users/add_friend/:id')
   .post(usersController.addFriend)
 
-// routes for venture paths:
-router.get('/ventures/new', ventureController.new)
-
-
-//Venture routes below
+// VENTURE PATHS
 router.route('/ventures/new')
-  //form for creating a new venture
+  //Render view page for creating a new venture
   .get(ventureController.new)
-  //create a venture - function in controller
+  //Create a venture - function in controller
   .post(ventureController.create)
 
 
-// router.route('/ventures/show/find')
-//   .get(ventureController.checkVenture)
+router.route('/ventures/find')
+  .get(ventureController.findInvited)
 
 
 //routing for /venturess/show (all, show, update, delete)
 router.route('/ventures/show/:id')
-
   .get(ventureController.show)
 
 module.exports = router;

@@ -2,77 +2,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- take out scss, was causing error. Also at js/main.js -->
+  <%- include('../partials/head') %>
   <link rel="stylesheet" type="text/css" href="/css/new_venture.css">
 </head>
 <body>
-<%- include('../partials/header', {subHeading: 'Ventures Below'}) %>
-<main>
+  <%- include('../partials/header', {subHeading: 'Ventures Below'}) %>
+  <main>
+    <div id="show-venture">
+    <div class="container">
 
-<div class="container">
-  <div class='row'>
-    <div class='col-md-12 section'>
-  <br>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <div id="outerCarousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+    <div class='row'>
+      <div class='col-md-12 section'>
+    <br>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div id="outerCarousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
 
-      <div class="item active">
-        <img src="https://irs3.4sqi.net/img/general/original/8744718_2hmEpnGsGt2F_4qg70uH20lfaJYPp9lmRf0RQs6p-BQ.jpg" alt="Chania" width="460" height="345">
-        <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[0].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
-        </iframe>
-        <div class="carousel-caption">
-        <div>Name: <%=venues[0].name%></div>
-        <div>Address: <%=venues[0].location.address%></div>
+        <div class="item active">
+          <img src="https://irs3.4sqi.net/img/general/original/8744718_2hmEpnGsGt2F_4qg70uH20lfaJYPp9lmRf0RQs6p-BQ.jpg" alt="Chania" width="460" height="345">
+          <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[0].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
+          </iframe>
+          <div class="carousel-caption">
+          <div>Name: <%=venues[0].name%></div>
+          <div>Address: <%=venues[0].location.address%></div>
+          </div>
         </div>
+
+        <% for (var i = 1; i < venues.length; i++) { %>
+        <div class="item">
+          <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[i].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
+          </iframe>
+          <div class="carousel-caption">
+          <div>Name: <%=venues[i].name%></div>
+          <div>Address: <%=venues[i].location.address%></div>
+          </div>
+        </div>
+        <% } %>
+
+      </div>
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
       </div>
 
-      <% for (var i = 1; i < venues.length; i++) { %>
-      <div class="item">
-        <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[i].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
-        </iframe>
-        <div class="carousel-caption">
-        <div>Name: <%=venues[i].name%></div>
-        <div>Address: <%=venues[i].location.address%></div>
-        </div>
-      </div>
-      <% } %>
-
-    </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
     </div>
 
-  </div>
+    <!-- Adding top 20 search queries below, for testing. -->
+    <div class="searchcontainer">
 
-  <!-- Adding top 20 search queries below, for testing. -->
-  <div class="searchcontainer">
+          <button id="yes" class="card" onClick="window.location.reload()">Yes, I want to go here!</button>
+          <button id ="no" class="card" onClick="window.location.reload()">No, I'd rather keep looking.</button>
 
-        <button id="yes" class="card" onClick="window.location.reload()">Yes, I want to go here!</button>
-        <button id = "no" class="card" onClick="window.location.reload()">No, I'd rather keep looking.</button>
-
-  </div>
+    </div>
 
 
+
+  </main>
   <%- include('../partials/footer') %>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
- </main>
+  <%- include('../partials/scripts') %>
+  <script src='/js/venture.js'></script>
 </body>
 </html>
