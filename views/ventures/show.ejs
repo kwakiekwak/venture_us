@@ -29,14 +29,29 @@
       <br><br>
       <div class="item active">
         <img src="https://irs3.4sqi.net/img/general/original/8744718_2hmEpnGsGt2F_4qg70uH20lfaJYPp9lmRf0RQs6p-BQ.jpg" alt="Chania" width="460" height="345">
-        <div class="carousel-caption">Yum!</div>
+        <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[0].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
+ </iframe>
+        <div class="carousel-caption">
+        <div>Name: <%=venues[0].name%></div>
+        <div>Address: <%=venues[0].location.address%></div>
+        </div>
       </div>
-      <div class="item">
-        <img src="https://cdn3.vox-cdn.com/thumbor/BUIzK8lQauIzEocPiqqPjTGWFFk=/899x600/cdn0.vox-cdn.com/uploads/chorus_asset/file/814400/03_2014_SONG-6_JPG.0.jpg" alt="Chania" width="460" height="345">
+
+      <% for (var i = 1; i < venues.length; i++) { %>
+        <div class="item">
+        <div class="carousel-caption">
+        <div>Name: <%=venues[i].name%></div>
+        <div>Address: <%=venues[i].location.address%></div>
+       <!--  <div>Prefix: <%=venues[i].photos.groups.items[1].prefix%></div> -->
+        </div>
+
+       <!--  <img src='<%=venues[i].photos.groups.prefix%>original<%=venues[i].photos.groups.suffix%>' alt="Chania" width="460" height="345"> -->
+        <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[i].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
+ </iframe>
       </div>
-      <div class="item">
-        <img src="http://keepinitkind.com/wp-content/uploads/2013/10/SAGE-16.jpg" alt="Flower" width="460" height="345">
-      </div>
+      <% } %>
+
+
     </div>
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -58,10 +73,7 @@
         <button id = "no" class="card" onClick="window.location.reload()">No, I'd rather keep looking.</button>
 
   </div>
-  <!-- NOTE: set a variable for location (search params above) to be the query
-  for this aPI call. -->
-  <iframe src='https://www.google.com/maps/embed/v1/place?q=<%=venues[0].location.address%>&zoom=17&key=AIzaSyBVa8h6g2RoCSSDZi7NyC7UPUn7Z-YDjrM'>
- </iframe>
+
 
   <%- include('../partials/footer') %>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
