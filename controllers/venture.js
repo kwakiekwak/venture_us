@@ -18,18 +18,10 @@ var locus = require('locus')
 bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-<<<<<<< HEAD
-​
-=======
-
 // array for venturists api
 var apiVenturists = [];
-
-
->>>>>>> api
 //venture is fully CRUD-able
 module.exports = {
-​
   new: function(req, res, next) {
     var friends = [];
     var users;
@@ -43,7 +35,6 @@ module.exports = {
       res.render('ventures/new', {friends: data, users: users})
     })
   },
-​
   create: function(req, res, next) {
     var newVenture = new Venture()
     // setting venture location in the DB
@@ -69,7 +60,6 @@ module.exports = {
       res.send('failing because' + reason);
     });
   },
-​
   show: function(req, res, next) {
     var venturePromise = Venture.findOne({_id: req.params.id}).exec()
     var venuePromises = [];
@@ -90,7 +80,6 @@ module.exports = {
       res.render('ventures/show', {venues: venueArray, venture: req.params.id})
     })
   },
-​
   findInvited: function(req, res, next) {
     Venture.findOne({venturists: req.user.id}, function(err, venture) {
       if(venture == null) {
@@ -101,7 +90,6 @@ module.exports = {
       }
     })
   },
-
   addVote: function(req, res, next) { //Needs an if else to check if the user has voted already
     console.log(req.body);
     Venture.findOneAndUpdate({_id: req.body.venture_id},
@@ -117,14 +105,12 @@ module.exports = {
         res.send("addVote Success!")
     })
   },
-
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
       //when you visit
       res.render('ventures/show', {ventures: ventures})
     })
   },
-​
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},
       req.body, function(err, venture){
@@ -132,28 +118,20 @@ module.exports = {
           res.send("Venture updated!")
     })
   },
-​
   delete: function(req, res, next) {
     Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
       venture.remove()
       res.send('Venture removed')
     })
-<<<<<<< HEAD
-  }
-​
-=======
   },
-
   map: function(req, res, next) {
     res.render('ventures/map')
   },
-
 // creating APIS
   testApi: function(req, res, next) {
     res.send("Hello World")
     // res.json(apiVenturists)
   },
-
   addVenturesApi: function(req, res, next) {
     if(!req.body.hasOwnProperty('venturists') ||
      !req.body.hasOwnProperty('keyword')) {
@@ -169,19 +147,16 @@ module.exports = {
       // apiVenturists.push(newApiVenture);
       // res.json(apiVenturists);
   },
-
   oneVentureApi: function(req, res, next) {
     Venture.findOne({_id: req.params.id}, function(err, data){
       console.log(data)
       res.json(data)
     })
   },
-
   showVenturesApi: function(req, res, next){
     // console.log(Venture)
     Venture.find({}, function(err, ventures){
       res.json(ventures)
-
     })
   },
 // update not available yet
@@ -198,7 +173,6 @@ module.exports = {
         res.json("Updated")
       })
   },
-
 // kinda funky
   deleteVentureApi: function(req, res, next) {
     Venture.findOneAndRemove({_id: req.params.id}, function(err, venture) {
@@ -215,12 +189,4 @@ module.exports = {
     // apiVenturists.splice(x, 1);
     //   res.json(apiVenturists);
   }
-
-////////////////////////////////////////
-
-
-  // checkVenture: function(req, res, next) {
-  //   Venture.findOne({})
-  // }
->>>>>>> api
 }
