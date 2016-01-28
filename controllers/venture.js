@@ -182,11 +182,16 @@ module.exports = {
   },
 // update not available yet
   updateVentureApi: function(req, res, next) {
-    Venture.findOneAndUpdate({_id: req.params.id} , function(err, venture) {
+    Venture.findOne({_id: req.params.id} , function(err, venture) {
         //Above, this will set the user_id equal to the user_id of the first
         //user in the venture array, i.e. you.
-          console.log("Venture updated")
-          res.json(venture)
+        if(err) return res.send(err)
+        for(var prop in req.body) {
+          venture[prop] = req.body[prop]
+        }
+
+        venture.save()
+        res.json("Updated")
       })
   },
 
