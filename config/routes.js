@@ -81,8 +81,7 @@ router.route('/ventures/new')
   .get(ventureController.new)
   //Create a venture - function in controller
   .post(ventureController.create)
-router.route('/ventures/find')
-  .get(ventureController.findInvited)
+
 //routing for /venturess/show (all, show, update, delete)
 router.route('/ventures/show/:id')
   .get(ventureController.show)

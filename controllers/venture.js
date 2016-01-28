@@ -18,14 +18,7 @@ var locus = require('locus')
 bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-<<<<<<< HEAD
-=======
 
-// array for venturists api
-var apiVenturists = [];
-
-
->>>>>>> b50f1fca4dcee13fe3176d75be11132ecf0b8cfa
 //venture is fully CRUD-able
 module.exports = {
   new: function(req, res, next) {
@@ -83,11 +76,10 @@ module.exports = {
       data.forEach(function(venue){
         venueArray.push(JSON.parse(venue).response.venue);
       })
-      res.render('ventures/show', {venues: venueArray})
+      res.render('ventures/show', {venues: venueArray, venture: req.params.id})
     })
   },
   findInvited: function(req, res, next) {
-    console.log("I'm in find");
     Venture.findOne({venturists: req.user.id}, function(err, venture) {
       if(venture == null) {
         console.log("You Are Not Invited"); // is this correct?
@@ -97,6 +89,7 @@ module.exports = {
       }
     })
   },
+
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
       //when you visit

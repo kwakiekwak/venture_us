@@ -7,8 +7,9 @@ var ventureSchema = new mongoose.Schema({
   venue_ids: [],
   choices: [{
     venue_id: String,
-    vote: [{}] //key - user_id, value - boolean [{shgkdsjgklsjdklg Boolean}]
-  }],
-  result: {} //final result of venture
+    vote: Boolean,
+    voter: String
+  }], //key - user_id, value - boolean [{shgkdsjgklsjdklg Boolean}]}],
+  result: {} // final result of venture
 })
 module.exports = mongoose.model('Venture', ventureSchema)

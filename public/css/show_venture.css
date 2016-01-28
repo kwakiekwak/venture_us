@@ -2,7 +2,7 @@
   height: 550px;
 }
 
-#btn-container {
+.btn-container {
   margin: 0 auto;
   clear: both;
   width: 30%;
@@ -14,12 +14,7 @@
   text-align: center;
 }
 
-#yes-btn:hover {
+.vote-btns:hover {
   cursor: pointer;
   color: #6C67B8;
-}
-
-#no-btn:hover {
-  cursor: pointer;
-  color: #BA1414;
 }
