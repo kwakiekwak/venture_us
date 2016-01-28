@@ -18,6 +18,14 @@ var locus = require('locus')
 bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+<<<<<<< HEAD
+=======
+
+// array for venturists api
+var apiVenturists = [];
+
+
+>>>>>>> b50f1fca4dcee13fe3176d75be11132ecf0b8cfa
 //venture is fully CRUD-able
 module.exports = {
   new: function(req, res, next) {
@@ -107,5 +115,4 @@ module.exports = {
       venture.remove()
       res.send('Venture removed')
     })
-  }
 }

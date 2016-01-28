@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 require("../config/passport")(passport);
 app.use(flash());
+
 // The 3 routes in order to authenticate via OAuth with FB
 // 1. A route to request(create) facebook
 router.get('/auth/facebook',
