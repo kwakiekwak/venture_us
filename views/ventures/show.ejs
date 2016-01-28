@@ -8,7 +8,7 @@
   <%- include('../partials/header', {subHeading: 'Yes or No'}) %>
   <main>
 
-  <div id="show-venture">
+  <div id="show-venture" value="<%=venture%>">
   <div class="container">
 
     <div class='row'>
@@ -33,6 +33,10 @@
             <div class="carousel-caption">
               <div>Name: <%=venues[0].name%></div>
               <div>Address: <%=venues[0].location.address%></div>
+              <div class="btn-container">
+                <span id="<%=venues[0].id%>" class="vote-btns" value="true"><i class="fa fa-thumbs-up"></i></span>
+                <span id="<%=venues[0].id%>" class="vote-btns" value="false"><i class="fa fa-thumbs-down"></i></span>
+              </div>
             </div>
           </div>
 
@@ -43,6 +47,10 @@
             <div class="carousel-caption">
               <div>Name: <%=venues[i].name%></div>
               <div>Address: <%=venues[i].location.address%></div>
+            </div>
+            <div class="btn-container">
+              <span id="<%=venues[i].id%>" class="vote-btns" value="true"><i class="fa fa-thumbs-up"></i></span>
+              <span id="<%=venues[i].id%>" class="vote-btns" value="false"><i class="fa fa-thumbs-down"></i></span>
             </div>
           </div>
           <% } %>
@@ -59,10 +67,7 @@
 
         </div>
 
-        <div id="btn-container">
-          <span id="yes-btn" class="vote-btns" value="true"><i class="fa fa-thumbs-up"></i></span>
-          <span id="no-btn" class="vote-btns" value="false"><i class="fa fa-thumbs-down"></i></span>
-        </div>
+
 
       </div>
       </div>

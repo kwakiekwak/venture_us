@@ -79,12 +79,11 @@ module.exports = {
       data.forEach(function(venue){
         venueArray.push(JSON.parse(venue).response.venue);
       })
-      res.render('ventures/show', {venues: venueArray})
+      res.render('ventures/show', {venues: venueArray, venture: req.params.id})
     })
   },
 
   findInvited: function(req, res, next) {
-    console.log("I'm in find");
     Venture.findOne({venturists: req.user.id}, function(err, venture) {
       if(venture == null) {
         console.log("You Are Not Invited"); // is this correct?
@@ -92,6 +91,22 @@ module.exports = {
         console.log("You have a venture" + venture)
       res.redirect('/ventures/show/'+ venture.id)
       }
+    })
+  },
+
+  addVote: function(req, res, next) { //Needs an if else to check if the user has voted already
+    console.log(req.body);
+    Venture.findOneAndUpdate({_id: req.body.venture_id},
+      { $push: {
+          choices: {
+            vote: req.body.vote,
+            venue_id: req.body.venue_id,
+            voter: req.user.id
+          }
+        }
+      }, function(err, vote) {
+      if(err) console.log("An Error with addVote")
+        res.send("addVote Success!")
     })
   },
 

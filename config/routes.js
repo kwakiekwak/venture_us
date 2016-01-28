@@ -94,9 +94,11 @@ router.route('/ventures/new')
   //Create a venture - function in controller
   .post(ventureController.create)
 
-
 router.route('/ventures/find')
   .get(ventureController.findInvited)
+
+router.route('/ventures/add_vote')
+  .put(ventureController.addVote)
 
 
 //routing for /venturess/show (all, show, update, delete)
