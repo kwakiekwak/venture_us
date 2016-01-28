@@ -1,6 +1,7 @@
 'use strict';
 require('dotenv').load();
 
+var Promise      = require('request-promise');
 var express      = require('express');
 var app          = express();
 var mongoose     = require('./config/database');

@@ -4,7 +4,8 @@ var ventureSchema = new mongoose.Schema({
   venturists: [String], //array of user_id objects
   location: String,
   // adding category to the schema
-  category: [String],
+  keyword: String,
+  venue_ids: [],
   choice: [{
     business: {},
     vote: {} //key - user_id, value - boolean

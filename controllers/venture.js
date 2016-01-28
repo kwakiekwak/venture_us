@@ -15,6 +15,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var request = require('request');
+var rp = require('request-promise');
 var locus = require('locus')
 
 //body-parser
@@ -47,17 +48,43 @@ module.exports = {
     })
   },
   create: function(req, res, next) {
-    // console.log("I'm in create with")
+    console.log("I'm in create with")
     var newVenture = new Venture()
     // var keys = Object.keys(req.body)
     // var newVenture = new Venture()
     newVenture.location = req.body.location;
-
     // Category shows
     // console.log(req.body['categories'])
 
-    newVenture.category.push(req.body['categories'])
+    newVenture.keyword= req.body['category']
+    // console.log(newVenture.keyword)
+    // console.log(req.body.category)
+    // console.log(newVenture[keyword])
+    req.body['venturists'].forEach(function(id) {
+      newVenture.venturists.push(id)
+      // newVenture.venturists.split('"')
+    })
+// ADDING VENUES
+    var venuesPromise = rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+newVenture.location+'%20&query='+newVenture.keyword + '%20&limit=20')
+    Promise.all([venuesPromise]).then(function(venues){
+      console.log(venues);
+        var array = [];
+        var venueData = JSON.parse(venues).response.venues;
+        venueData.forEach(function(venue) {
+          array.push(venue.id)
+        });
+        newVenture.venue_ids = array;
 
+        newVenture.save(function(err, data) {
+          console.log("this is saving" + data)
+          res.send({venture_id: data.id});
+        })
+    }, function(reason){
+      console.log('failing because' +reason);
+    });
+  },
+
+//JOHN's NOTES
     // console.log(newVenture.venturists.indexOf(req.body['venturists']))
     // console.log(venturists.length)
     // if(newVenture.venturists.indexOf(req.body['venturists']) < 1){
@@ -66,68 +93,36 @@ module.exports = {
       // for(var i=0; i<venturists.length; i++) {
       //   newVenture.venturists.push(venturists[i])
       // }
-      req.body['venturists'].forEach(function(id) {
-        newVenture.venturists.push(id)
-        // newVenture.venturists.split('"')
-      })
     // }
 
-    console.log(newVenture)
-    newVenture.save(function(err, data) {
-      if(err) console.log(err)
-        console.log("Venture Created");
+    // console.log(newVenture)
+    // newVenture.save(function(err, data) {
+    //   if(err) console.log(err)
+    //     console.log("Venture Created");
     // trying to resolve problem/ wanting to create one venture create at the bottom`
       // res.send("Venture created")
-    })
-  },
+    // })
   show: function(req, res, next) {
-    Venture.findOne({_id: Number(req.params.id)} , function(err, requ) {
-      //Above, this will set the user_id equal to the user_id of the first
-      //user in the venture array, i.e. you.
-
-      var location = req.query.location
-      var query = req.query.keyword
-//(1.) request for search API - get venue id, name, address
-    request('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query, function(error,response,body){
-      if(!error) {
-        // console.log(res.body)
-        var venues = JSON.parse(body).response.venues;
-        // console.log(venues);
-        var count = 0;
-        venues.forEach(function(venue) {
-          venue_id = venue.id;
-          // JSON.stringify(venue)
-          // console.log(venue)
-          // console.log(venue.name)
-           //above, you parse the body, and then take its response
-        // (2.) callback - .then, query for image, using the venue id from above.
-            //venue Id hard-coded in below for now.
-          request('https://api.foursquare.com/v2/venues/4a99ace9f964a520c22f20e3/photos?&client_id='+client_id+'&client_secret='+client_secret+'&v=20160126', function(error,response,data){
-              if(!error) {
-                //console.log(JSON.parse(response.data));
-                //res.send(JSON.parse(response.body).response.photos.items[0]);
-                firstPhoto = JSON.parse(response.body).response.photos.items[0];
-
-                //res.render('ventures/photo', {firstPhoto:firstPhoto});
-                res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, count:count})
-              }
-              else {
-                res.send({venuesSearch: 'Not implemented!'});
-                return;// return some JSON
-              }
-              //res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto, photoArray:photoArray})
-            })
-        })
-      //use promises
-      }
-      else {
-        res.send({venuesSearch: 'Not implemented!'}); // return some JSON
-        console.log(req.body.place.name);
-        console.log(req.body.query);
-        console.log(JSON.parse(response.body));
-      }
-    });
-  })
+    var venturePromise = Venture.findOne({_id: req.params.id}).exec()
+    var venuePromises = [];
+    var venusPromise = venturePromise.then(function(venture) {
+      var venue_ids = venture.venue_ids
+      venue_ids.forEach(function(venue_id) {
+      venuePromises.push(rp('https://api.foursquare.com/v2/venues/'+venue_id+'?client_id='+client_id+'&client_secret='+client_secret+'&v=20160126'))
+      // var photoGroup = data.response.venue.photos.groups
+      //. response.photos.items[0]//the entire photo object for that index
+      })
+      return Promise.all(venuePromises)
+    })
+    venusPromise.then(function(data){
+      var venueArray = [];
+      data.forEach(function(venue){
+        venueArray.push(JSON.parse(venue).response.venue);
+      })
+      console.log('Im in show');
+      res.render('ventures/show', {venues: venueArray})
+      // res.render('ventures/show', {venues: venueArray});
+    })
   },
   update: function(req, res, next) {
     Venture.findOneAndUpdate({_id: Number(req.params.id)},

@@ -57,9 +57,11 @@ $('#go-venture-btn').click(function(){
     // dataType: 'json',
     // async: false,
     traditional: true,
-    data: {location: location, venturists: venturists, categories: categories},
+    data: {location: location, venturists: venturists, category: category},
     success: function(msg) {
-      // $('#category-venture').css("display","block");
+      console.log("hi");
+      window.location.href= '/ventures/show/'+msg.venture_id
+
     },
     error: function(msg) {
       $('#new-venture').css("background-color","red");
@@ -67,7 +69,7 @@ $('#go-venture-btn').click(function(){
   })
 })
 
-var categories = [];
+var category;
 
 // Updating venture category with AJAX call
 // $('.cat').click(function() {
@@ -86,11 +88,8 @@ for(var i=0; i<x.length; i++) {
     this.classList.add("selected")
     // console.log(this)
     // console.log(this.innerHTML)
-    if(categories.length == 0 || categories[0] !== this.innerHTML) {
-      categories.shift()
-      categories.push(this.innerHTML)
-    }
-    console.log(categories)
+    category = this.innerHTML
+    console.log(category)
   }, false)
 }
 
