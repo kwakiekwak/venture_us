@@ -31,35 +31,6 @@ module.exports = {
       res.render('ventures/show', {ventures: ventures})
     })
   },
-  create: function(req, res, next) {
-    // console.log("I'm in create with")
-    var newVenture = new Venture()
-    // var keys = Object.keys(req.body)
-    // var newVenture = new Venture()
-    newVenture.location = req.body.location;
-
-    // Category shows
-    // console.log(req.body['categories'])
-
-    newVenture.category.push(req.body['categories'])
-
-    // console.log(req.body['venturists'])
-    req.body['venturists'].forEach(function(id) {
-      newVenture.venturists.push(id)
-
-    })
-    newVenture.save(function(err, data) {
-
-     if(err) console.log(err)
-      // console.log(newVenture);
-       return res.send("Venture created")
-
-      if(err){console.log(err)}
-        console.log(newVenture);
-    // trying to resolve problem/ wanting to create one venture create at the bottom`
-      res.send("Venture created")
-    })
-  },
   new: function(req, res, next) {
     var friends = [];
     var users;
@@ -73,6 +44,40 @@ module.exports = {
       // console.log(data[1].id)
       res.render('ventures/new', {friends: data, users: users})
 
+    })
+  },
+  create: function(req, res, next) {
+    // console.log("I'm in create with")
+    var newVenture = new Venture()
+    // var keys = Object.keys(req.body)
+    // var newVenture = new Venture()
+    newVenture.location = req.body.location;
+
+    // Category shows
+    // console.log(req.body['categories'])
+
+    newVenture.category.push(req.body['categories'])
+
+    // console.log(newVenture.venturists.indexOf(req.body['venturists']))
+    // console.log(venturists.length)
+    // if(newVenture.venturists.indexOf(req.body['venturists']) < 1){
+    //   newVenture.venturists.push(req.body['venturists'].toString())
+    // } else {
+      // for(var i=0; i<venturists.length; i++) {
+      //   newVenture.venturists.push(venturists[i])
+      // }
+      req.body['venturists'].forEach(function(id) {
+        newVenture.venturists.push(id)
+        // newVenture.venturists.split('"')
+      })
+    // }
+
+    console.log(newVenture)
+    newVenture.save(function(err, data) {
+      if(err) console.log(err)
+        console.log("Venture Created");
+    // trying to resolve problem/ wanting to create one venture create at the bottom`
+      // res.send("Venture created")
     })
   },
   show: function(req, res, next) {

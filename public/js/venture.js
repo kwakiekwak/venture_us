@@ -54,11 +54,11 @@ $('#go-venture-btn').click(function(){
   $.ajax({
     type: "post",
     url: 'new',
+    // dataType: 'json',
+    // async: false,
     traditional: true,
     data: {location: location, venturists: venturists, categories: categories},
     success: function(msg) {
-      // console.log(data)
-      console.log("Bitch we did it")
       // $('#category-venture').css("display","block");
     },
     error: function(msg) {
@@ -76,7 +76,7 @@ var categories = [];
 //   })
 // })
 var x = document.getElementsByClassName('cat')
-console.log(x.innerHTML)
+console.log(x)
 for(var i=0; i<x.length; i++) {
   x[i].addEventListener('click', function() {
     var selectedEl = document.querySelector('.selected')
@@ -84,9 +84,12 @@ for(var i=0; i<x.length; i++) {
       selectedEl.classList.remove("selected")
     }
     this.classList.add("selected")
-    console.log(this)
-    console.log(this.innerHTML)
-    categories.push(this.innerHTML)
+    // console.log(this)
+    // console.log(this.innerHTML)
+    if(categories.length == 0 || categories[0] !== this.innerHTML) {
+      categories.shift()
+      categories.push(this.innerHTML)
+    }
     console.log(categories)
   }, false)
 }
