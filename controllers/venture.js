@@ -93,6 +93,10 @@ module.exports = {
     })
   },
 
+  countVote: function(req, res, next) {
+
+  },
+
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
       //when you visit

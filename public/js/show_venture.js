@@ -18,6 +18,11 @@ $('.vote-btns').click(function(event) {
   })
 })
 
+$('.show-ranking-btn').click(function(event) {
+
+
+})
+
 
 $('.add-friend-btn').click(function(event){
   var friend_id = $(event.currentTarget).attr("value");
