@@ -22,7 +22,7 @@ var flash        = require('connect-flash');
 
 // Pass passport to configuration
 require("./config/passport")(passport)
-
+require('../config/seed.js').seedUsers()
 // MIDDLEWARE //
 //Including sass
 // sass.render({
