@@ -1,15 +1,35 @@
+#myCarousel {
+  border: 1px solid black;
+}
+
+.carousel-inner {
+  margin: 0 auto;
+  max-width: 700px;
+  border: 1px solid blue;
+}
+
+.venue-image, iframe {
+  float: left;
+  width: 50%;
+  height: 260px;
+}
+
+.carousel-caption {
+  color: black;
+  font-
+  border: 1px solid red;
+}
+
 .item {
   height: 550px;
 }
 
 .btn-container {
   margin: 0 auto;
-  clear: both;
-  width: 30%;
 }
 
 .vote-btns {
-  margin-left: 50px;
+  margin: 0 20px;
   font-size: 100px;
   text-align: center;
 }
