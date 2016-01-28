@@ -1,10 +1,10 @@
 //adding dotenv up at the top
 var dotenv = require('dotenv');
 dotenv.load();
-var client_id = process.env.CLIENT_ID;
-var client_secret = process.env.CLIENT_SECRET;
 var Venture = require('../models/venture');
 var User = require('../models/user');
+client_id = "CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3",
+client_secret = "GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE"
 var express        = require('express');
 var router         = new express.Router();
 // Socket below
@@ -13,13 +13,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var request = require('request');
 var rp = require('request-promise');
-var locus = require('locus');
-
+var locus = require('locus')
 //body-parser
-var bodyParser   = require('body-parser');
+bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 //venture is fully CRUD-able
 module.exports = {
   all: function(req, res, next) {
@@ -28,50 +26,6 @@ module.exports = {
       res.render('ventures/show', {ventures: ventures})
     })
   },
-  create: function(req, res, next) {
-    // console.log("I'm in create with")
-    var newVenture = new Venture()
-    var keys = Object.keys(req.body)
-    var newVenture = new Venture()
-    newVenture.location = req.body.location;
-    req.body['venturists'].forEach(function (id) {
-      newVenture.venturists.push(id)
-    })
-    newVenture.save(function(err, data) {
-      if(err) console.log(err)
-        // console.log(newVenture);
-        res.send("Venture created")
-
-      if(err){console.log(err)}
-      console.log(newVenture);
-      res.send("Venture created")
-    })
-  },
-  addCategory: function(req, res, next) {
-    Venture.findOneAndUpdate({_id: "56a81651ceb9a9c2d1b76f3a"},{ $set: {keyword: req.body.keyword }}, function(err, data){
-      res.send('success');
-    })
-  },
-  addVenues: function(req, res, next) {
-    var venturePromise = Venture.findOne({_id: "56a81651ceb9a9c2d1b76f3a"}).exec()
-    var venuesPromise = venturePromise.then(function(venture) {
-      var location = venture.location
-      var query = venture.keyword
-      return rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+location+'%20&query='+query + '%20&limit=20')
-    })
-    Promise.all([venturePromise,venuesPromise]).then(function(venues){
-      var array = [];
-      var venueData = JSON.parse(venues[1]).response.venues;
-      venueData.forEach(function(venue) {
-        array.push(venue.id)
-      });
-      Venture.findOneAndUpdate({_id: "56a81651ceb9a9c2d1b76f3a"},{$set:{venue_ids:array}}, function(err, data){
-        res.send({venture_id: "56a81651ceb9a9c2d1b76f3a"});
-      })
-    }, function(reason){
-      console.log('failing because' +reason);
-    });
-  },
   new: function(req, res, next) {
     var friends = [];
     var users;
@@ -79,12 +33,63 @@ module.exports = {
       friends.push(friend.user)
     })
     User.find({}, function(err, data) {
-    users = data;
+      users = data;
     })
     User.find({ _id: { $in : friends}}, function (err, data) {
+      // console.log(data[1].id)
       res.render('ventures/new', {friends: data, users: users})
     })
   },
+  create: function(req, res, next) {
+    console.log("I'm in create with")
+    var newVenture = new Venture()
+    // var keys = Object.keys(req.body)
+    // var newVenture = new Venture()
+    newVenture.location = req.body.location;
+    // Category shows
+    // console.log(req.body['categories'])
+    newVenture.keyword= req.body['category']
+    // console.log(newVenture.keyword)
+    // console.log(req.body.category)
+    // console.log(newVenture[keyword])
+    req.body['venturists'].forEach(function(id) {
+      newVenture.venturists.push(id)
+      // newVenture.venturists.split('"')
+    })
+// ADDING VENUES
+    rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+newVenture.location+'%20&query='+newVenture.keyword + '%20&limit=20').then(function(venues){
+      console.log(venues);
+        var array = [];
+        var venueData = JSON.parse(venues).response.venues;
+        venueData.forEach(function(venue) {
+          array.push(venue.id)
+        });
+        newVenture.venue_ids = array;
+        newVenture.save(function(err, data) {
+          console.log("this is saving" + data)
+          res.send({venture_id: data.id});
+        })
+    }, function(reason){
+      console.log('failing because' +reason);
+    });
+  },
+//JOHN's NOTES
+    // console.log(newVenture.venturists.indexOf(req.body['venturists']))
+    // console.log(venturists.length)
+    // if(newVenture.venturists.indexOf(req.body['venturists']) < 1){
+    //   newVenture.venturists.push(req.body['venturists'].toString())
+    // } else {
+      // for(var i=0; i<venturists.length; i++) {
+      //   newVenture.venturists.push(venturists[i])
+      // }
+    // }
+    // console.log(newVenture)
+    // newVenture.save(function(err, data) {
+    //   if(err) console.log(err)
+    //     console.log("Venture Created");
+    // trying to resolve problem/ wanting to create one venture create at the bottom`
+      // res.send("Venture created")
+    // })
   show: function(req, res, next) {
     var venturePromise = Venture.findOne({_id: req.params.id}).exec()
     var venuePromises = [];
@@ -97,7 +102,6 @@ module.exports = {
       })
       return Promise.all(venuePromises)
     })
-
     venusPromise.then(function(data){
       var venueArray = [];
       data.forEach(function(venue){
@@ -115,16 +119,16 @@ module.exports = {
           res.send("Venture updated!")
     })
   },
-
   delete: function(req, res, next) {
     Venture.findOne({user_id: Venture.users[0]}, function(err, venture) {
       venture.remove()
       res.send('Venture removed')
     })
   },
-
   map: function(req, res, next) {
     res.render('ventures/map')
   }
-
+  // checkVenture: function(req, res, next) {
+  //   Venture.findOne({})
+  // }
 }

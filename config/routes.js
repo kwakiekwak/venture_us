@@ -47,12 +47,14 @@ router.post('/users/login', passport.authenticate('local-login', {
   failureRedirect : '/users/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
+
 router.get('/users/signup', usersController.signup);
 router.post('/users/signup', passport.authenticate('local-signup', {
   successRedirect: '/users/profile',
   failureRedirect: '/users/signup',
   failureFlash: true
 }));
+
 router.get('/users/profile', isLoggedIn, usersController.profile);
 
 router.route('/users/:id')
@@ -66,7 +68,7 @@ router.route('/ventures/users/friends/add/:id')
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
 
-// //event listener for connection (socket)
+//event listener for connection (socket)
 io.on('connection', function(socket){
   console.log('a user connected');
 });
@@ -83,60 +85,39 @@ router.get('/auth/facebook/callback',
     failureRedirect: '/'
   })
 );
+
 // 3. A route for the logout
 router.get("/logout", function(req, res){
   // console.log(req.user);
-  req.logout();
+  req.logout()
   // console.log(req.user);
   res.redirect("/")
 })
 
 // route middleware to make sure a user is logged in
-
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
-
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
 
 //Venture routes below
-//route for /ventures/new (new, post)
 router.route('/ventures/new')
-  //rendering new venture page
+  //form for creating a new venture
   .get(ventureController.new)
   //create a venture - function in controller
   .post(ventureController.create)
-  // updating a venture with category
-  .patch(ventureController.addCategory)
-  // updating a venture with venue_ids
-  .put(ventureController.addVenues);
 
-// testing google map api
-router.route('/ventures/map').get(ventureController.map)
 
-// router.route('/ventures/show').get(ventureController.all)
+// router.route('/ventures/show/find')
+//   .get(ventureController.checkVenture)
+
 
 //routing for /venturess/show (all, show, update, delete)
 router.route('/ventures/show/:id')
 
   .get(ventureController.show)
-  // show business show page
-  //.get(businessController.show)
-
-  // .put(ventureController.show);
-  // update a business
-  //.put(businessController.update)
-  //delete a venture.
-  // .delete(ventureController.delete)
-
-
-router.route('/search').get(ventureController.show)
-
-
-
 
 module.exports = router;
