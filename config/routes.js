@@ -103,8 +103,6 @@ io.on('connection', function(socket){
   console.log('a user connected');
 });
 
->>>>>>> api
->>>>>>> 7167baf40b079c2c5114573932acca1109b7c467
 // The 3 routes in order to authenticate via OAuth with FB
 // 1. A route to request(create) facebook
 router.get('/auth/facebook',

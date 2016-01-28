@@ -185,10 +185,4 @@ module.exports = {
     //   res.json(apiVenturists);
   }
 
-////////////////////////////////////////
-
-
-  // checkVenture: function(req, res, next) {
-  //   Venture.findOne({})
-  // }
-
+}
