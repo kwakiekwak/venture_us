@@ -65,8 +65,7 @@ module.exports = {
       // newVenture.venturists.split('"')
     })
 // ADDING VENUES
-    var venuesPromise = rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+newVenture.location+'%20&query='+newVenture.keyword + '%20&limit=20')
-    Promise.all([venuesPromise]).then(function(venues){
+    rp('https://api.foursquare.com/v2/venues/search?client_id='+client_id+'&client_secret='+client_secret+'&v=20130815%20&near='+newVenture.location+'%20&query='+newVenture.keyword + '%20&limit=20').then(function(venues){
       console.log(venues);
         var array = [];
         var venueData = JSON.parse(venues).response.venues;
@@ -74,7 +73,6 @@ module.exports = {
           array.push(venue.id)
         });
         newVenture.venue_ids = array;
-
         newVenture.save(function(err, data) {
           console.log("this is saving" + data)
           res.send({venture_id: data.id});
