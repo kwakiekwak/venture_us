@@ -4,6 +4,7 @@ header, footer {
   position: fixed;
   width: 100%;
   height: 60px;
+  font-family: 'Slackey', cursive;
   background: #52B5C8;
   color: white;
   opacity: 0.9;
@@ -43,6 +44,7 @@ footer {
 
 /*adding padding for header and footer*/
 main > div {
+  font-family: 'Cabin', sans-serif;
   padding: 60px 0;
 }
 
