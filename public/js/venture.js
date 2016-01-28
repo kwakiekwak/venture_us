@@ -71,12 +71,7 @@ $('#go-venture-btn').click(function(){
 
 var category;
 
-// Updating venture category with AJAX call
-// $('.cat').click(function() {
-//   $(this).click(function(){
-//     $(this).css('background-color', 'purple')
-//   })
-// })
+
 var x = document.getElementsByClassName('cat')
 console.log(x)
 for(var i=0; i<x.length; i++) {
@@ -92,23 +87,6 @@ for(var i=0; i<x.length; i++) {
     console.log(category)
   }, false)
 }
-
-  // current.toggle(function(){
-  // current.toggle("slow", function() {
-    // if(inArray === false) {
-    //   categories.push(current.text().toLowerCase())
-    //   current.css('background-color', 'purple')
-    //   inArray = true;
-    // }else{
-    //   var indexNum = categories.indexOf(current)
-    //   categories.splice(indexNum, 1)
-    //   current.css('background-color', none)
-    //   inArray = false;
-    // }
-
-  // $(event.currentTarget).text().toLowerCase()
-  // categories.push(category)
-  // $(event.currentTarget).css('background-color','purple')
 
 
 // Draggable JQuery for friend-circle
