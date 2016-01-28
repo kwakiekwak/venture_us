@@ -4,6 +4,7 @@ header, footer {
   position: fixed;
   width: 100%;
   height: 60px;
+  font-family: 'Slackey', cursive;
 }
 
 footer {
@@ -26,5 +27,6 @@ footer > div {
 
 /*adding padding for header and footer*/
 main > div {
+  font-family: 'Cabin', sans-serif;
   padding: 60px 0;
 }
