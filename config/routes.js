@@ -161,9 +161,13 @@ router.route('/ventures/new')
   //Create a venture - function in controller
   .post(ventureController.create)
 
+router.route('/ventures/find')
+  .get(ventureController.findInvited)
+
+
 //adding a ranking
-router.route('/ventures/get_ranking')
-  .get(ventureController.countVote)
+// router.route('/ventures/get_ranking')
+//   .get(ventureController.countVote)
 
 //routing for /venturess/show (all, show, update, delete)
 router.route('/ventures/show/:id')

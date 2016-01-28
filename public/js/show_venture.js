@@ -20,7 +20,6 @@ $('.vote-btns').click(function(event) {
 
 $('.show-ranking-btn').click(function(event) {
 
-
 })
 
 
