@@ -40,6 +40,7 @@ $('#go-venture-btn').click(function(){
   })
 })
 
+
 var category;
 
 var x = document.getElementsByClassName('cat')
