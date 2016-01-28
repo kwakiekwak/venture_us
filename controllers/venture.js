@@ -18,8 +18,11 @@ var locus = require('locus')
 bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 // array for venturists api
 var apiVenturists = [];
+
 //venture is fully CRUD-able
 module.exports = {
   new: function(req, res, next) {
@@ -90,6 +93,7 @@ module.exports = {
       }
     })
   },
+
   addVote: function(req, res, next) { //Needs an if else to check if the user has voted already
     console.log(req.body);
     Venture.findOneAndUpdate({_id: req.body.venture_id},
@@ -105,6 +109,13 @@ module.exports = {
         res.send("addVote Success!")
     })
   },
+
+
+  // countVote: function(req, res, next) {
+
+
+  // },
+
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
       //when you visit
@@ -189,4 +200,5 @@ module.exports = {
     // apiVenturists.splice(x, 1);
     //   res.json(apiVenturists);
   }
+
 }
