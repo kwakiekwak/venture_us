@@ -2,9 +2,6 @@
 var dotenv = require('dotenv');
 dotenv.load();
 
-client_id = "CIFWDNLDWK55XZBRIHQ0PLN1MQUBAB135DU3HDL13EZB20L3",
-client_secret = "GIVQE2TPTXMVP53AB0FESQRJVGPC4X1SS1VEFXOSLXPV12CE"
-
 var passport       = require('passport');
 var mongoose       = require('mongoose');
 var express        = require('express');
@@ -24,10 +21,6 @@ var io = require('socket.io')(http);
 bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-//here, call .env on process when you connect to the database
-//request module
-var request = require("request");
 
 // Initializing passport
 app.use(passport.initialize());
@@ -67,11 +60,6 @@ router.route('/ventures/users/friends/add/:id')
 
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
-
-//event listener for connection (socket)
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
 
 // The 3 routes in order to authenticate via OAuth with FB
 // 1. A route to request(create) facebook
