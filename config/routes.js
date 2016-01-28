@@ -24,6 +24,87 @@ app.use(passport.initialize());
 require("../config/passport")(passport);
 app.use(flash());
 
+// root path for showing homepage
+router.get('/', welcomeController.index);
+
+// users resource paths:
+router.route('/users')
+  .get(usersController.index);
+
+router.get('/users/login', usersController.login);
+router.post('/users/login', passport.authenticate('local-login', {
+  successRedirect : '/users/profile', // redirect to the secure profile section
+  failureRedirect : '/users/login', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
+
+router.get('/users/signup', usersController.signup);
+router.post('/users/signup', passport.authenticate('local-signup', {
+  successRedirect: '/users/profile',
+  failureRedirect: '/users/signup',
+  failureFlash: true
+}));
+
+router.get('/users/profile', isLoggedIn, usersController.profile);
+
+router.route('/users/:id')
+ .get(usersController.show)
+ .put(usersController.update)
+ .delete(usersController.destroy);
+
+router.route('/ventures/users/friends/add/:id')
+  .post(usersController.addFriend)
+
+// creating api
+router.route('/api')
+  .get(ventureController.testApi)
+
+router.route('/api/ventures')
+  .get(ventureController.showVenturesApi)
+  .post(ventureController.addVenturesApi)
+
+router.route('/api/ventures/:id')
+  .get(ventureController.oneVentureApi)
+  .put(ventureController.updateVentureApi)
+  .delete(ventureController.deleteVentureApi)
+//////////////////////////
+
+
+
+// router.get('/api', function(req, res) {
+//   res.send("Hello World")
+// })
+
+// router.post('/api/ventures', function(req, res) {
+//   if(!req.body.hasOwnProperty('venturists') ||
+//      !req.body.hasOwnProperty('keyword')) {
+//     res.statusCode = 400;
+//     return res.send('Error 400: Post syntax incorrect.');
+//   }
+
+// var newVenture = {
+//     venturists: req.body.venturists,
+//     location: req.body.location,
+//     keyword: req.body.keyword
+//   };
+
+// ventures.push(newVenture);
+//   res.json(true);
+// });
+///////////////////
+
+
+
+// routes for venture paths:
+router.get('/ventures/new', ventureController.new)
+
+//event listener for connection (socket)
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+>>>>>>> api
+>>>>>>> 7167baf40b079c2c5114573932acca1109b7c467
 // The 3 routes in order to authenticate via OAuth with FB
 // 1. A route to request(create) facebook
 router.get('/auth/facebook',
