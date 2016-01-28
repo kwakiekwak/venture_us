@@ -2,12 +2,10 @@
 // var dotenv = require('dotenv');
 // dotenv.load();
 var count = 0;
-
 // toggles the div containing friends list and search friends
 $('#show-friends-btn').click(function() {
   $('#show-friends').fadeToggle(300);
 })
-
 // adding friend to user with AJAX call
 $('.add-friend-btn').click(function(event){
   var friend_id = $(event.currentTarget).attr("value");
@@ -23,11 +21,9 @@ $('.add-friend-btn').click(function(event){
     }
   })
 })
-
 //Function for clicking a button 'yes' or 'no'.
 //click yes, count 1 for that choice. Also, use counter to determine which
 //venue to show when the page reloads.
-
 $('.card').click(function(event) {
   var count = 1;
   venue_id = limit[count].id;
@@ -37,7 +33,6 @@ $('.card').click(function(event) {
         //console.log(JSON.parse(response.data));
         //res.send(JSON.parse(response.body).response.photos.items[0]);
         firstPhoto = JSON.parse(response.body).response.photos.items[0];
-
         //res.render('ventures/photo', {firstPhoto:firstPhoto});
         res.render('ventures/show', {location: location, query: query, venues: venues, firstPhoto: firstPhoto})
       }
@@ -47,85 +42,68 @@ $('.card').click(function(event) {
   })
   count+=1;
 });
-
 //creating new venture with AJAX call
 $('#go-venture-btn').click(function(){
   var location = $('#venture-location').val();
   $.ajax({
     type: "post",
     url: 'new',
+    // dataType: 'json',
+    // async: false,
     traditional: true,
-    data: {location: location, venturists: venturists},
+    data: {location: location, venturists: venturists, category: category},
     success: function(msg) {
-      // $('#category-venture').css("display","block");
+      console.log("hi");
+      window.location.href= '/ventures/show/'+msg.venture_id
     },
     error: function(msg) {
       $('#new-venture').css("background-color","red");
     }
   })
 })
-
-// var inArray = false;
+var category;
 // Updating venture category with AJAX call
-$('.cat').click(function(event) {
-  var category = $(event.currentTarget).text().toLowerCase()
-  $.ajax({
-    type: "patch",
-    url: 'new',
-    traditional: true,
-    data: {keyword: category},
-    success: function(msg) {
-      console.log('cataagory AJAX success');
-    },
-    error: function(msg) {
-      console.log('catagory AJAX fail' + msg);
+// $('.cat').click(function() {
+//   $(this).click(function(){
+//     $(this).css('background-color', 'purple')
+//   })
+// })
+var x = document.getElementsByClassName('cat')
+console.log(x)
+for(var i=0; i<x.length; i++) {
+  x[i].addEventListener('click', function() {
+    var selectedEl = document.querySelector('.selected')
+    if(selectedEl) {
+      selectedEl.classList.remove("selected")
     }
-  })
-})
-
-// Adding venue ids to venture with AJAX call
-$('#get-venture-btn').click(function(){
-  $.ajax({
-    type: "put",
-    url: 'new',
-    traditional: true,
-    success: function(msg) {
-      console.log('venue id AJAX successs');
-    },
-    error: function(msg) {
-      console.log('venue id AJAX fail');
-    }
-  })
-})
-
-  // var current = $(event.currentTarget);
+    this.classList.add("selected")
+    // console.log(this)
+    // console.log(this.innerHTML)
+    category = this.innerHTML
+    console.log(category)
+  }, false)
+}
   // current.toggle(function(){
   // current.toggle("slow", function() {
-  //   if(inArray === false) {
-  //     categories.push(current.text().toLowerCase())
-  //     current.css('background-color', 'purple')
-  //     inArray = true;
-  //   }else{
-  //     var indexNum = categories.indexOf(current)
-  //     categories.splice(indexNum, 1)
-  //     current.css('background-color', none)
-  //     inArray = false;
-  //   }
-
+    // if(inArray === false) {
+    //   categories.push(current.text().toLowerCase())
+    //   current.css('background-color', 'purple')
+    //   inArray = true;
+    // }else{
+    //   var indexNum = categories.indexOf(current)
+    //   categories.splice(indexNum, 1)
+    //   current.css('background-color', none)
+    //   inArray = false;
+    // }
   // $(event.currentTarget).text().toLowerCase()
   // categories.push(category)
   // $(event.currentTarget).css('background-color','purple')
-
-
-
 // Draggable JQuery for friend-circle
 $('.friend-circle').draggable({
   cursor: "move",
   containment: "#new-venture",
   snap: "#drop-box"
 });
-
-
 //Droppable JQuery for drop-box
 var venturists = [];
 $("#drop-box").droppable({
@@ -136,7 +114,7 @@ $("#drop-box").droppable({
     venturists.push(friend.attr("value"))
     // appending the circle div to drop-box
     $('#drop-box').append(friend);
-    friend.remove();
+    // friend.remove();
     console.log(venturists);
   }
 })

@@ -7,47 +7,32 @@
 <body>
   <%- include('../partials/header', {subHeading: 'New Venture'}) %>
   <main>
-
 <!-- first half create new venture -->
-
   <div id="new-venture">
   <div class="container">
-
     <div class="row">
       <div id="create-venture" class="col-md-3 col-xs-5">
         <h3 class="title-venture">Venture Buddies!</h3>
           <div id="drop-box" class="row">
             <!-- Add Friend DATA HERE -->
           </div>
-          <input id="venture-location" class="row" name="location" placeholder="Input Location">
-          <div class="row">
-            <button id="go-venture-btn" class="btn btn-default">Go Venture!</button>
-          </div>
       </div>
-
       <div id="friend-list" class="col-md-9 col-xs-13">
-
       <h2 class="title-venture">Choose your Venturists!</h2>
-
         <% if(friends) { %>
         <% friends.forEach(function(friend){ %>
           <div class="friend-circle" value="<%=friend.id%>"><%=friend.local.email%></div>
         <%  }) %>
         <% } %>
-
         <button class='btn btn-default' id="show-friends-btn">
           <i class="fa fa-plus-square-o"></i>
         </button>
         <%- include('../partials/friends') %>
       </div>
     </div>
-
-
   </div>
   </div>
-
 <!-- second half updating category to venture -->
-
   <div id="category-venture">
   <div class="container">
     <h3 class="title-venture">Choose Your Venture Category</h3>
@@ -65,22 +50,28 @@
         <div class="col-md-3 col-xs-4"><div class="cat">Date</div></div>
       </div>
     </div>
-    <button id="get-venture-btn" class="btn btn-default">Get Venture</button>
+    <br>
+    <br>
+    <input id="venture-location" class="row" name="location" placeholder="Input Location">
+    <br>
+    <br>
+    <div class="row">
+      <button id="go-venture-btn" class="btn btn-default" formmethod="post">Go Venture!</button>
+    </div>
   </div>
+  <br>
+  <br>
+  <br>
   <form method="GET" action="/search">
-        <!-- <form method="GET" action="/venues"> -->
-          <label for="place">Place Name</label>
-          <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
-          <br>
-          <label for="query">Search For</label>
-          <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
-          <input type="submit" value="Search" />
+    <!-- <form method="GET" action="/venues"> -->
+      <label for="place">Place Name</label>
+      <input id="place" type="text" name="location" placeholder="Los Angeles, CA"/>
+      <br>
+      <label for="query">Search For</label>
+      <input id = "query" type = "text" name = "keyword" placeholder="Vegan"/>
+      <!-- <input id="go-venture-btn" type="submit" value="GO Venture" /> -->
   </form>
-  </div>
-
-
   <!-- Sample Foursquare API call form/search below -->
-
   </main>
   <%- include('../partials/footer') %>
   <%- include('../partials/scripts') %>
