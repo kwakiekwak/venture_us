@@ -23,6 +23,10 @@ bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// array for venturists api
+
+var apiVenturists = [];
+
 
 //venture is fully CRUD-able
 module.exports = {
@@ -139,7 +143,62 @@ module.exports = {
 
   map: function(req, res, next) {
     res.render('ventures/map')
+  },
+
+// creating APIS
+  testApi: function(req, res, next) {
+    res.send("Hello World")
+    // res.json(apiVenturists)
+  },
+
+  addVenturesApi: function(req, res, next) {
+    if(!req.body.hasOwnProperty('venturists') ||
+     !req.body.hasOwnProperty('keyword')) {
+    res.statusCode = 400;
+    return res.send('Error 400: Post syntax incorrect.');
   }
+    var newApiVenture = new Venture  ({
+        venturists: req.body.venturists,
+        location: req.body.location,
+        keyword: req.body.keyword
+      });
+
+    apiVenturists.push(newApiVenture);
+      res.json(apiVenturists);
+  },
+
+  showVenturesApi: function(req, res, next){
+    // console.log(Venture)
+    Venture.find({}, function(err, ventures){
+      res.render('ventures/index', {ventures: ventures})
+
+    })
+  },
+// update not available yet
+  updateVentureApi: function(req, res, next) {
+    Venture.findOneAndUpdate({id: Number(req.params.id)} , function(err, venture) {
+        //Above, this will set the user_id equal to the user_id of the first
+        //user in the venture array, i.e. you.
+          console.log("Venture updated")
+          res.json(venture)
+      })
+  },
+
+// kinda funky
+  deleteVentureApi: function(req, res, next) {
+    if(req.params.id) {
+      res.statusCode = 404;
+      return res.send('Error 404: No quote found');
+    }
+    console.log(req.params.id)
+    console.log(x)
+    var x = apiVenturists.indexOf(req.params.id)
+    apiVenturists.splice(x, 1);
+      res.json(apiVenturists);
+  }
+
+////////////////////////////////////////
+
 
   // checkVenture: function(req, res, next) {
   //   Venture.findOne({})

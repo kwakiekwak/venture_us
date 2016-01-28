@@ -65,6 +65,45 @@ router.route('/users/:id')
 router.route('/ventures/users/friends/add/:id')
   .post(usersController.addFriend)
 
+// creating api
+router.route('/api')
+  .get(ventureController.testApi)
+
+router.route('/api/ventures')
+  .get(ventureController.showVenturesApi)
+  .post(ventureController.addVenturesApi)
+
+router.route('/api/ventures/:id')
+  .patch(ventureController.updateVentureApi)
+  .delete(ventureController.deleteVentureApi)
+//////////////////////////
+
+
+
+// router.get('/api', function(req, res) {
+//   res.send("Hello World")
+// })
+
+// router.post('/api/ventures', function(req, res) {
+//   if(!req.body.hasOwnProperty('venturists') ||
+//      !req.body.hasOwnProperty('keyword')) {
+//     res.statusCode = 400;
+//     return res.send('Error 400: Post syntax incorrect.');
+//   }
+
+// var newVenture = {
+//     venturists: req.body.venturists,
+//     location: req.body.location,
+//     keyword: req.body.keyword
+//   };
+
+// ventures.push(newVenture);
+//   res.json(true);
+// });
+///////////////////
+
+
+
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
 
