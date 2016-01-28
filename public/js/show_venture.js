@@ -1,4 +1,4 @@
-// Click AJAX
+// AJAX adding votes
 
 $('.vote-btns').click(function(event) {
   var voteResult = $(event.currentTarget).attr("value");
@@ -18,6 +18,22 @@ $('.vote-btns').click(function(event) {
   })
 })
 
+// AJAX for calculate & show-ranking
+$('#show-ranking-btn').click(function(){
+  var ventureId = $('#show-venture').attr("value");
+  $.ajax({
+    type: 'get',
+    url: '/ventures/get_ranking',
+    traditional: true,
+    data: {venture_id: ventureId},
+    success: function(msg) {
+      console.log("AJAX for ranking success");
+    },
+    error: function(msg) {
+      console.log("AJAX for rankig failure");
+    }
+  })
+})
 
 $('.add-friend-btn').click(function(event){
   var friend_id = $(event.currentTarget).attr("value");
