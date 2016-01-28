@@ -170,10 +170,9 @@ router.route('/ventures/add_vote')
   .put(ventureController.addVote)
 
 
-//adding a ranking
-router.route('/ventures/get_ranking')
-  .get(ventureController.countVote)
-
+// //adding a ranking
+// router.route('/ventures/get_ranking')
+//   .get(ventureController.countVote)
 
 //routing for /venturess/show (all, show, update, delete)
 router.route('/ventures/show/:id')
