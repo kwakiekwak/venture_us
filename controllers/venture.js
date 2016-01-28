@@ -140,4 +140,8 @@ module.exports = {
   map: function(req, res, next) {
     res.render('ventures/map')
   }
+
+  // checkVenture: function(req, res, next) {
+  //   Venture.findOne({})
+  // }
 }
