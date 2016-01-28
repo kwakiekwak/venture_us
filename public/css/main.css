@@ -4,6 +4,11 @@ header, footer {
   position: fixed;
   width: 100%;
   height: 60px;
+  background: #52B5C8;
+  color: white;
+  opacity: 0.9;
+  border-radius: 5px;
+  text-shadow: 1px 1px #5DAF76;
 }
 
 footer {
@@ -17,14 +22,37 @@ header > div {
   padding: 0 10px;
 }
 
-footer > div {
-  width: 30%;
+footer {
   margin: 0 auto;
-  font-size: 45px;
   text-align: center;
+  height: 40px;
+
+}
+
+.header-logo {
+  float: left;;
+  font-size: 40px;
+}
+.footer-logo{
+  font-size: 30px;
+}
+
+.footer-subtext {
+  font-size: 15px;
 }
 
 /*adding padding for header and footer*/
 main > div {
   padding: 60px 0;
+}
+
+#show-friends {
+  border-radius: 5px;
+  opacity: 0.9;
+  color: white;
+}
+
+#show-friends button {
+  background: #D6DE47;
+  color: black;
 }
