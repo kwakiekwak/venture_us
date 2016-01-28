@@ -1,12 +1,13 @@
 #create-venture, #friend-list, #show-categories {
   height: 700px;
-  border: 1px solid red;
+  box-shadow: 10px black;
   border-radius: 10px;
 }
 
 #drop-box {
   border: 1px black solid;
   height: 80%;
+  background: #D6DE47;
 }
 
 #drop-box > img {
@@ -19,26 +20,34 @@
 .title-venture {
   text-align: center;
   color: white;
+  text-shadow: 2px black;
 }
 
-#create-venture {
-  background-color: #ff7b00;
+#create-venture, .cat {
+  background-color: #D6DE47;
   padding: 0 30px;
+  opacity: 0.9;
+  color: white;
+  font-size: 20px;
+  font-family: Futura;
 }
 
 #friend-list {
-  background-color: #0a9ed8;
+  background-color: #5DAF76;
 }
 
 /*Will delete later for popular-friend sizes*/
 
 .friend-circle {
-  width: 50px;
-  height: 50px;
+  width: 250px;
+  height: 140px;
   border-radius: 50%;
   background-color: white;
   text-align: center;
-  font-size: 12px;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-family: Futura;
 }
 
 #show-friends {
@@ -55,7 +64,10 @@
 }
 
 #category-venture {
-  /*display: none;*/
+  color: black;
+  font-family: Futura;
+  font-size: 40px;
+  text-align: center;
 }
 
 #show-categories {
@@ -70,6 +82,9 @@
 .cat {
   height: 200px;
   border: 1px black solid;
+  border-radius: 5px;
+  background: #5DAF76;
+  opacity: 0.8;
 }
 .cat:hover {
   background: purple;

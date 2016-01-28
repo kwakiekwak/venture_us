@@ -1,15 +1,49 @@
+#show-venture {
+  background-color: #52B5C8;
+}
+
+#myCarousel {
+  border: 1px solid black;
+}
+
+.carousel-inner {
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 700px;
+  background-color: #6C67B8;
+  border-radius: 10px;
+}
+
+.venue-image, iframe {
+  float: left;
+  width: 50%;
+  height: 251px;
+  border: none;
+}
+
+.carousel-caption {
+  color: black;
+  border: 1px solid red;
+}
+
+.venue-name {
+  font-size: 22px;
+}
+
+.venue-address {
+  font-size: 18px;
+}
+
 .item {
   height: 550px;
 }
 
 .btn-container {
   margin: 0 auto;
-  clear: both;
-  width: 30%;
 }
 
 .vote-btns {
-  margin-left: 50px;
+  margin: 0 20px;
   font-size: 100px;
   text-align: center;
 }
