@@ -14,7 +14,7 @@ $('.add-friend-btn').click(function(event){
   // alert(friend_id);
   $.ajax({
     type: "post",
-    url: 'users/friends/add/' + friend_id,
+    url: '/users/add_friend/' + friend_id,
     success: function(msg) {
       console.log("success")
     },

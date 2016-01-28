@@ -27,10 +27,39 @@ app.use(passport.initialize());
 require("../config/passport")(passport);
 app.use(flash());
 
-// root path for showing homepage
+// The 3 routes in order to authenticate via OAuth with FB
+// 1. A route to request(create) facebook
+router.get('/auth/facebook',
+  passport.authenticate('facebook', {
+   scope: 'email'} ));
+// 2. A route for the FB callback
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/users/profile',
+    failureRedirect: '/'
+  })
+);
+// 3. A route for the logout
+router.get("/logout", function(req, res){
+  // console.log(req.user);
+  req.logout()
+  // console.log(req.user);
+  res.redirect("/")
+})
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+
+// SHOW HOMEPAGE
 router.get('/', welcomeController.index);
 
-// users resource paths:
+// USERS PATH
 router.route('/users')
   .get(usersController.index);
 
@@ -51,45 +80,16 @@ router.post('/users/signup', passport.authenticate('local-signup', {
 router.get('/users/profile', isLoggedIn, usersController.profile);
 
 router.route('/users/:id')
- .get(usersController.show)
+ .get(usersController.profile)
  .put(usersController.update)
  .delete(usersController.destroy);
 
-router.route('/ventures/users/friends/add/:id')
+router.route('/users/add_friend/:id')
   .post(usersController.addFriend)
 
 // routes for venture paths:
 router.get('/ventures/new', ventureController.new)
 
-// The 3 routes in order to authenticate via OAuth with FB
-// 1. A route to request(create) facebook
-router.get('/auth/facebook',
-  passport.authenticate('facebook', {
-   scope: 'email'} ));
-// 2. A route for the FB callback
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: '/users/profile',
-    failureRedirect: '/'
-  })
-);
-
-// 3. A route for the logout
-router.get("/logout", function(req, res){
-  // console.log(req.user);
-  req.logout()
-  // console.log(req.user);
-  res.redirect("/")
-})
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
 
 //Venture routes below
 router.route('/ventures/new')
