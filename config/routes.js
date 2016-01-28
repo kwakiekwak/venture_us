@@ -74,6 +74,7 @@ router.route('/api/ventures')
   .post(ventureController.addVenturesApi)
 
 router.route('/api/ventures/:id')
+  .get(ventureController.oneVentureApi)
   .patch(ventureController.updateVentureApi)
   .delete(ventureController.deleteVentureApi)
 //////////////////////////
