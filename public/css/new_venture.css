@@ -48,15 +48,17 @@ body {
 /*Will delete later for popular-friend sizes*/
 
 .friend-circle {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 100px;
-  background-color: white;
+  background-image: url(http://www.pwrnewmedia.com/2013/soleil_provence/originalfiles/sun%20icon.png);
+  background-size: contain;
   text-align: center;
-  padding-top: 45px;
+  padding-top: 65px;
   margin-top: 20px;
   font-size: 15px;
   font-family: Futura;
+  color: white;
 }
 
 #show-friends {
