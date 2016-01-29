@@ -31,8 +31,7 @@ app.use(flash());
 router.get('/', welcomeController.index);
 
 // users resource paths:
-router.route('/users')
-  .get(usersController.index);
+
 router.get('/users/login', usersController.login);
 router.post('/users/login', passport.authenticate('local-login', {
   successRedirect : '/users/profile', // redirect to the secure profile section
@@ -63,9 +62,6 @@ router.route('/api/ventures/:id')
   .get(ventureController.oneVentureApi)
   .put(ventureController.updateVentureApi)
   .delete(ventureController.deleteVentureApi)
-
-// routes for venture paths:
-router.get('/ventures/new', ventureController.new)
 
 //event listener for connection (socket)
 io.on('connection', function(socket){
@@ -99,12 +95,6 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
-// SHOW HOMEPAGE
-router.get('/', welcomeController.index);
-
-// USERS PATHS
-router.route('/users')
-  .get(usersController.index);
 
 
 // VENTURE PATHS

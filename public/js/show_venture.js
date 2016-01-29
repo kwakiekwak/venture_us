@@ -75,3 +75,6 @@ $('.add-friend-btn').click(function(event){
   })
 })
 
+// Stopping Auto Carousel
+$('#myCarousel').carousel('pause')
+
