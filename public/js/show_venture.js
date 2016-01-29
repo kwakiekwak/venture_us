@@ -26,8 +26,33 @@ $('#show-ranking-btn').click(function(){
     url: '/ventures/get_ranking',
     traditional: true,
     data: {venture_id: ventureId},
+
     success: function(msg) {
-      console.log("AJAX for ranking success");
+      var sorted = [];
+      for(var key in msg) {
+        if(msg.hasOwnProperty(key)) {
+          obj = msg[key]
+          for(var prop in obj) {
+            ven_id = prop;
+            console.log(ven_id)
+            sorted.push([prop,obj[prop]])
+          }
+        }
+      sorted = sorted.sort(function(a, b){return b[1]-a[1]})
+        // if(sorted[0] == obj[prop]) {
+        console.log(prop)
+        // }
+        console.log(sorted)
+
+      }
+
+
+    $('.venue-name').each(function (i, el) {
+        if ($(el).data('id') == sorted[0][0]) {
+          $('#show-rankings').append('<div>'+$(el).html()+'</div>')
+        }
+      });
+
     },
     error: function(msg) {
       console.log("AJAX for rankig failure");

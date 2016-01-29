@@ -68,6 +68,7 @@ module.exports = {
   show: function(req, res, next) {
     var venturePromise = Venture.findOne({_id: req.params.id}).exec()
     var venuePromises = [];
+    var votes = {};
     var venuesPromise = venturePromise.then(function(venture) {
       var venue_ids = venture.venue_ids
       venue_ids.forEach(function(venue_id) {
@@ -82,7 +83,7 @@ module.exports = {
       data.forEach(function(venue){
         venueArray.push(JSON.parse(venue).response.venue);
       })
-      res.render('ventures/show', {venues: venueArray, venture: req.params.id})
+      res.render('ventures/show', {votes: votes, venues: venueArray, venture: req.params.id})
     })
   },
 
@@ -113,11 +114,25 @@ module.exports = {
   },
 
   countVote: function(req, res, next) {
-    console.log("IM in coutnvs")
-    var venturePromise = Venture.findOne({_id: req.body.venture_id}).exec();
+    var choicesArray = [];
+    var votesArray = [];
+    var votes = {}
+    var venturePromise = Venture.findOne({_id: req.query.venture_id}).exec();
     venturePromise.then(function(venture){
-      console.log(venture);
-    })
+      var choices = venture.choices
+      venture.venue_ids.forEach(function (venue_id) {
+        votes[venue_id] = 0
+      })
+      choices.forEach(function(choice) {
+        votes[choice.venue_id] += choice.vote
+      })
+        res.send({votes: votes})
+      //console.log(choicesArray);
+
+      //then, count the number of times you see the same item in the votes array.
+    }), function(reason){
+      res.send('failing because' + reason);
+    };
   },
 
   all: function(req, res, next) {

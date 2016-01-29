@@ -39,7 +39,7 @@
               </iframe>
             </div>
             <div class="carousel-caption">
-              <div class="venue-name"><%=venues[0].name%></div>
+              <div data-id="<%=venues[0].id%>" class="venue-name"><%=venues[0].name%></div>
               <div class="venue-address"><%=venues[0].location.address%></div>
               <div class="btn-container">
                 <span id="<%=venues[0].id%>" class="vote-btns" value="true"><i class="fa fa-thumbs-up"></i></span>
@@ -55,7 +55,7 @@
               </iframe>
             </div>
             <div class="carousel-caption">
-              <div class="venue-name"><%=venues[i].name%></div>
+              <div data-id="<%=venues[i].id%>"class="venue-name"><%=venues[i].name%></div>
               <div class="venue-address"><%=venues[i].location.address%></div>
               <div class="btn-container">
                 <span id="<%=venues[i].id%>" class="vote-btns" value="true"><i class="fa fa-thumbs-up"></i></span>
