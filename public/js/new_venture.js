@@ -32,7 +32,6 @@ $('#go-venture-btn').click(function(){
     traditional: true,
     data: {location: location, venturists: venturists, category: category},
     success: function(msg) {
-      console.log("hi");
       window.location.href= '/ventures/show/'+msg.venture_id
 
     },
