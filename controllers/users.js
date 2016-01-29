@@ -1,5 +1,7 @@
 // Require resource's model(s).
 var User = require("../models/user");
+var request = require('request');
+var rp = require('request-promise');
 
 var login = function(req, res, next) {
   res.render('users/login', { message: req.flash('loginMessage') });
@@ -43,14 +45,21 @@ var destroy = function(req, res, next) {
     })
   }
 
+// var addFriend = function(req, res, next) {
+//   User.findOneAndUpdate({_id: req.user.id},{$addToSet: {"friends": {user: req.params.id}}}, function(err, data) {
+//     res.send({newFriend: data});
+//   }
+// )}
+
 var addFriend = function(req, res, next) {
-  // console.log(req.user.id)
-  // console.log(req.params.id)
-  User.findOneAndUpdate({_id: req.user.id},{$addToSet: {"friends": {user: req.params.id}}}, function(err, data) {
-    // console.log("friend appended")
-    res.send('friend appended');
-  }
-)}
+  var updatePromise = User.findOneAndUpdate({_id: req.user.id},{$addToSet: {"friends": {user: req.params.id}}}).exec()
+  var friendPromise = updatePromise.then(function(){
+    return User.findOne({_id: req.params.id}).exec()
+  })
+  Promise.all([updatePromise,friendPromise]).then(function(data){
+    res.send({friend: data[1]});
+  })
+}
 
 
 module.exports = {

@@ -93,10 +93,8 @@ module.exports = {
 
   findInvited: function(req, res, next) {
     Venture.findOne({venturists: req.user.id}, function(err, venture) {
-      if(venture == null) {
-        console.log("You Are Not Invited"); // is this correct?
-      } else {
-        console.log("You have a venture" + venture)
+      if (venture) {
+      console.log("You have a venture" + venture)
       res.redirect('/ventures/show/'+ venture.id)
       }
     })
