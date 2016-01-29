@@ -1,12 +1,13 @@
 <div id="show-friends">
-
-<!-- search form for friends -->
-<form method="GET" action="/ventures/new">
-  <input id="email-search" type="text" name="email" placeholder="Search by Email">
-  <button type="submit">Search</button>
-</form>
+<!-- search form for users to add to friends -->
+  <form method="GET" action="/ventures/new">
+    <input id="email-search" type="text" name="email" placeholder="Search by Email">
+    <button type="submit">Search</button>
+  </form>
+<!--  display users from database -->
+  <ul>
   <% users.forEach(function (user){ %>
-  <li><%= user.local.email %><button class="add-friend-btn" value="<%=user.id%>">+</button></li>
+  <li class="user-list"><%= user.local.email %><button class="add-friend-btn" value="<%=user.id%>">+</button></li>
   <% }) %>
-    </ul>
+  </ul>
 </div>

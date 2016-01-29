@@ -15,7 +15,7 @@
   height: 260px;
   width: 260px;
   background-image: url(https://www.dfs.com/shop-and-collect/en-alt/images/graphic_cheers.png);
-  background-size: 80%;
+  background-size: cover;
   background-repeat: no-repeat;
   margin-left: 30px;
 }
@@ -31,4 +31,5 @@
 }
 main {
   background-image: url(http://fireteanu.com/wp-content/uploads/rainbow-in-the-clouds-15621.jpg);
+  background-size: cover;
 }

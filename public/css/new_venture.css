@@ -1,7 +1,9 @@
 body {
   /*background-color: #6C67B8;*/
   color: #BA1414;
+  background-size: cover;
 }
+
 #create-venture, #friend-list, #show-categories {
   height: 700px;
   box-shadow: 10px black;
@@ -40,6 +42,10 @@ body {
   background-color: #5DAF76;
 }
 
+#friend-list > div {
+  float: left;
+}
+
 /*Will delete later for popular-friend sizes*/
 
 .friend-circle {
@@ -59,12 +65,17 @@ body {
   float: right;
   width: 300px;
   height: 600px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
+  padding: 15px;
 }
 
 #show-friends-btn {
   float: right;
+}
+
+.user-list {
+  margin: 0 auto;
 }
 
 #category-venture {
@@ -76,6 +87,7 @@ body {
 
 #show-categories {
   margin: 0 auto;
+  list-style: none;
 }
 
 /*Styling for category boxes*/

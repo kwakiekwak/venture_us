@@ -52,3 +52,9 @@
   cursor: pointer;
   color: #6C67B8;
 }
+.vote-yes {
+  color: green;
+}
+.vote-no {
+  color: red;
+}

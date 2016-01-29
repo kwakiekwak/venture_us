@@ -11,6 +11,7 @@ var signup = function(req, res, next) {
 
 var profile = function(req, res) {
   res.render('users/profile', {user: req.user})
+  req.session.save();
 }
 
 var index = function(req, res, next){

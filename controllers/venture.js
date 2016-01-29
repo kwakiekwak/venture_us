@@ -39,6 +39,7 @@ module.exports = {
     User.find({ _id: { $in : friends}}, function (err, data) {
       res.render('ventures/new', {friends: data, users: users})
     })
+    req.session.save();
   },
 
   create: function(req, res, next) {
@@ -87,6 +88,7 @@ module.exports = {
       })
       res.render('ventures/show', {votes: votes, venues: venueArray, venture: req.params.id})
     })
+    req.session.save();
   },
 
   findInvited: function(req, res, next) {
