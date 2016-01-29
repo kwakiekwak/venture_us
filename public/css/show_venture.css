@@ -2,10 +2,6 @@
   background-color: #52B5C8;
 }
 
-#myCarousel {
-  border: 1px solid black;
-}
-
 .carousel-inner {
   margin: 0 auto;
   padding: 15px;
@@ -23,7 +19,6 @@
 
 .carousel-caption {
   color: black;
-  border: 1px solid red;
 }
 
 .venue-name {
@@ -52,9 +47,11 @@
   cursor: pointer;
   color: #6C67B8;
 }
+
 .vote-yes {
   color: green;
 }
+
 .vote-no {
   color: red;
 }
@@ -94,4 +91,18 @@ form button {
 }
 #messages li:nth-child(odd) {
  background: #eee;
+}
+#show-ranking-btn {
+  font-size: 40px;
+}
+
+#show-ranking-btn:hover {
+  cursor: pointer;
+  color:  #D6DE47;
+}
+
+#show-ranking-btn, #rank {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
 }

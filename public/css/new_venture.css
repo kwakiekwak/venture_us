@@ -65,13 +65,22 @@ body {
   width: 300px;
   height: 600px;
   background-color: white;
+  border-radius: 5px;
   color: black;
   padding: 15px;
+  opacity: 0.9;
 }
 
 #show-friends-btn {
   float: right;
 }
+
+
+#show-friends button {
+  background: #D6DE47;
+  color: black;
+}
+
 
 .user-list {
   margin: 0 auto;
