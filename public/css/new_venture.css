@@ -1,3 +1,7 @@
+body {
+  /*background-color: #6C67B8;*/
+  color: #BA1414;
+}
 #create-venture, #friend-list, #show-categories {
   height: 700px;
   box-shadow: 10px black;
@@ -39,14 +43,14 @@
 /*Will delete later for popular-friend sizes*/
 
 .friend-circle {
-  width: 250px;
-  height: 140px;
-  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
   background-color: white;
   text-align: center;
-  padding: 15px;
+  padding-top: 45px;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 15px;
   font-family: Futura;
 }
 
@@ -83,7 +87,7 @@
   height: 200px;
   border: 1px black solid;
   border-radius: 5px;
-  background: #5DAF76;
+  background: #6C67B8;
   opacity: 0.8;
 }
 .cat:hover {
@@ -93,3 +97,12 @@
 .selected {
   background-color: purple;
 }
+#venture-location {
+  height: 38px;
+  font-size: 20px;
+  text-align: center;
+}
+#go-venture-btn {
+  width: 235px;
+}
+
