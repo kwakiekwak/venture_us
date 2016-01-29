@@ -1,1 +1,59 @@
-home.css
+body {
+  background-image: url("http://www.yaylablog.com/wp-content/uploads/2013/05/los-angeles-picture.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#fb {
+  color: #FFF;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: 2px solid #3463B8;
+  background: #3463B8;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#login {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid #FFF;
+  color: #FFF;
+  text-shadow: none;
+}
+
+#title {
+  margin-top: 15%;
+  text-align: center;
+  font-size: 75px;
+  color: ghostwhite;
+  font-family: 'Slackey', cursive;
+}
+
+#header-logo {
+  font-size: 30px;
+}
+
+#signup {
+  font-size: 30px;
+}
+
+.subtitle {
+  text-align: center;
+  font-family: 'Slackey', cursive;
+}
+
+.buttons {
+  margin-left: 35%;
+  /*margin-top: 5%;*/
+}
