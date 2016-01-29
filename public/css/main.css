@@ -13,12 +13,14 @@ header, footer {
 }
 
 #main-header {
-  position: fixed;
   font-family: 'Slackey', cursive;
   color: ghostwhite;
   border-radius: 5px;
   text-shadow: 1px 1px #5DAF76;
-  margin-left: 85%;
+}
+#main-header > div {
+  float: right;
+  padding: 10px;
 }
 
 footer {
