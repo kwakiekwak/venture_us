@@ -49,7 +49,7 @@ $('#show-ranking-btn').click(function(){
 
     $('.venue-name').each(function (i, el) {
         if ($(el).data('id') == sorted[0][0]) {
-          $('#show-rankings').append('<div>'+$(el).html()+'</div>')
+          $('#rank').html('<h3>'+$(el).html()+'</h3>')
         }
       });
 
