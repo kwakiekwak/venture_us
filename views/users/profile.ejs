@@ -2,22 +2,33 @@
 <html>
 <head>
   <%- include('../partials/head') %>
+  <link rel="stylesheet" type="text/css" href="/css/profile.css">
 </head>
 <body>
   <%- include('../partials/header',{subHeading: "Welcome User"}) %>
 
   <main>
+  <div class="container">
+      <div class="jumbotron">
+         <div class="row">
+            <% if(user) { %>
+              <%= user.fb.email %>
+              <%= user.fb.id %>
+              <div class="col-md-6">
+                <a href="/ventures/find"><div id="answer">Answer Venture Invite</div></a>
+              </div>
 
-    <div>
-      <% if(user) { %>
-        <%= user.fb.email %>
-        <%= user.fb.id %>
-        <a href="/ventures/find">Answer Venture Invite</a>
-        <a href="/ventures/new">Create Venture</a>
-        <a href="/logout">Log Out</a>
-        <a href="/">Back to home.</a>
-      <% } %>
-    </div>
+              <div class="col-md-6">
+                <a href="/ventures/new"><div id="create">Create Venture</div>
+              </div></a>
+        </div>
+        </div>
+      </div>
+
+              <a href="/logout">Log Out</a>
+              <a href="/">Back to home.</a>
+            <% } %>
+
     <ul id = "messages">Messages below!</ul>
     <form id="chat" action="">
       <input id="m" autocomplete="off" /><button>Send</button>
