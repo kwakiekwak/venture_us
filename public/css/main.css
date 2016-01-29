@@ -1,4 +1,8 @@
 /*Universal Styling(Rendered at all View Pages*/
+.main {
+  background-color: #6C67B8;
+}
+
 
 header, footer {
   position: fixed;
