@@ -15,24 +15,20 @@
               <%= user.fb.email %>
               <%= user.fb.id %>
               <div class="col-md-6">
-                <a href="/ventures/find"><div id="answer">Answer Venture Invite</div></a>
+                <a href="/ventures/find"><div id="answer"><strong><div id="title2">Venture Invites</div></strong></div></a>
               </div>
 
               <div class="col-md-6">
-                <a href="/ventures/new"><div id="create">Create Venture</div>
+                <a href="/ventures/new"><div id="create"><strong><div id="title">Create Venture</div></strong></div>
               </div></a>
         </div>
         </div>
       </div>
 
-              <a href="/logout">Log Out</a>
+              <a href="/logout">Log Out</a><br>
               <a href="/">Back to home.</a>
             <% } %>
 
-    <ul id = "messages">Messages below!</ul>
-    <form id="chat" action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
 
   </main>
   <%- include('../partials/footer') %>
