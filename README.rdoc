@@ -1,0 +1,35 @@
+=Venture Us
+
+===Summary
+
+With Venture Us, we set out to build an app that would empower users to quickly make decisions on where to go/what to do in a given location. Rather than scrolling through an endless list of venues, a user can receive venue recommendations and vote 'yes' or 'no', one-by-one. Multiple users can participate in the same 'venture', as their votes accumulate and reach a group consensus. This allows users to spend more time 'doing' things with their friends and less time searching.
+
+===Technology
+
+Venture Us is a full-stack application incorporating Node.js and Express and using the MongoDB database. Front-end styling was accomplished with HTML5, CSS3, Bootstrap, Javascript and jQuery. 
+
+We also utilized the Foursquare and Google Maps APIs, making requests to the former for location and business data, pulling it into our database, and making calls for Google API based on our location. We built a RESTful API for our Venture model (i.e. the group event that is voted on), which can be consumed on the front end. We hope that such third-party API integration enables users to make fast, group-sourced decisions on what to do and where to go.
+
+
+===Links
+ 
+To view our Trello board of user stories and progress, please visit https://trello.com/b/1CVJGK8O/project-3.
+
+
+===Wireframing
+
+
+To view our wireframes from the planning process, please visit the links below (from the project assets folder):
+
+https://github.com/kwakiekwak/venture_us/blob/master/assets/wireframes/homepage.JPG
+
+https://github.com/kwakiekwak/venture_us/blob/master/assets/wireframes/user_show.JPG
+
+https://github.com/kwakiekwak/venture_us/blob/master/assets/wireframes/venture_new.JPG
+
+https://github.com/kwakiekwak/venture_us/blob/master/assets/wireframes/venture_show.JPG
+
+
+===Unsolved Problems/Next Steps
+
+We want to eventually incorporate a photo feed for each venue, by requesting additional data from the Foursquare API. We anticipate making this addition to our next iteration of Venture Us.
