@@ -1,19 +1,19 @@
 .jumbotron {
-  height: 400px;
+  height: 300px;
   margin-top: 10%;
   opacity: .8;
 }
 #create {
-  height: 260px;
-  width: 260px;
+  height: 230px;
+  width: 230px;
   background-image: url(http://moonveda.com/turbine/frontend/img/lightbulb-icon.png);
-  background-size: contain;
+  background-size: cover;
   border-radius: 20px;
 
 }
 #answer {
-  height: 260px;
-  width: 260px;
+  height: 200px;
+  width: 200px;
   background-image: url(https://www.dfs.com/shop-and-collect/en-alt/images/graphic_cheers.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,11 +25,20 @@
   text-align: center;
 }
 .row a {
-  color: green;
-  font-size: 24px;
-
+  color: white;
+  font-size: 25px;
 }
 main {
   background-image: url(http://fireteanu.com/wp-content/uploads/rainbow-in-the-clouds-15621.jpg);
   background-size: cover;
+}
+#title {
+  background-color: green;
+  border-radius: 15px;
+  width: 210px;
+}
+#title2 {
+  background-color: red;
+  border-radius: 15px;
+  width: 210px;
 }
