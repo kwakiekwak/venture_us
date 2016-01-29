@@ -2,6 +2,7 @@
 <html>
 <head>
   <%- include('../partials/head') %>
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
   <%- include('../partials/header', {subHeading: 'User List'}) %>
@@ -16,20 +17,20 @@
     <!-- LOGIN FORM -->
     <form action="/users/login" method="post">
         <div>
-            <label>Email</label>
+            <label>Email</label><br>
             <input type="text" name="email">
         </div>
         <div>
-            <label>Password</label>
+            <label>Password</label><br>
             <input type="password" name="password">
-        </div>
-        <input type="submit" value="Log In">
+        </div><br>
+        <input type="submit" class="btn btn-success btn-sm" value="Log In">
     </form>
 
     <hr>
 
-    <p>Need an account? <a href="/users/signup">Signup</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+    <p>Need an account? <a class="sign" href="/users/signup"><strong>Signup</strong></a></p>
+    <p>Or go <a class="sign" href="/"><strong>home</strong></a>.</p>
 
   </div>
   </main>
