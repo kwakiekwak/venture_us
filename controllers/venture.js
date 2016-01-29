@@ -123,14 +123,7 @@ module.exports = {
   },
 
 
-<<<<<<< HEAD
-  // countVote: function(req, res, next) {
 
-
-  // },
-
-=======
->>>>>>> d7fcbe893f476806c5cf5e170587fd2757b5ec08
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
       //when you visit
@@ -198,10 +191,7 @@ module.exports = {
         res.json("Updated")
     })
   },
-<<<<<<< HEAD
-// kinda funky
-=======
->>>>>>> d7fcbe893f476806c5cf5e170587fd2757b5ec08
+
   deleteVentureApi: function(req, res, next) {
     Venture.findOneAndRemove({_id: req.params.id}, function(err, venture) {
       if(err) console.log(err)
