@@ -19,8 +19,10 @@ bodyParser   = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // array for venturists api
 var apiVenturists = [];
+
 
 //venture is fully CRUD-able
 module.exports = {
@@ -97,8 +99,8 @@ module.exports = {
       }
     })
   },
-
   addVote: function(req, res, next) { //Needs an if else to check if the user has voted already
+    console.log(req.body);
     Venture.findOneAndUpdate({_id: req.body.venture_id},
       { $push: {
           choices: {
@@ -135,6 +137,8 @@ module.exports = {
     };
   },
 
+
+
   all: function(req, res, next) {
     Venture.find({}, function(err, ventures) {
       //when you visit
@@ -156,45 +160,36 @@ module.exports = {
       res.send('Venture removed')
     })
   },
-
   map: function(req, res, next) {
     res.render('ventures/map')
   },
-
 // creating APIS
   testApi: function(req, res, next) {
     res.send("Hello World")
     // res.json(apiVenturists)
   },
-
   addVenturesApi: function(req, res, next) {
     if(!req.body.hasOwnProperty('venturists') ||
      !req.body.hasOwnProperty('keyword')) {
     res.statusCode = 400;
     return res.send('Error 400: Post syntax incorrect.');
-  }
+    }
     var newApiVenture = new Venture  ({
         venturists: req.body.venturists,
         location: req.body.location,
         keyword: req.body.keyword
       });
-
-      // apiVenturists.push(newApiVenture);
-      // res.json(apiVenturists);
   },
-
   oneVentureApi: function(req, res, next) {
     Venture.findOne({_id: req.params.id}, function(err, data){
       console.log(data)
       res.json(data)
     })
   },
-
   showVenturesApi: function(req, res, next){
     // console.log(Venture)
     Venture.find({}, function(err, ventures){
       res.json(ventures)
-
     })
   },
 // update not available yet
@@ -209,15 +204,18 @@ module.exports = {
 
         venture.save()
         res.json("Updated")
-      })
+    })
   },
 
-// kinda funky
   deleteVentureApi: function(req, res, next) {
     Venture.findOneAndRemove({_id: req.params.id}, function(err, venture) {
       if(err) console.log(err)
       res.send("Venture Deleted")
     })
+  }
+}
+////////////////////////////////////////
+
     // if(req.params.id) {
     //   res.statusCode = 404;
     //   return res.send('Error 404: No quote found');
@@ -227,6 +225,11 @@ module.exports = {
     // var x = apiVenturists.indexOf(req.params.id)
     // apiVenturists.splice(x, 1);
     //   res.json(apiVenturists);
-  }
 
-}
+
+  // checkVenture: function(req, res, next) {
+  //   Venture.findOne({})
+  // }
+
+
+

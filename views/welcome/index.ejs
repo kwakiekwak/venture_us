@@ -2,22 +2,38 @@
 <html>
 <head>
   <%- include('../partials/head') %>
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
+  <%- include('../partials/headerM', {subHeading: 'Welcome'}) %>
 <body>
-  <%- include('../partials/header', {subHeading: 'Welcome'}) %>
+<div class="container">
 
   <main>
-  <div id="welcome-page">
-    <div>
-      <a href="/users/login">Login Locally</a>
-      <a href="/auth/facebook">Login with Facebook</a>
-    </div>
-    <div>
-      <a href="/users/signup">or.. Sign Up</a>
+    <h1 id="title">Venture Us</h1>
+    <h2 class="subtitle">Join our movement to make more decisive actions</h2>
+
+    <div class="center">
+
+      <div class="inner-center">
+
+        <div class="buttons">
+
+
+            <a href="/users/login" id="login" class="btn btn-lg">Login Locally</a>
+
+
+            <a href="/auth/facebook" id="fb" class="btn facebook btn-lg">Login with Facebook</a>
+
+
+        </div>
+
+      </div>
+
     </div>
 
-  </div>
+
   </main>
+</div>
 
   <%- include('../partials/scripts') %>
 </body>
