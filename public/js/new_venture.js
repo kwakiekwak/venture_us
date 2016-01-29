@@ -11,7 +11,9 @@ $('.add-friend-btn').click(function(event){
     type: "post",
     url: '/users/add_friend/' + friend_id,
     success: function(msg) {
-      console.log("success")
+      $('#friend-list').append(
+        '<div class="friend-circle ui-draggable ui-draggable-handle" value="'+msg.friend._id+'" style="position: relative;">'+msg.friend.local.email+'</div>'
+      )
     },
     error: function (msg) {
       console.log("error")
@@ -30,7 +32,6 @@ $('#go-venture-btn').click(function(){
     traditional: true,
     data: {location: location, venturists: venturists, category: category},
     success: function(msg) {
-      console.log("hi");
       window.location.href= '/ventures/show/'+msg.venture_id
 
     },
@@ -44,7 +45,7 @@ $('#go-venture-btn').click(function(){
 var category;
 
 var x = document.getElementsByClassName('cat')
-console.log(x)
+
 for(var i=0; i<x.length; i++) {
   x[i].addEventListener('click', function() {
     var selectedEl = document.querySelector('.selected')
@@ -72,14 +73,11 @@ $('.friend-circle').draggable({
 var venturists = [];
 $("#drop-box").droppable({
   drop: function(event, ui) {
-    // console.log(event)
-    // console.log(ui)
     var friend = ui.draggable;
     venturists.push(friend.attr("value"))
     // appending the circle div to drop-box
-    $('#drop-box').append(friend);
-    // friend.remove();
-    console.log(venturists);
+    $('#drop-box').append('<div>'+friend.text()+'</div>');
+    friend.remove();
   }
 })
 

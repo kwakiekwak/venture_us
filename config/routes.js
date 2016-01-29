@@ -49,7 +49,8 @@ router.route('/users/:id')
  .get(usersController.show)
  .put(usersController.update)
  .delete(usersController.destroy);
-router.route('/ventures/users/friends/add/:id')
+
+router.route('/users/add_friend/:id')
   .post(usersController.addFriend)
 
 // creating api
