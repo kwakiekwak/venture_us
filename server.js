@@ -31,20 +31,6 @@ require("./config/passport")(passport)
 // });
 
 
-
-//  trying to make api data////////////////
-
-
-
-
-
-
-//////////
-
-
-
-
-
 app.use(session({
   secret: 'mySecretKey',
   resave: false,
