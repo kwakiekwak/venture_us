@@ -2,7 +2,7 @@
   "name": "venture_us",
   "version": "0.0.0",
   "private": true,
-  "engine": {
+  "engines": {
     "node": "5.6.0",
     "npm": "3.6.0"
   },
