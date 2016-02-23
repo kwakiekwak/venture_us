@@ -93,45 +93,45 @@ module.exports = function(passport){
         });
 
     }));
-
-    // LOG IN WITH FACEBOOK
-    passport.use('facebook', new FacebookStrategy({
-    clientID        : process.env.FACEBOOK_API_KEY,
-    clientSecret    : process.env.FACEBOOK_API_SECRET,
-    callbackURL     : 'http://localhost:3000/auth/facebook/callback',
-    enableProof     : true,
-    // describe the fields we want from FB
-    profileFields   : ['name', 'emails']
-    // executed when FB sends back the data to the website
-    // using auth/facebook/callback
-    }, function(access_token, refresh_token, profile, done) {
-
-      // // Use this to see the information returned from Facebook
-      // console.log(profile)
-      process.nextTick(function() {
-        User.findOne({ 'fb.id' : profile.id }, function(err, user) {
-          if (err) return done(err);
-      // if user already exists, the code directly executes
-      // the callback and gives the user object found by mongo
-      // to the callback
-          if (user) {
-            return done(null, user);
-          } else {
-            var newUser = new User();
-            newUser.fb.id           = profile.id;
-            newUser.fb.access_token = access_token;
-            newUser.fb.firstName    = profile.name.givenName;
-            newUser.fb.lastName     = profile.name.familyName;
-            newUser.fb.email        = profile.emails[0].value;
-
-            newUser.save(function(err) {
-              if (err)
-                throw err;
-              return done(null, newUser);
-            });
-          }
-        });
-      });
-    }
-  ));
 }
+    // LOG IN WITH FACEBOOK
+//     passport.use('facebook', new FacebookStrategy({
+//     clientID        : process.env.FACEBOOK_API_KEY,
+//     clientSecret    : process.env.FACEBOOK_API_SECRET,
+//     callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+//     enableProof     : true,
+//     // describe the fields we want from FB
+//     profileFields   : ['name', 'emails']
+//     // executed when FB sends back the data to the website
+//     // using auth/facebook/callback
+//     }, function(access_token, refresh_token, profile, done) {
+
+//       // // Use this to see the information returned from Facebook
+//       // console.log(profile)
+//       process.nextTick(function() {
+//         User.findOne({ 'fb.id' : profile.id }, function(err, user) {
+//           if (err) return done(err);
+//       // if user already exists, the code directly executes
+//       // the callback and gives the user object found by mongo
+//       // to the callback
+//           if (user) {
+//             return done(null, user);
+//           } else {
+//             var newUser = new User();
+//             newUser.fb.id           = profile.id;
+//             newUser.fb.access_token = access_token;
+//             newUser.fb.firstName    = profile.name.givenName;
+//             newUser.fb.lastName     = profile.name.familyName;
+//             newUser.fb.email        = profile.emails[0].value;
+
+//             newUser.save(function(err) {
+//               if (err)
+//                 throw err;
+//               return done(null, newUser);
+//             });
+//           }
+//         });
+//       });
+//     }
+//   ));
+// }
