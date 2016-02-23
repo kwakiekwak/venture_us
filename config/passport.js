@@ -1,6 +1,6 @@
 // getting User schema model from ../models/user file
 var User = require('../models/user');
-var FacebookStrategy = require('passport-facebook').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 
 // Serializing/Deserializing modules
