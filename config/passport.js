@@ -98,7 +98,7 @@ module.exports = function(passport){
     passport.use('facebook', new FacebookStrategy({
     clientID        : '1669457793319000',
     clientSecret    : '158d937b7977303a84d06c423b6fe325',
-    callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+    callbackURL     : 'https://project-venture-us.herokuapp.com/auth/facebook/callback',
     enableProof     : true,
     // describe the fields we want from FB
     profileFields   : ['name', 'emails']
