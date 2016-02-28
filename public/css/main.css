@@ -3,17 +3,20 @@
   background-color: #6C67B8;
 }
 
+.logo-style{
+  font-family: 'Slackey', cursive;
+}
 
 header, footer {
   position: fixed;
   width: 100%;
   height: 60px;
-  font-family: 'Slackey', cursive;
   background: #52B5C8;
   color: white;
   opacity: 0.9;
   border-radius: 5px;
   text-shadow: 1px 1px #5DAF76;
+  z-index: 5;
 }
 
 #main-header {
@@ -22,9 +25,14 @@ header, footer {
   border-radius: 5px;
   text-shadow: 1px 1px #5DAF76;
 }
+
 #main-header > div {
   float: right;
   padding: 10px;
+}
+
+.nav-link {
+  display: none;
 }
 
 footer {
@@ -32,21 +40,18 @@ footer {
 }
 
 /*nav-bar display button styling*/
-header > div {
+header > div, header > a {
   float: right;
-  font-size: 40px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 3em;
   padding: 0 10px;
+  z-index: 10;
 }
 
 footer {
   margin: 0 auto;
   text-align: center;
   height: 40px;
-}
-
-.header-logo {
-  float: left;;
-  font-size: 40px;
 }
 
 #footer-logo{

@@ -1,13 +1,5 @@
 console.log('JS loaded!');
 
-// document.addEventListener("DOMContentLoaded", function() {
-
-//     // get our connection to the socket.io server
-//     var socket = io();
-
-
-// });
-
 var socket = io();
 
 $('#chat').submit(function(){
@@ -21,4 +13,10 @@ socket.on('chat-message', function(msg){
   console.log(msg)
 });
 
+
+// Toggle Show Nav-Menu
+
+$('#show-nav-bar').click(function(){
+  $('.nav-link').toggle();
+});
 

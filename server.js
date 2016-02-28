@@ -14,36 +14,11 @@ var cookieParser = require('cookie-parser');
 var passport     = require('passport');
 var session      = require('express-session');
 var env          = require('./config/environment');
-var routes       = require('./config/routes'); // added (app) for api
+var routes       = require('./config/routes');
 var flash        = require('connect-flash');
-// var sass         = require('node-sass');
-// DOES NOT WORK
-// app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
 // Pass passport to configuration
 require("./config/passport")(passport)
-
-// MIDDLEWARE //
-//Including sass
-// sass.render({
-//   file: scss_filename,
-//   }, function (err, result){
-// });
-
-
-
-//  trying to make api data////////////////
-
-
-
-
-
-
-//////////
-
-
-
-
 
 app.use(session({
   secret: 'mySecretKey',
