@@ -23,6 +23,7 @@ $('.add-friend-btn').click(function(event){
 
 //creating new venture with AJAX call
 $('#go-venture-btn').click(function(){
+  console.log("getting to ajax call")
   var location = $('#venture-location').val();
   $.ajax({
     type: "post",
@@ -33,7 +34,6 @@ $('#go-venture-btn').click(function(){
     data: {location: location, venturists: venturists, category: category},
     success: function(msg) {
       window.location.href= '/ventures/show/'+msg.venture_id
-
     },
     error: function(msg) {
       $('#new-venture').css("background-color","red");
