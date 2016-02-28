@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="/css/new_venture.css">
 </head>
 <body>
-  <%- include('../partials/header', {subHeading: 'New Venture'}) %>
+  <%- include('../partials/header', {subHeading: ''}) %>
   <main>
 ​
 <!-- first half create new venture -->
@@ -30,6 +30,7 @@
         <% } %>
         <button class='btn btn-default' id="show-friends-btn">
           <i class="fa fa-plus-square-o"></i>
+          Add New Friends
         </button>
         <%- include('../partials/friends') %>
       </div>

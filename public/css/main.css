@@ -14,6 +14,7 @@ header, footer {
   opacity: 0.9;
   border-radius: 5px;
   text-shadow: 1px 1px #5DAF76;
+  z-index: 5;
 }
 
 #main-header {
@@ -32,21 +33,18 @@ footer {
 }
 
 /*nav-bar display button styling*/
-header > div {
+header > div, header > a {
   float: right;
-  font-size: 40px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 3em;
   padding: 0 10px;
+  z-index: 10;
 }
 
 footer {
   margin: 0 auto;
   text-align: center;
   height: 40px;
-}
-
-.header-logo {
-  float: left;;
-  font-size: 40px;
 }
 
 #footer-logo{

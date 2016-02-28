@@ -8,27 +8,22 @@
   <%- include('../partials/header',{subHeading: ""}) %>
 
   <main>
-  <div class="container">
+  <div class="container-fluid">
       <div class="jumbotron">
          <div class="row">
             <% if(user) { %>
-              <%= user.fb.email %>
-              <%= user.fb.id %>
               <div class="col-md-6">
-                <a href="/ventures/find"><div id="answer"><strong><div id="title2">Venture Invites</div></strong></div></a>
+                <a href="/ventures/find">
+                <div id="answer"><strong><div id="title2">Venture Invites</div></strong></div></a>
               </div>
 
               <div class="col-md-6">
                 <a href="/ventures/new"><div id="create"><strong><div id="title">Create Venture</div></strong></div>
               </div></a>
-        </div>
+              </div>
+            <% } %>
         </div>
       </div>
-
-              <a href="/logout">Log Out</a><br>
-              <a href="/">Back to home.</a>
-            <% } %>
-
 
   </main>
   <%- include('../partials/footer') %>
