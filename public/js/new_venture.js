@@ -11,9 +11,13 @@ $('.add-friend-btn').click(function(event){
     type: "post",
     url: '/users/add_friend/' + friend_id,
     success: function(msg) {
-      $('#friend-list').append(
-        '<div class="friend-circle ui-draggable ui-draggable-handle" value="'+msg.friend._id+'" style="position: relative;">'+msg.friend.local.email+'</div>'
-      )
+      var newFriend = '<div class="friend-circle ui-draggable ui-draggable-handle" value="'+msg.friend._id+'" style="position: relative;">'+msg.friend.local.email+'</div>'
+      $('#friend-list').append(newFriend)
+      $('#friend-list').children().last().draggable({
+          cursor: "move",
+          containment: "#new-venture",
+          snap: "#drop-box"
+        })
     },
     error: function (msg) {
       console.log("error")
@@ -23,7 +27,6 @@ $('.add-friend-btn').click(function(event){
 
 //creating new venture with AJAX call
 $('#go-venture-btn').click(function(){
-  console.log("getting to ajax call")
   var location = $('#venture-location').val();
   $.ajax({
     type: "post",
